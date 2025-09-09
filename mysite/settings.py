@@ -148,8 +148,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 # CORS settings
+def format_cors_origin(origin):
+    """Add https:// scheme if missing, unless it's localhost"""
+    origin = origin.strip()
+    if not origin.startswith(('http://', 'https://')):
+        if 'localhost' in origin or '127.0.0.1' in origin:
+            return f'http://{origin}'
+        else:
+            return f'https://{origin}'
+    return origin
+
 CORS_ALLOWED_ORIGINS = [
-    origin.strip() for origin in os.getenv('FRONTEND_URL', 'http://localhost:5173').split(',')
+    format_cors_origin(origin) for origin in os.getenv('FRONTEND_URL', 'localhost:5173').split(',')
 ]
 
 CORS_ALLOW_CREDENTIALS = True
