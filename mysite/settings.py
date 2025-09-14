@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'apps.quests',
     'apps.responses',
     'apps.chat',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -91,6 +92,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
+ASGI_APPLICATION = 'mysite.asgi.application'
 
 
 # Database
@@ -166,7 +168,7 @@ def format_cors_origin(origin):
     return origin
 
 CORS_ALLOWED_ORIGINS = [
-    format_cors_origin(origin) for origin in os.getenv('FRONTEND_URL', 'localhost:5173').split(',')
+    f'http://localhost:{port}' for port in range(5173, 5181)
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -194,3 +196,10 @@ SIMPLE_JWT = {
 # Media files (for profile photos)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Channels configuration for WebSocket support
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
