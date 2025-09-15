@@ -13,3 +13,5 @@ websockets = true
 # Railway WebSocket configuration
 [deployment]
 webSocketUpgradeMode = "auto"
+asgiEnabled = true
+websocketTimeout = 300

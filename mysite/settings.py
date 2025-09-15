@@ -34,7 +34,13 @@ SECRET_KEY = 'django-insecure-rc^*w^w&6g9_(uvx#6s*bnt!w)l0rdi%!l7mv#y%uc&x%wo5pk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "server-staging-5280.up.railway.app",
+    "frontend-staging-2aa5.up.railway.app",
+    "localhost",
+    "127.0.0.1",
+    "*"  # Keep wildcard for development
+]
 
 # Railway WebSocket configuration
 RAILWAY_WEBSOCKET_ENABLED = True

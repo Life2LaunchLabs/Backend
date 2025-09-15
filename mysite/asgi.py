@@ -24,7 +24,6 @@ django_asgi_app = get_asgi_application()
 
 # Import websocket routing after Django is initialized
 from apps.chat.websocket_urls import websocket_urlpatterns
-from .debug_middleware import WebSocketDebugMiddleware
 
 logger.info(f"WebSocket URL patterns loaded: {websocket_urlpatterns}")
 
@@ -43,11 +42,9 @@ class DebugProtocolTypeRouter(ProtocolTypeRouter):
             logger.info(f"WebSocket headers: {scope.get('headers', [])}")
         return await super().__call__(scope, receive, send)
 
-application = WebSocketDebugMiddleware(
-    DebugProtocolTypeRouter({
-        "http": django_asgi_app,
-        "websocket": AuthMiddlewareStack(
-            DebugURLRouter(websocket_urlpatterns)
-        ),
-    })
-)
+application = DebugProtocolTypeRouter({
+    "http": django_asgi_app,
+    "websocket": AuthMiddlewareStack(
+        DebugURLRouter(websocket_urlpatterns)
+    ),
+})
