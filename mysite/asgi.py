@@ -1,15 +1,15 @@
-import os
-from channels.routing import ProtocolTypeRouter
-from channels.generic.websocket import AsyncWebsocketConsumer
+# minimal_ws.py
+from starlette.applications import Starlette
+from starlette.websockets import WebSocket
+import uvicorn
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
+app = Starlette()
 
-class Echo(AsyncWebsocketConsumer):
-    async def connect(self):
-        await self.accept()
-        await self.send("ok")
+@app.websocket_route("/ws/test")
+async def ws_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    await websocket.send_text("hello")
+    await websocket.close()
 
-application = ProtocolTypeRouter({
-    "http": lambda scope: None,  # ignore http
-    "websocket": Echo.as_asgi(),
-})
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ["PORT"]))
