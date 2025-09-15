@@ -1,1 +1,1 @@
-web: uvicorn mysite.asgi:application --host 0.0.0.0 --port $PORT
+web: daphne -p $PORT -b 0.0.0.0 mysite.asgi:application
