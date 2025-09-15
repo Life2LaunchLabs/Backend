@@ -1,50 +1,36 @@
-"""
-ASGI config for mysite project.
-
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/4.0/howto/deployment/asgi/
-"""
-
 import os
+import sys
 import logging
+
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 
-# Set up logging
-logger = logging.getLogger(__name__)
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 
-# Initialize Django ASGI application early to ensure the AppRegistry
-# is populated before importing code that may import ORM models.
 django_asgi_app = get_asgi_application()
 
-# Import websocket routing after Django is initialized
+# Import websocket routes
 from apps.chat.websocket_urls import websocket_urlpatterns
 
-logger.info(f"WebSocket URL patterns loaded: {websocket_urlpatterns}")
-
-class DebugURLRouter(URLRouter):
-    def __init__(self, routes):
-        super().__init__(routes)
-        logger.info(f"DebugURLRouter initialized with {len(routes)} routes")
-        for route in routes:
-            logger.info(f"WebSocket route: {route.pattern}")
 
 class DebugProtocolTypeRouter(ProtocolTypeRouter):
     async def __call__(self, scope, receive, send):
-        logger.info(f"ASGI Request - Type: {scope['type']}, Path: {scope.get('path', 'N/A')}")
-        if scope['type'] == 'websocket':
-            logger.info(f"WebSocket connection attempt to: {scope['path']}")
-            logger.info(f"WebSocket headers: {scope.get('headers', [])}")
+        # Print raw ASGI scope info to stdout
+        print(">>> DEBUG: incoming scope <<<", file=sys.stderr)
+        print("  type:", scope.get("type"), file=sys.stderr)
+        print("  path:", scope.get("path"), file=sys.stderr)
+        print("  headers:", scope.get("headers"), file=sys.stderr)
+        print("  method:", scope.get("method"), file=sys.stderr)
+        print("  query_string:", scope.get("query_string"), file=sys.stderr)
+        print(">>> END DEBUG <<<", file=sys.stderr)
+
         return await super().__call__(scope, receive, send)
+
 
 application = DebugProtocolTypeRouter({
     "http": django_asgi_app,
     "websocket": AuthMiddlewareStack(
-        DebugURLRouter(websocket_urlpatterns)
+        URLRouter(websocket_urlpatterns)
     ),
 })
