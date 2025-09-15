@@ -169,7 +169,7 @@ def format_cors_origin(origin):
 
 CORS_ALLOWED_ORIGINS = [
     f'http://localhost:{port}' for port in range(5173, 5181)
-]
+] + ['https://frontend-staging-2aa5.up.railway.app']
 
 CORS_ALLOW_CREDENTIALS = True
 
