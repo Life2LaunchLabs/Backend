@@ -36,6 +36,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+# Railway WebSocket configuration
+RAILWAY_WEBSOCKET_ENABLED = True
+
 # FORM SUBMISSION
 # Comment out the following line and place your railway URL, and your production URL in the array.
 CSRF_TRUSTED_ORIGINS = ["https://server-staging-5280.up.railway.app"]

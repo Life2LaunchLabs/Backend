@@ -9,3 +9,7 @@ restartPolicyType = "never"
 [experimental]
 # Enable WebSocket support
 websockets = true
+
+# Railway WebSocket configuration
+[deployment]
+webSocketUpgradeMode = "auto"
