@@ -1,18 +1,21 @@
-import os
-from starlette.applications import Starlette
-from starlette.websockets import WebSocket
-import uvicorn
+import os, sys
+from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
 
-app = Starlette()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 
-@app.websocket_route("/ws/test")
-async def ws_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    await websocket.send_text("hello")
-    await websocket.close()
+django_asgi_app = get_asgi_application()
 
-# Export as 'application' for Django/Railway compatibility
-application = app
+# import AFTER django is ready
+from apps.chat.websocket_urls import websocket_urlpatterns
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+# TEMP debug: prove this file is loaded
+print(">>> USING ASGI:", __file__, file=sys.stderr, flush=True)
+
+application = ProtocolTypeRouter({
+    "http": django_asgi_app,
+    "websocket": AuthMiddlewareStack(
+        URLRouter(websocket_urlpatterns)
+    ),
+})
