@@ -24,4 +24,6 @@ urlpatterns = [
     path('api/', include('apps.quests.urls')),
     path('api/chat/', include('apps.chat.urls')),
     path('', include('apps.courses.urls')),
+    # Debug route to catch WebSocket requests hitting HTTP router
+    path('ws/<path:path>', views.websocket_debug, name='websocket_debug'),
 ]
