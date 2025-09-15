@@ -4,6 +4,7 @@ Handles real-time message delivery and streaming LLM responses
 """
 import json
 import asyncio
+import logging
 from typing import Dict, Any, Optional
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.exceptions import DenyConnection
@@ -14,6 +15,9 @@ from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from .conversation_service import conversation_service
 from .services import ChatSessionService
 
+# Set up logging
+logger = logging.getLogger(__name__)
+
 
 class ChatStreamConsumer(AsyncWebsocketConsumer):
     """
@@ -23,27 +27,39 @@ class ChatStreamConsumer(AsyncWebsocketConsumer):
     
     async def connect(self):
         """Handle WebSocket connection"""
+        logger.info(f"ChatStreamConsumer.connect() called")
+        logger.info(f"WebSocket scope: {self.scope}")
+
         # Extract session ID and token from URL
         self.session_id = self.scope['url_route']['kwargs'].get('session_id')
+        logger.info(f"Extracted session_id: {self.session_id}")
+
         self.user = None
         self.session_config = None
-        
+
         # Authenticate user via JWT token from query params
         token = self.scope.get('query_string', b'').decode('utf-8')
+        logger.info(f"Raw query string: {token}")
+
         if token.startswith('token='):
             token = token[6:]  # Remove 'token=' prefix
-            
+            logger.info(f"Extracted token: {token[:20]}...")
+
         if not await self.authenticate_user(token):
+            logger.error(f"Authentication failed for session {self.session_id}")
             await self.close(code=4001)  # Authentication failed
             return
-            
+
         # Validate session access
         if not await self.validate_session_access():
+            logger.error(f"Session access validation failed for session {self.session_id}")
             await self.close(code=4003)  # Forbidden
             return
-            
+
         # Join session group for potential multi-client support
         self.session_group_name = f'chat_session_{self.session_id}'
+        logger.info(f"Joining group: {self.session_group_name}")
+
         await self.channel_layer.group_add(
             self.session_group_name,
             self.channel_name
