@@ -10,7 +10,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password_confirm')
+        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'password_confirm')
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password_confirm']:
@@ -20,6 +20,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def validate_username(self, value):
         if User.objects.filter(username=value).exists():
             raise serializers.ValidationError("Username already exists")
+        return value
+
+    def validate_email(self, value):
+        if value and User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Email already exists")
         return value
 
     def create(self, validated_data):
@@ -117,20 +122,28 @@ class PrivateProfileSerializer(serializers.ModelSerializer):
 
 class UserProfileUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating user profile information"""
-    
+
     class Meta:
         model = User
         fields = (
-            'first_name', 'middle_name', 'last_name', 'email', 
+            'username', 'first_name', 'last_name', 'email',
             'bio', 'birth_date', 'profile_photo'
         )
-    
+
     def validate_email(self, value):
         """Ensure email is unique if being changed"""
         if value:
             user = self.instance
             if User.objects.exclude(pk=user.pk).filter(email=value).exists():
                 raise serializers.ValidationError("Email already in use")
+        return value
+
+    def validate_username(self, value):
+        """Ensure username is unique if being changed"""
+        if value:
+            user = self.instance
+            if User.objects.exclude(pk=user.pk).filter(username=value).exists():
+                raise serializers.ValidationError("Username already in use")
         return value
 
 

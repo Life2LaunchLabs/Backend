@@ -4,8 +4,11 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
+import logging
 from .models import User
-from .serializers import UserRegistrationSerializer, UserLoginSerializer, UserSerializer, UsernameCheckSerializer, PrivateProfileSerializer
+from .serializers import UserRegistrationSerializer, UserLoginSerializer, UserSerializer, UsernameCheckSerializer, PrivateProfileSerializer, UserProfileUpdateSerializer
+
+logger = logging.getLogger(__name__)
 
 
 @api_view(['POST'])
@@ -17,11 +20,11 @@ def register(request):
     serializer = UserRegistrationSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
-        
+
         # Generate JWT tokens
         refresh = RefreshToken.for_user(user)
         access_token = refresh.access_token
-        
+
         return Response({
             'message': 'User created successfully',
             'user': UserSerializer(user).data,
@@ -30,7 +33,7 @@ def register(request):
                 'access': str(access_token),
             }
         }, status=status.HTTP_201_CREATED)
-    
+
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -79,14 +82,28 @@ def check_username(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
+@api_view(['GET', 'PATCH'])
 def profile(request):
     """
-    Get current user profile (requires authentication)
+    Get or update current user profile (requires authentication)
     """
-    return Response({
-        'user': PrivateProfileSerializer(request.user, context={'request': request}).data
-    }, status=status.HTTP_200_OK)
+    if request.method == 'GET':
+        serializer = PrivateProfileSerializer(request.user, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    elif request.method == 'PATCH':
+        serializer = UserProfileUpdateSerializer(
+            request.user,
+            data=request.data,
+            partial=True,
+            context={'request': request}
+        )
+        if serializer.is_valid():
+            user = serializer.save()
+            # Return updated profile data using PrivateProfileSerializer
+            response_serializer = PrivateProfileSerializer(user, context={'request': request})
+            return Response(response_serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
