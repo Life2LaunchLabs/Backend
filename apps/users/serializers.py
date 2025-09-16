@@ -30,6 +30,28 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         validated_data.pop('password_confirm')
         user = User.objects.create_user(**validated_data)
+
+        # Initialize default quests for new user using V2 system
+        from apps.quests.default_quests_v2 import initialize_default_quests_for_user_v2
+        import logging
+        logger = logging.getLogger(__name__)
+
+        logger.info(f"Starting quest initialization for user {user.username}")
+
+        try:
+            result = initialize_default_quests_for_user_v2(user)
+            if result:
+                enrollment_count = len([k for k in result.keys() if 'enrollment' in k])
+                logger.info(f"✅ Successfully initialized default quests for user {user.username}: {enrollment_count} enrollments created")
+                logger.info(f"Created: {list(result.keys())}")
+            else:
+                logger.warning(f"⚠️ Quest initialization returned empty result for user {user.username}")
+        except Exception as e:
+            # Log the error with full traceback but don't fail user creation
+            logger.error(f"❌ Failed to initialize default quests for user {user.username}: {e}")
+            import traceback
+            logger.error(f"Full traceback: {traceback.format_exc()}")
+
         return user
 
 

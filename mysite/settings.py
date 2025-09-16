@@ -263,3 +263,6 @@ LOGGING = {
         },
     },
 }
+
+# Quest Configuration
+ENABLE_DEFAULT_QUESTS = os.getenv('ENABLE_DEFAULT_QUESTS', 'True').lower() == 'true'

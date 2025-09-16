@@ -149,6 +149,17 @@ class MilestoneViewSet(viewsets.ModelViewSet):
             quest__user=request.user,
             status='in_progress'
         ).select_related('quest').order_by('finish_date')
-        
+
+        serializer = MilestoneWithQuestSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'])
+    def upcoming(self, request, quest_pk=None):
+        """Get upcoming milestones for dashboard - 5 earliest non-completed milestones"""
+        queryset = Milestone.objects.filter(
+            quest__user=request.user,
+            status__in=['not_started', 'in_progress']
+        ).select_related('quest').order_by('finish_date')[:5]
+
         serializer = MilestoneWithQuestSerializer(queryset, many=True)
         return Response(serializer.data)
