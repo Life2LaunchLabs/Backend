@@ -10,20 +10,17 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'password_confirm')
+        fields = ('email', 'first_name', 'last_name', 'password', 'password_confirm')
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password_confirm']:
             raise serializers.ValidationError("Passwords don't match")
         return attrs
 
-    def validate_username(self, value):
-        if User.objects.filter(username=value).exists():
-            raise serializers.ValidationError("Username already exists")
-        return value
-
     def validate_email(self, value):
-        if value and User.objects.filter(email=value).exists():
+        if not value:
+            raise serializers.ValidationError("Email is required")
+        if User.objects.filter(email=value).exists():
             raise serializers.ValidationError("Email already exists")
         return value
 
@@ -36,19 +33,19 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         import logging
         logger = logging.getLogger(__name__)
 
-        logger.info(f"Starting quest initialization for user {user.username}")
+        logger.info(f"Starting quest initialization for user {user.email}")
 
         try:
             result = initialize_default_quests_for_user_v2(user)
             if result:
                 enrollment_count = len([k for k in result.keys() if 'enrollment' in k])
-                logger.info(f"✅ Successfully initialized default quests for user {user.username}: {enrollment_count} enrollments created")
+                logger.info(f"✅ Successfully initialized default quests for user {user.email}: {enrollment_count} enrollments created")
                 logger.info(f"Created: {list(result.keys())}")
             else:
-                logger.warning(f"⚠️ Quest initialization returned empty result for user {user.username}")
+                logger.warning(f"⚠️ Quest initialization returned empty result for user {user.email}")
         except Exception as e:
             # Log the error with full traceback but don't fail user creation
-            logger.error(f"❌ Failed to initialize default quests for user {user.username}: {e}")
+            logger.error(f"❌ Failed to initialize default quests for user {user.email}: {e}")
             import traceback
             logger.error(f"Full traceback: {traceback.format_exc()}")
 
@@ -56,33 +53,33 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
 
 class UserLoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
+    email = serializers.EmailField()
     password = serializers.CharField()
 
     def validate(self, attrs):
-        username = attrs.get('username')
+        email = attrs.get('email')
         password = attrs.get('password')
 
-        if username and password:
-            user = authenticate(username=username, password=password)
+        if email and password:
+            user = authenticate(username=email, password=password)
             if not user:
                 raise serializers.ValidationError('Invalid credentials')
             if not user.is_active:
                 raise serializers.ValidationError('User account is disabled')
             attrs['user'] = user
         else:
-            raise serializers.ValidationError('Must include username and password')
-        
+            raise serializers.ValidationError('Must include email and password')
+
         return attrs
 
 
 class UserSerializer(serializers.ModelSerializer):
     """Basic user serializer for authentication responses"""
     full_name = serializers.CharField(source='get_full_name_with_middle', read_only=True)
-    
+
     class Meta:
         model = User
-        fields = ('id', 'username', 'full_name', 'email', 'date_joined', 'is_active')
+        fields = ('id', 'full_name', 'email', 'date_joined', 'is_active')
         read_only_fields = ('id', 'date_joined', 'is_active')
 
 
@@ -90,14 +87,14 @@ class PublicProfileSerializer(serializers.ModelSerializer):
     """Public profile data safe for API responses - no sensitive PII"""
     profile_photo_url = serializers.SerializerMethodField()
     display_name = serializers.CharField(source='get_anonymous_display_name', read_only=True)
-    
+
     class Meta:
         model = User
         fields = (
-            'anonymous_id', 'username', 'display_name', 'bio', 
+            'anonymous_id', 'display_name', 'bio',
             'profile_photo_url', 'account_created'
         )
-        read_only_fields = ('anonymous_id', 'username', 'account_created')
+        read_only_fields = ('anonymous_id', 'account_created')
     
     def get_profile_photo_url(self, obj):
         """Return profile photo URL if available"""
@@ -114,11 +111,11 @@ class PrivateProfileSerializer(serializers.ModelSerializer):
     full_name = serializers.CharField(source='get_full_name_with_middle', read_only=True)
     profile_photo_url = serializers.SerializerMethodField()
     encrypted_data = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = User
         fields = (
-            'id', 'username', 'email', 'first_name', 'middle_name', 'last_name',
+            'id', 'email', 'first_name', 'middle_name', 'last_name',
             'full_name', 'bio', 'tagline', 'birth_date', 'profile_photo_url',
             'account_created', 'anonymous_id', 'encrypted_data'
         )
@@ -148,7 +145,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'username', 'first_name', 'last_name', 'email',
+            'first_name', 'last_name', 'email',
             'bio', 'tagline', 'birth_date', 'profile_photo'
         )
 
@@ -160,20 +157,4 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Email already in use")
         return value
 
-    def validate_username(self, value):
-        """Ensure username is unique if being changed"""
-        if value:
-            user = self.instance
-            if User.objects.exclude(pk=user.pk).filter(username=value).exists():
-                raise serializers.ValidationError("Username already in use")
-        return value
 
-
-class UsernameCheckSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=150)
-    
-    def validate_username(self, value):
-        # Just validate format, don't check availability here
-        if not value:
-            raise serializers.ValidationError("Username is required")
-        return value

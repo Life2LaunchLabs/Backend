@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 import logging
 from .models import User
-from .serializers import UserRegistrationSerializer, UserLoginSerializer, UserSerializer, UsernameCheckSerializer, PrivateProfileSerializer, UserProfileUpdateSerializer
+from .serializers import UserRegistrationSerializer, UserLoginSerializer, UserSerializer, PrivateProfileSerializer, UserProfileUpdateSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -63,23 +63,6 @@ def login(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
-def check_username(request):
-    """
-    Check if username is available
-    """
-    serializer = UsernameCheckSerializer(data=request.data)
-    if serializer.is_valid():
-        username = serializer.validated_data['username']
-        is_available = not User.objects.filter(username=username).exists()
-        
-        return Response({
-            'username': username,
-            'available': is_available
-        }, status=status.HTTP_200_OK)
-    
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'PATCH'])

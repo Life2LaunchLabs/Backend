@@ -118,16 +118,30 @@ class Command(BaseCommand):
 
     def create_starter_content(self):
         """Create initial content for the application"""
-        # Create default admin user
-        if not User.objects.filter(username='admin').exists():
+        # Create default demo user
+        if not User.objects.filter(email='sam@fake.com').exists():
             admin_user = User.objects.create_superuser(
-                username='admin',
-                email='admin@example.com',
-                password='admin123',
-                first_name='Admin',
-                last_name='User'
+                email='sam@fake.com',
+                password='samgarcia',
+                first_name='Sam',
+                last_name='Garcia'
             )
-            self.stdout.write(f'  Created admin user: admin/admin123')
+            # Add profile defaults
+            admin_user.bio = "Software engineer and tech enthusiast passionate about building great user experiences. Love working with modern web technologies and solving complex problems."
+            admin_user.tagline = "Building the future, one line of code at a time"
+            admin_user.save()
+
+            # Initialize default quests for the demo user
+            try:
+                from apps.quests.default_quests_v2 import initialize_default_quests_for_user_v2
+                result = initialize_default_quests_for_user_v2(admin_user)
+                if result:
+                    enrollment_count = len([k for k in result.keys() if 'enrollment' in k])
+                    self.stdout.write(f'  Initialized {enrollment_count} default quest enrollments for demo user')
+            except Exception as e:
+                self.stdout.write(f'  Warning: Failed to initialize quests for demo user: {e}')
+
+            self.stdout.write(f'  Created demo user: sam@fake.com/samgarcia')
 
         # Create sample courses if Course model exists
         try:
