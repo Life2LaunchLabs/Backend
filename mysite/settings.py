@@ -42,6 +42,14 @@ ALLOWED_HOSTS = [
     "*"  # Keep wildcard for development
 ]
 
+# Add Railway production domain if available
+if os.getenv('RAILWAY_PUBLIC_DOMAIN'):
+    ALLOWED_HOSTS.append(os.getenv('RAILWAY_PUBLIC_DOMAIN'))
+
+# Add frontend Railway domain if available
+if os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'):
+    ALLOWED_HOSTS.append(os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'))
+
 # Railway WebSocket configuration
 RAILWAY_WEBSOCKET_ENABLED = True
 
@@ -51,6 +59,13 @@ CSRF_TRUSTED_ORIGINS = [
     "https://server-staging-5280.up.railway.app",
     "https://frontend-staging-2aa5.up.railway.app"
 ]
+
+# Add Railway production domains if available
+if os.getenv('RAILWAY_PUBLIC_DOMAIN'):
+    CSRF_TRUSTED_ORIGINS.append(f"https://{os.getenv('RAILWAY_PUBLIC_DOMAIN')}")
+
+if os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'):
+    CSRF_TRUSTED_ORIGINS.append(f"https://{os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN')}")
 
 # Application definition
 
@@ -182,6 +197,10 @@ def format_cors_origin(origin):
 CORS_ALLOWED_ORIGINS = [
     f'http://localhost:{port}' for port in range(5173, 5181)
 ] + ['https://frontend-staging-2aa5.up.railway.app']
+
+# Add Railway frontend domain if available
+if os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'):
+    CORS_ALLOWED_ORIGINS.append(f"https://{os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN')}")
 
 CORS_ALLOW_CREDENTIALS = True
 

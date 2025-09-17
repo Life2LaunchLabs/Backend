@@ -61,14 +61,14 @@ class ChatSessionService:
         except User.DoesNotExist:
             return None, [f"User with id {user_id} does not exist"]
         
-        # Normalize configuration with defaults
-        normalized_model_config = ProviderConfig.normalize_model_config(preset.model_config)
+        # Use preset configuration exactly as defined (no automatic defaults)
+        model_config = preset.model_config
         
         # Create session with transaction safety
         with transaction.atomic():
             session = ChatSession.objects.create(
                 user=user,
-                model_config=normalized_model_config,
+                model_config=model_config,
                 context_config=preset.context_config,
                 title=title,
                 expires_at=timezone.now() + timedelta(hours=ttl_hours),
@@ -219,7 +219,7 @@ class ChatSessionService:
             # Update session
             with transaction.atomic():
                 if preset_key:
-                    session.model_config = ProviderConfig.normalize_model_config(new_model_config)
+                    session.model_config = new_model_config
                     session.context_config = new_context_config
                 
                 if title:
