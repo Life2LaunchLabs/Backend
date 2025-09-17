@@ -21,6 +21,7 @@ class User(AbstractUser):
     # Extended profile fields (consider encryption for PII)
     middle_name = models.CharField(max_length=100, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
+    tagline = models.CharField(max_length=200, blank=True, null=True)
     birth_date = models.DateField(blank=True, null=True)
     profile_photo = models.ImageField(upload_to=user_profile_photo_path, blank=True, null=True)
     account_created = models.DateTimeField(default=timezone.now)

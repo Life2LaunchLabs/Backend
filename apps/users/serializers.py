@@ -119,7 +119,7 @@ class PrivateProfileSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'id', 'username', 'email', 'first_name', 'middle_name', 'last_name',
-            'full_name', 'bio', 'birth_date', 'profile_photo_url', 
+            'full_name', 'bio', 'tagline', 'birth_date', 'profile_photo_url',
             'account_created', 'anonymous_id', 'encrypted_data'
         )
         read_only_fields = ('id', 'account_created', 'anonymous_id')
@@ -149,7 +149,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'username', 'first_name', 'last_name', 'email',
-            'bio', 'birth_date', 'profile_photo'
+            'bio', 'tagline', 'birth_date', 'profile_photo'
         )
 
     def validate_email(self, value):
