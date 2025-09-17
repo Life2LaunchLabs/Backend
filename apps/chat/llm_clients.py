@@ -199,6 +199,13 @@ class OpenAIClient(BaseLLMClient):
                 "messages": openai_messages,
                 **parameters  # Include all preset parameters
             }
+
+            # Debug logging
+            print(f"🚀 OpenAI API Request:")
+            print(f"   Model: {model}")
+            print(f"   Parameters: {parameters}")
+            print(f"   Full payload model: {payload.get('model')}")
+            print(f"   Full payload keys: {list(payload.keys())}")
             
             # Make API request
             headers = {

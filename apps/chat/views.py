@@ -82,15 +82,19 @@ class SessionCreateView(APIView):
     
     def post(self, request):
         """Create a new chat session using a preset"""
+        print("DEBUG: SessionCreateView.post() called")
         try:
             data = request.data
-            
+            print(f"DEBUG: Session create request data: {data}")
+
             # Extract configuration
             preset_key = data.get('preset_key')
             if not preset_key:
                 # Use default preset if none specified
-                preset_key = PresetManager.get_default_preset().key
-            
+                default_preset = PresetManager.get_default_preset()
+                preset_key = default_preset.key
+                print(f"DEBUG: Using default preset: {preset_key}")
+
             title = data.get('title', 'New Chat')
             ttl_hours = data.get('ttl_hours', 24)
             
@@ -103,6 +107,7 @@ class SessionCreateView(APIView):
             )
             
             if errors:
+                print(f"DEBUG: Session creation errors: {errors}")
                 return Response({
                     'errors': errors
                 }, status=status.HTTP_400_BAD_REQUEST)

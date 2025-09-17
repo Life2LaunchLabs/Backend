@@ -12,9 +12,7 @@ class ProviderSpec:
     """Specification for an LLM provider"""
     name: str
     display_name: str
-    supported_models: List[str]
     required_params: List[str]
-    optional_params: List[str]
     param_defaults: Dict[str, Any]
     param_ranges: Dict[str, Dict[str, Any]]  # min/max/step for numeric params
 
@@ -28,15 +26,7 @@ class ProviderConfig:
     ANTHROPIC_SPEC = ProviderSpec(
         name="anthropic",
         display_name="Anthropic Claude",
-        supported_models=[
-            "claude-3-5-sonnet-20241022",
-            "claude-3-5-haiku-20241022", 
-            "claude-3-opus-20240229",
-            "claude-3-sonnet-20240229",
-            "claude-3-haiku-20240307"
-        ],
         required_params=["max_tokens"],
-        optional_params=["temperature", "top_p", "top_k", "stop_sequences"],
         param_defaults={
             "max_tokens": 4096,
             "temperature": 0.7,
@@ -54,18 +44,7 @@ class ProviderConfig:
     OPENAI_SPEC = ProviderSpec(
         name="openai",
         display_name="OpenAI GPT",
-        supported_models=[
-            "gpt-4o",
-            "gpt-4o-mini",
-            "gpt-4-turbo",
-            "gpt-4",
-            "gpt-3.5-turbo"
-        ],
-        required_params=["max_tokens"],
-        optional_params=[
-            "temperature", "top_p", "frequency_penalty", 
-            "presence_penalty", "stop"
-        ],
+        required_params=["max_tokens"],  # Note: newer models may use max_completion_tokens instead
         param_defaults={
             "max_tokens": 4096,
             "temperature": 0.7,
@@ -75,6 +54,7 @@ class ProviderConfig:
         },
         param_ranges={
             "max_tokens": {"min": 1, "max": 32768},
+            "max_completion_tokens": {"min": 1, "max": 32768},
             "temperature": {"min": 0.0, "max": 2.0, "step": 0.1},
             "top_p": {"min": 0.0, "max": 1.0, "step": 0.01},
             "frequency_penalty": {"min": -2.0, "max": 2.0, "step": 0.1},
@@ -121,24 +101,24 @@ class ProviderConfig:
             errors.append(f"Unsupported provider: {provider_name}")
             return {"errors": errors, "warnings": warnings}
         
-        # Validate model
+        # Validate model exists (but don't restrict to hardcoded list)
         model_name = model_config.get('model')
-        if model_name and model_name not in spec.supported_models:
-            errors.append(f"Unsupported model '{model_name}' for provider '{provider_name}'")
+        if not model_name:
+            errors.append(f"Missing model for provider '{provider_name}'")
         
         # Validate parameters
         params = model_config.get('parameters', {})
         
-        # Check required parameters
+        # Check required parameters (with special handling for OpenAI max_tokens/max_completion_tokens)
         for required_param in spec.required_params:
             if required_param not in params:
+                # Special case: OpenAI models can use either max_tokens or max_completion_tokens
+                if provider_name == "openai" and required_param == "max_tokens" and "max_completion_tokens" in params:
+                    continue  # max_completion_tokens is acceptable alternative
                 errors.append(f"Missing required parameter: {required_param}")
         
-        # Validate parameter values
+        # Validate parameter values (only check ranges for known parameters)
         for param_name, param_value in params.items():
-            if param_name not in spec.required_params + spec.optional_params:
-                warnings.append(f"Unknown parameter '{param_name}' for provider '{provider_name}'")
-                continue
             
             # Check numeric ranges
             if param_name in spec.param_ranges:
@@ -187,7 +167,7 @@ class ContextConfig:
             "description": "General purpose conversational AI"
         },
         "coding": {
-            "name": "Coding Assistant", 
+            "name": "Coding Assistant",
             "system_prompt": "You are an expert programmer and coding assistant. Help with code review, debugging, and implementation.",
             "description": "Specialized for programming tasks"
         },
@@ -195,6 +175,11 @@ class ContextConfig:
             "name": "Creative Assistant",
             "system_prompt": "You are a creative writing assistant. Help with storytelling, brainstorming, and creative projects.",
             "description": "Focused on creative tasks"
+        },
+        "control": {
+            "name": "Control Assistant",
+            "system_prompt": "You are a control system for generating emotes and quick responses for chat conversations.",
+            "description": "Specialized for chat control features"
         }
     }
     
