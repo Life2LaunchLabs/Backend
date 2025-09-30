@@ -1,0 +1,467 @@
+{
+  "activity": {
+    "slug": "pathways-assessment",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Pathways Assessment",
+    "description": "Experience the complete range of Activities features including media blocks, diverse question types, and interactive content.",
+    "is_published": true,
+    "meta": {
+      "estimated_duration": "5 minutes",
+      "difficulty": "beginner_to_intermediate",
+      "topics": [
+        "mindfulness",
+        "self-reflection",
+        "decision-making",
+        "goal-setting"
+      ]
+    }
+  },
+  "media_assets": [
+    {
+      "filename": "peaceful_environment.png",
+      "path": "activity_media/illustrations/peaceful_environment.png",
+      "title": "Peaceful Environment",
+      "description": "A calming, serene environment for reflection",
+      "mime_type": "image/png",
+      "alt_text": "A calming, serene environment for reflection"
+    },
+    {
+      "filename": "reflection_example.png",
+      "path": "activity_media/examples/reflection_example.png",
+      "title": "Reflection Journal",
+      "description": "Example of personal reflection and journaling",
+      "mime_type": "image/png",
+      "alt_text": "Example of personal reflection and journaling"
+    },
+    {
+      "filename": "discovery_concept.png",
+      "path": "activity_media/illustrations/discovery_concept.png",
+      "title": "Discovery and Learning",
+      "description": "Illustration representing discovery and exploration",
+      "mime_type": "image/png",
+      "alt_text": "Illustration representing discovery and exploration"
+    },
+    {
+      "filename": "choice_scenario.png",
+      "path": "activity_media/examples/choice_scenario.png",
+      "title": "Decision Making Scenario",
+      "description": "Visual example of making choices and decisions",
+      "mime_type": "image/png",
+      "alt_text": "Visual example of making choices and decisions"
+    },
+    {
+      "filename": "progress_visualization.png",
+      "path": "activity_media/interface_demos/progress_visualization.png",
+      "title": "Progress and Growth",
+      "description": "Visualization of learning progress and skill development",
+      "mime_type": "image/png",
+      "alt_text": "Visualization of learning progress and skill development"
+    },
+    {
+      "filename": "future_concept.png",
+      "path": "activity_media/examples/future_concept.png",
+      "title": "Future Possibilities",
+      "description": "Conceptual image representing future opportunities",
+      "mime_type": "image/png",
+      "alt_text": "Conceptual image representing future opportunities"
+    }
+  ],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Welcome to Your Mindfulness Journey",
+      "meta": {
+        "page_type": "introduction"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "h1",
+            "content": "Welcome to Your Mindfulness Journey"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "media",
+          "config": {
+            "media_filename": "peaceful_environment.png",
+            "caption": "Take a moment to center yourself as we begin this journey together.",
+            "size": "large"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "This comprehensive assessment will guide you through various aspects of mindfulness and self-reflection. You'll encounter different types of questions, interactive elements, and visual content designed to help you explore your thoughts, feelings, and goals."
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "text",
+          "config": {
+            "style": "lead",
+            "content": "Take your time with each section. There are no right or wrong answers—this is about your personal journey and insights."
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Personal Reflection",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "h2",
+            "content": "Personal Reflection & Self-Awareness"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "media",
+          "config": {
+            "media_filename": "reflection_example.png",
+            "caption": "Reflection is the foundation of mindful living.",
+            "size": "medium"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "question",
+          "config": {
+            "question_id": "current_mood",
+            "question_type": "text_input",
+            "question_text": "How would you describe your current emotional state in a few words?",
+            "placeholder": "Take a moment to check in with yourself...",
+            "required": true
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "question",
+          "config": {
+            "question_id": "mindfulness_frequency",
+            "question_type": "multiple_choice",
+            "question_text": "How often do you practice mindfulness or meditation?",
+            "options": [
+              {
+                "value": "daily",
+                "label": "Daily"
+              },
+              {
+                "value": "weekly",
+                "label": "Several times a week"
+              },
+              {
+                "value": "monthly",
+                "label": "A few times a month"
+              },
+              {
+                "value": "rarely",
+                "label": "Rarely or never"
+              },
+              {
+                "value": "just_starting",
+                "label": "I'm just starting to explore it"
+              }
+            ],
+            "required": true
+          }
+        },
+        {
+          "index": 4,
+          "block_type": "question",
+          "config": {
+            "question_id": "gratitude_reflection",
+            "question_type": "text_input",
+            "question_text": "What are three things you're grateful for today? Take a moment to really consider why each one matters to you.",
+            "placeholder": "1. ...\n2. ...\n3. ...",
+            "multiline": true,
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Mindful Decision Making",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "h2",
+            "content": "Mindful Decision Making"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "media",
+          "config": {
+            "media_filename": "discovery_concept.png",
+            "caption": "Every choice is an opportunity for growth and discovery.",
+            "size": "medium"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "Consider the following scenarios and reflect on how mindfulness might guide your choices."
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "question",
+          "config": {
+            "question_id": "stress_response",
+            "question_type": "single_choice",
+            "question_text": "You're facing a stressful deadline at work. Which approach feels most aligned with mindful living?",
+            "options": [
+              {
+                "value": "rush_panic",
+                "label": "Rush through tasks, accepting stress as inevitable"
+              },
+              {
+                "value": "pause_breathe",
+                "label": "Pause, take three deep breaths, then prioritize mindfully"
+              },
+              {
+                "value": "avoid_procrastinate",
+                "label": "Avoid the stress by procrastinating or distraction"
+              },
+              {
+                "value": "push_through",
+                "label": "Push through with determination, ignoring physical/emotional signals"
+              }
+            ],
+            "required": true
+          }
+        },
+        {
+          "index": 4,
+          "block_type": "media",
+          "config": {
+            "media_filename": "choice_scenario.png",
+            "caption": "Mindful choices create ripple effects in our lives.",
+            "size": "small"
+          }
+        },
+        {
+          "index": 5,
+          "block_type": "question",
+          "config": {
+            "question_id": "core_values",
+            "question_type": "multiple_choice",
+            "question_text": "Which values are most important to you in daily life? (Select all that apply)",
+            "options": [
+              {
+                "value": "compassion",
+                "label": "Compassion and kindness"
+              },
+              {
+                "value": "authenticity",
+                "label": "Authenticity and honesty"
+              },
+              {
+                "value": "growth",
+                "label": "Personal growth and learning"
+              },
+              {
+                "value": "connection",
+                "label": "Connection and relationships"
+              },
+              {
+                "value": "peace",
+                "label": "Inner peace and calm"
+              },
+              {
+                "value": "purpose",
+                "label": "Sense of purpose and meaning"
+              },
+              {
+                "value": "balance",
+                "label": "Work-life balance"
+              },
+              {
+                "value": "creativity",
+                "label": "Creativity and expression"
+              }
+            ],
+            "required": false,
+            "multiple_selection": true
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Mindful Goal Setting",
+      "meta": {
+        "page_type": "planning"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "h2",
+            "content": "Mindful Goal Setting & Intentions"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "media",
+          "config": {
+            "media_filename": "progress_visualization.png",
+            "caption": "Growth happens step by step, with mindful intention.",
+            "size": "large"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "Mindful goal setting involves setting intentions that align with your values and current capacity for growth."
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "question",
+          "config": {
+            "question_id": "mindfulness_intention",
+            "question_type": "text_input",
+            "question_text": "What is one mindfulness practice or habit you'd like to cultivate over the next month?",
+            "placeholder": "Be specific and realistic...",
+            "required": true
+          }
+        },
+        {
+          "index": 4,
+          "block_type": "question",
+          "config": {
+            "question_id": "support_preference",
+            "question_type": "single_choice",
+            "question_text": "How do you prefer to stay accountable to your mindfulness goals?",
+            "options": [
+              {
+                "value": "self_reflection",
+                "label": "Regular self-reflection and journaling"
+              },
+              {
+                "value": "accountability_partner",
+                "label": "An accountability partner or friend"
+              },
+              {
+                "value": "structured_program",
+                "label": "A structured program or course"
+              },
+              {
+                "value": "community_group",
+                "label": "A mindfulness community or group"
+              },
+              {
+                "value": "apps_reminders",
+                "label": "Apps, reminders, or digital tools"
+              },
+              {
+                "value": "flexible_approach",
+                "label": "I prefer a flexible, intuitive approach"
+              }
+            ],
+            "required": true
+          }
+        },
+        {
+          "index": 5,
+          "block_type": "question",
+          "config": {
+            "question_id": "anticipated_challenges",
+            "question_type": "text_input",
+            "question_text": "What challenges do you anticipate in maintaining your mindfulness practice? How might you work with them compassionately?",
+            "placeholder": "Consider both external obstacles and internal resistance...",
+            "multiline": true,
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Your Path Forward",
+      "meta": {
+        "page_type": "conclusion"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "h2",
+            "content": "Your Mindful Path Forward"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "media",
+          "config": {
+            "media_filename": "future_concept.png",
+            "caption": "Every moment offers a fresh opportunity for mindful awareness.",
+            "size": "medium"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "Thank you for taking this journey of self-reflection and mindful exploration. The insights you've gained here are just the beginning."
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "text",
+          "config": {
+            "style": "quote",
+            "content": "Remember: Mindfulness is not about perfection—it's about presence, compassion, and gentle awareness of each moment as it unfolds."
+          }
+        },
+        {
+          "index": 4,
+          "block_type": "question",
+          "config": {
+            "question_id": "closing_reflection",
+            "question_type": "text_input",
+            "question_text": "As we conclude, what is one word or phrase that captures how you're feeling right now?",
+            "placeholder": "Trust your first instinct...",
+            "required": false
+          }
+        },
+        {
+          "index": 5,
+          "block_type": "text",
+          "config": {
+            "style": "lead",
+            "content": "May you carry the spirit of mindful awareness with you in all that you do. Your journey continues with each conscious breath and intentional choice."
+          }
+        }
+      ]
+    }
+  ]
+}

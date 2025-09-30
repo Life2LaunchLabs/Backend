@@ -64,6 +64,13 @@ def main():
         ):
             print("⚠️  Default user creation failed (may already exist)")
 
+        # Create all demo activities
+        if not run_command(
+            "python manage.py create_demo_from_json",
+            "Creating all demo activities"
+        ):
+            print("⚠️  Demo activities creation failed (may already exist)")
+
     # Collect static files
     if not run_command(
         "python manage.py collectstatic --noinput",

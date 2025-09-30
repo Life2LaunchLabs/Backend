@@ -82,9 +82,11 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'apps.users',
     'apps.courses',
-    'apps.quests',
+    'apps.quests',  # Now includes activities (unified system)
     'apps.responses',
     'apps.chat',
+    # 'apps.activities',  # REMOVED - merged into apps.quests
+    'apps.organizations',
     'channels',
 ]
 

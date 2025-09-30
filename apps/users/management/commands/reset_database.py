@@ -231,4 +231,23 @@ Let's get started!"""
         except ImportError:
             self.stdout.write('  Skipped quest creation (app not found)')
 
+        # Create sample activities if Activity model exists
+        try:
+            from apps.activities.services import ActivityService
+
+            if not ActivityService.activity_exists('demo-mindful-morning'):
+                result = ActivityService.create_demo_activity()
+                if result['success']:
+                    self.stdout.write(f'  Created demo activity: {result["activity"].title}')
+                else:
+                    self.stdout.write(f'  Warning: Failed to create demo activity: {result["error"]}')
+
+            # Create comprehensive demo
+            from django.core.management import call_command
+            if not ActivityService.activity_exists('comprehensive-mindfulness-journey'):
+                call_command('create_demo_from_json')
+                self.stdout.write('  Created comprehensive demo activity')
+        except ImportError:
+            self.stdout.write('  Skipped activity creation (app not found)')
+
         self.stdout.write('  Starter content creation complete')

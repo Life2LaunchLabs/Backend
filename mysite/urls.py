@@ -23,8 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/health/', views.health_check, name='health_check'),
     path('api/auth/', include('apps.users.urls')),
-    path('api/', include('apps.quests.urls')),
+    path('api/', include('apps.quests.urls')),  # Now includes activities (unified system)
     path('api/chat/', include('apps.chat.urls')),
+    # path('api/activities/', include('apps.activities.urls')),  # REMOVED - merged into quests
+    path('api/', include('apps.organizations.urls')),
     path('', include('apps.courses.urls')),
 ]
 

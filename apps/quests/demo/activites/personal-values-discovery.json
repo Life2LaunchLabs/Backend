@@ -1,0 +1,105 @@
+{
+  "activity": {
+    "slug": "personal-values-discovery",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Personal Values Discovery",
+    "description": "Identify and prioritize your core personal values",
+    "is_published": true,
+    "meta": {
+      "demo": true,
+      "category": "values"
+    }
+  },
+  "pages": [
+    {
+      "index": 0,
+      "title": "Values Exploration",
+      "meta": {
+        "progress_label": "Introduction"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "h2",
+            "content": "Discover Your Core Values"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "Understanding your personal values helps guide important life decisions and creates a foundation for authentic living."
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Value Priorities",
+      "meta": {
+        "progress_label": "Selection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "question",
+          "config": {
+            "question_id": "top_values",
+            "question_type": "multiple_choice",
+            "question_text": "Select your top 5 most important values:",
+            "options": [
+              {
+                "value": "authenticity",
+                "label": "Authenticity"
+              },
+              {
+                "value": "creativity",
+                "label": "Creativity"
+              },
+              {
+                "value": "family",
+                "label": "Family"
+              },
+              {
+                "value": "growth",
+                "label": "Personal Growth"
+              },
+              {
+                "value": "integrity",
+                "label": "Integrity"
+              },
+              {
+                "value": "freedom",
+                "label": "Freedom"
+              },
+              {
+                "value": "service",
+                "label": "Service to Others"
+              },
+              {
+                "value": "achievement",
+                "label": "Achievement"
+              },
+              {
+                "value": "balance",
+                "label": "Work-Life Balance"
+              },
+              {
+                "value": "adventure",
+                "label": "Adventure"
+              }
+            ],
+            "required": true,
+            "multiple_selection": true
+          }
+        }
+      ]
+    }
+  ]
+}

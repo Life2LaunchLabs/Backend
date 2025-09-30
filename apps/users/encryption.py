@@ -119,8 +119,6 @@ def anonymize_for_logging(data):
         for key, value in data.items():
             if key in ['first_name', 'last_name', 'middle_name', 'email']:
                 anonymized[key] = f"[REDACTED_{key.upper()}]"
-            elif key == 'username':
-                anonymized[key] = f"user_{hash(value) % 10000:04d}"
             else:
                 anonymized[key] = value
         return anonymized

@@ -45,8 +45,8 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    # Make username optional since we're using email as primary identifier
-    username = models.CharField(max_length=150, blank=True, null=True)
+    # Remove username field entirely - we only use email
+    username = None
 
     # Make email unique and required
     email = models.EmailField(unique=True)
@@ -67,6 +67,16 @@ class User(AbstractUser):
     
     # Encrypted storage for sensitive PII (future expansion)
     _encrypted_pii = models.TextField(blank=True, null=True, help_text="Encrypted sensitive personal data")
+
+    # Organization admin relationship - default organization for admin access
+    default_organization = models.ForeignKey(
+        'organizations.Organization',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='default_admin_users',
+        help_text="Default organization when user accesses admin features"
+    )
     
     def get_full_name_with_middle(self):
         """Return the full name including middle name"""
@@ -115,6 +125,34 @@ class User(AbstractUser):
             'account_created': self.account_created,
             'profile_photo_url': self.profile_photo.url if self.profile_photo else None,
         }
+
+    def is_organization_admin(self):
+        """Check if user is an admin of any organization"""
+        return self.admin_organizations.filter(is_active=True).exists()
+
+    def get_admin_organizations(self):
+        """Get all organizations this user is an admin of"""
+        return self.admin_organizations.filter(is_active=True).order_by('name')
+
+    def set_default_organization(self, organization):
+        """Set the default organization for admin access"""
+        if organization in self.admin_organizations.all():
+            self.default_organization = organization
+            self.save(update_fields=['default_organization'])
+            return True
+        return False
+
+    def get_default_admin_organization(self):
+        """Get default organization, or first admin org if none set"""
+        if self.default_organization and self.default_organization.is_active:
+            return self.default_organization
+
+        first_admin_org = self.get_admin_organizations().first()
+        if first_admin_org:
+            self.set_default_organization(first_admin_org)
+            return first_admin_org
+
+        return None
 
     def __str__(self):
         return self.email

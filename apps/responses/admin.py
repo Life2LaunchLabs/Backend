@@ -9,7 +9,7 @@ class CourseSessionAdmin(admin.ModelAdmin):
         'answered_questions', 'total_questions', 'character_used', 'started_at'
     ]
     list_filter = ['status', 'character_used', 'course', 'schema_outdated']
-    search_fields = ['user__username', 'course__title', 'id']
+    search_fields = ['user__email', 'course__title', 'id']
     readonly_fields = [
         'id', 'agenda_version_hash', 'agenda_snapshot', 'started_at', 
         'completion_percentage', 'answered_questions'
