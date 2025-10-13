@@ -36,7 +36,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "server-staging-5280.up.railway.app",
-    "frontend-staging-2aa5.up.railway.app",
+    "life2launch-launchpad.up.railway.app",
     "localhost",
     "127.0.0.1",
     "*"  # Keep wildcard for development
@@ -57,7 +57,7 @@ RAILWAY_WEBSOCKET_ENABLED = True
 # Comment out the following line and place your railway URL, and your production URL in the array.
 CSRF_TRUSTED_ORIGINS = [
     "https://server-staging-5280.up.railway.app",
-    "https://frontend-staging-2aa5.up.railway.app"
+    "https://life2launch-launchpad.up.railway.app"
 ]
 
 # Add Railway production domains if available
@@ -198,7 +198,7 @@ def format_cors_origin(origin):
 
 CORS_ALLOWED_ORIGINS = [
     f'http://localhost:{port}' for port in range(5173, 5181)
-] + ['https://frontend-staging-2aa5.up.railway.app']
+] + ['https://life2launch-launchpad.up.railway.app']
 
 # Add Railway frontend domain if available
 if os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'):
