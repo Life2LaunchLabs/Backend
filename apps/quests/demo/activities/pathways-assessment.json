@@ -19,48 +19,40 @@
   },
   "media_assets": [
     {
-      "filename": "10b03e66-30b0-4074-88b8-2f1324eaaf39.jpg",
-      "path": "10b03e66-30b0-4074-88b8-2f1324eaaf39.jpg",
-      "title": "wildflowers.jpg",
-      "description": "Uploaded from activity editor",
-      "mime_type": "image/jpeg",
-      "alt_text": "Uploaded from activity editor"
-    },
-    {
-      "filename": "40ab607a-30eb-49f5-a208-e4d86e16171f.png",
-      "path": "40ab607a-30eb-49f5-a208-e4d86e16171f.png",
+      "filename": "9fdea6d8-05e4-4632-ad35-959a7785f8ff.png",
+      "path": "9fdea6d8-05e4-4632-ad35-959a7785f8ff.png",
       "title": "Reflection Journal",
       "description": "Example of personal reflection and journaling",
       "mime_type": "image/png",
       "alt_text": "Example of personal reflection and journaling"
     },
     {
-      "filename": "07bca47e-76b1-4079-b04a-bd3996ba46e6.png",
-      "path": "07bca47e-76b1-4079-b04a-bd3996ba46e6.png",
+      "filename": "b450c2ae-0ad0-4dd2-862a-1881191f2314.png",
+      "path": "b450c2ae-0ad0-4dd2-862a-1881191f2314.png",
       "title": "Discovery and Learning",
       "description": "Illustration representing discovery and exploration",
       "mime_type": "image/png",
       "alt_text": "Illustration representing discovery and exploration"
     },
     {
-      "filename": "4c6179f3-d9e7-47c8-963b-9a81f01e9271.png",
-      "path": "4c6179f3-d9e7-47c8-963b-9a81f01e9271.png",
+      "filename": "603e89fc-2c53-4d2a-9b2f-17ad3a6b9099.png",
+      "path": "603e89fc-2c53-4d2a-9b2f-17ad3a6b9099.png",
       "title": "Decision Making Scenario",
       "description": "Visual example of making choices and decisions",
       "mime_type": "image/png",
       "alt_text": "Visual example of making choices and decisions"
     },
     {
-      "filename": "4f6dbe00-db0c-4ee5-99ae-6bf5afc7ad0b.png",
-      "path": "4f6dbe00-db0c-4ee5-99ae-6bf5afc7ad0b.png",
+      "filename": "656316af-5be7-49fd-81c4-079644229b25.png",
+      "path": "656316af-5be7-49fd-81c4-079644229b25.png",
       "title": "Progress and Growth",
       "description": "Visualization of learning progress and skill development",
       "mime_type": "image/png",
       "alt_text": "Visualization of learning progress and skill development"
     },
     {
-      "filename": "2a383a71-aa04-45b7-bd76-bb1f428ba317.png",
-      "path": "2a383a71-aa04-45b7-bd76-bb1f428ba317.png",
+      "filename": "29ba6ec0-51c9-4ce9-937c-4dba3b61456e.png",
+      "path": "29ba6ec0-51c9-4ce9-937c-4dba3b61456e.png",
       "title": "Future Possibilities",
       "description": "Conceptual image representing future opportunities",
       "mime_type": "image/png",
@@ -70,7 +62,7 @@
   "pages": [
     {
       "index": 0,
-      "title": "Welcome to Your Mindfulness Journey",
+      "title": "Get To Know You",
       "meta": {
         "page_type": "introduction"
       },
@@ -79,33 +71,55 @@
           "index": 0,
           "block_type": "text",
           "config": {
-            "style": "h1",
-            "content": "Welcome to Your Mindfulness Journey"
+            "text": "Life2Launch is collaborating with youth to create a better life and career launching system. Your data will remain confidential and never sold. Thank you!",
+            "align": "left",
+            "style": "body",
+            "content": "Life2Launch is collaborating with youth to create a better life and career launching system. Your data will remain confidential and never sold. Thank you!"
           }
         },
         {
           "index": 1,
-          "block_type": "media",
+          "block_type": "text_input",
           "config": {
-            "size": "large",
-            "caption": "Take a moment to center yourself as we begin this journey together.",
-            "media_filename": "10b03e66-30b0-4074-88b8-2f1324eaaf39.jpg"
+            "title": "Gender",
+            "config": {
+              "multiline": false,
+              "placeholder": ""
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "question_1760379607247",
+            "question_type": "text_input"
           }
         },
         {
           "index": 2,
-          "block_type": "text",
+          "block_type": "text_input",
           "config": {
-            "style": "body",
-            "content": "This comprehensive assessment will guide you through various aspects of mindfulness and self-reflection. You'll encounter different types of questions, interactive elements, and visual content designed to help you explore your thoughts, feelings, and goals."
+            "title": "Grade Year",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "question_1760379629647",
+            "question_type": "text_input"
           }
         },
         {
           "index": 3,
-          "block_type": "text",
+          "block_type": "text_input",
           "config": {
-            "style": "lead",
-            "content": "Take your time with each section. There are no right or wrong answers—this is about your personal journey and insights."
+            "title": "School",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "question_1760379644777",
+            "question_type": "text_input"
           }
         }
       ]
@@ -131,24 +145,28 @@
           "config": {
             "size": "medium",
             "caption": "Reflection is the foundation of mindful living.",
-            "media_filename": "40ab607a-30eb-49f5-a208-e4d86e16171f.png"
+            "media_filename": "9fdea6d8-05e4-4632-ad35-959a7785f8ff.png"
           }
         },
         {
           "index": 2,
-          "block_type": "question",
+          "block_type": "text_input",
           "config": {
+            "title": "How would you describe your current emotional state in a few words?",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
             "required": true,
-            "placeholder": "Take a moment to check in with yourself...",
             "question_id": "current_mood",
-            "question_text": "How would you describe your current emotional state in a few words?",
             "question_type": "text_input"
           }
         },
         {
           "index": 3,
-          "block_type": "question",
+          "block_type": "multiple_choice",
           "config": {
+            "title": "How often do you practice mindfulness or meditation?",
             "options": [
               {
                 "label": "Daily",
@@ -173,19 +191,20 @@
             ],
             "required": true,
             "question_id": "mindfulness_frequency",
-            "question_text": "How often do you practice mindfulness or meditation?",
             "question_type": "multiple_choice"
           }
         },
         {
           "index": 4,
-          "block_type": "question",
+          "block_type": "text_input",
           "config": {
+            "title": "What are three things you're grateful for today? Take a moment to really consider why each one matters to you.",
+            "config": {
+              "multiline": true,
+              "placeholder": "Enter your answer..."
+            },
             "required": false,
-            "multiline": true,
-            "placeholder": "1. ...\n2. ...\n3. ...",
             "question_id": "gratitude_reflection",
-            "question_text": "What are three things you're grateful for today? Take a moment to really consider why each one matters to you.",
             "question_type": "text_input"
           }
         }
@@ -212,7 +231,7 @@
           "config": {
             "size": "medium",
             "caption": "Every choice is an opportunity for growth and discovery.",
-            "media_filename": "07bca47e-76b1-4079-b04a-bd3996ba46e6.png"
+            "media_filename": "b450c2ae-0ad0-4dd2-862a-1881191f2314.png"
           }
         },
         {
@@ -225,8 +244,9 @@
         },
         {
           "index": 3,
-          "block_type": "question",
+          "block_type": "multiple_choice",
           "config": {
+            "title": "You're facing a stressful deadline at work. Which approach feels most aligned with mindful living?",
             "options": [
               {
                 "label": "Rush through tasks, accepting stress as inevitable",
@@ -247,7 +267,6 @@
             ],
             "required": true,
             "question_id": "stress_response",
-            "question_text": "You're facing a stressful deadline at work. Which approach feels most aligned with mindful living?",
             "question_type": "single_choice"
           }
         },
@@ -257,13 +276,14 @@
           "config": {
             "size": "small",
             "caption": "Mindful choices create ripple effects in our lives.",
-            "media_filename": "4c6179f3-d9e7-47c8-963b-9a81f01e9271.png"
+            "media_filename": "603e89fc-2c53-4d2a-9b2f-17ad3a6b9099.png"
           }
         },
         {
           "index": 5,
-          "block_type": "question",
+          "block_type": "multiple_choice",
           "config": {
+            "title": "Which values are most important to you in daily life? (Select all that apply)",
             "options": [
               {
                 "label": "Compassion and kindness",
@@ -300,7 +320,6 @@
             ],
             "required": false,
             "question_id": "core_values",
-            "question_text": "Which values are most important to you in daily life? (Select all that apply)",
             "question_type": "multiple_choice",
             "multiple_selection": true
           }
@@ -328,7 +347,7 @@
           "config": {
             "size": "large",
             "caption": "Growth happens step by step, with mindful intention.",
-            "media_filename": "4f6dbe00-db0c-4ee5-99ae-6bf5afc7ad0b.png"
+            "media_filename": "656316af-5be7-49fd-81c4-079644229b25.png"
           }
         },
         {
@@ -341,19 +360,23 @@
         },
         {
           "index": 3,
-          "block_type": "question",
+          "block_type": "text_input",
           "config": {
+            "title": "What is one mindfulness practice or habit you'd like to cultivate over the next month?",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
             "required": true,
-            "placeholder": "Be specific and realistic...",
             "question_id": "mindfulness_intention",
-            "question_text": "What is one mindfulness practice or habit you'd like to cultivate over the next month?",
             "question_type": "text_input"
           }
         },
         {
           "index": 4,
-          "block_type": "question",
+          "block_type": "multiple_choice",
           "config": {
+            "title": "How do you prefer to stay accountable to your mindfulness goals?",
             "options": [
               {
                 "label": "Regular self-reflection and journaling",
@@ -382,19 +405,20 @@
             ],
             "required": true,
             "question_id": "support_preference",
-            "question_text": "How do you prefer to stay accountable to your mindfulness goals?",
             "question_type": "single_choice"
           }
         },
         {
           "index": 5,
-          "block_type": "question",
+          "block_type": "text_input",
           "config": {
+            "title": "What challenges do you anticipate in maintaining your mindfulness practice? How might you work with them compassionately?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Consider both external obstacles and internal resistance..."
+            },
             "required": false,
-            "multiline": true,
-            "placeholder": "Consider both external obstacles and internal resistance...",
             "question_id": "anticipated_challenges",
-            "question_text": "What challenges do you anticipate in maintaining your mindfulness practice? How might you work with them compassionately?",
             "question_type": "text_input"
           }
         }
@@ -421,7 +445,7 @@
           "config": {
             "size": "medium",
             "caption": "Every moment offers a fresh opportunity for mindful awareness.",
-            "media_filename": "2a383a71-aa04-45b7-bd76-bb1f428ba317.png"
+            "media_filename": "29ba6ec0-51c9-4ce9-937c-4dba3b61456e.png"
           }
         },
         {
@@ -442,12 +466,14 @@
         },
         {
           "index": 4,
-          "block_type": "question",
+          "block_type": "text_input",
           "config": {
+            "title": "As we conclude, what is one word or phrase that captures how you're feeling right now?",
+            "config": {
+              "placeholder": "Trust your first instinct..."
+            },
             "required": false,
-            "placeholder": "Trust your first instinct...",
             "question_id": "closing_reflection",
-            "question_text": "As we conclude, what is one word or phrase that captures how you're feeling right now?",
             "question_type": "text_input"
           }
         },
