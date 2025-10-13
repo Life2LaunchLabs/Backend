@@ -17,60 +17,11 @@
       "estimated_duration": "5 minutes"
     }
   },
-  "media_assets": [
-    {
-      "filename": "10b03e66-30b0-4074-88b8-2f1324eaaf39.jpg",
-      "path": "10b03e66-30b0-4074-88b8-2f1324eaaf39.jpg",
-      "title": "wildflowers.jpg",
-      "description": "Uploaded from activity editor",
-      "mime_type": "image/jpeg",
-      "alt_text": "Uploaded from activity editor"
-    },
-    {
-      "filename": "40ab607a-30eb-49f5-a208-e4d86e16171f.png",
-      "path": "40ab607a-30eb-49f5-a208-e4d86e16171f.png",
-      "title": "Reflection Journal",
-      "description": "Example of personal reflection and journaling",
-      "mime_type": "image/png",
-      "alt_text": "Example of personal reflection and journaling"
-    },
-    {
-      "filename": "07bca47e-76b1-4079-b04a-bd3996ba46e6.png",
-      "path": "07bca47e-76b1-4079-b04a-bd3996ba46e6.png",
-      "title": "Discovery and Learning",
-      "description": "Illustration representing discovery and exploration",
-      "mime_type": "image/png",
-      "alt_text": "Illustration representing discovery and exploration"
-    },
-    {
-      "filename": "4c6179f3-d9e7-47c8-963b-9a81f01e9271.png",
-      "path": "4c6179f3-d9e7-47c8-963b-9a81f01e9271.png",
-      "title": "Decision Making Scenario",
-      "description": "Visual example of making choices and decisions",
-      "mime_type": "image/png",
-      "alt_text": "Visual example of making choices and decisions"
-    },
-    {
-      "filename": "4f6dbe00-db0c-4ee5-99ae-6bf5afc7ad0b.png",
-      "path": "4f6dbe00-db0c-4ee5-99ae-6bf5afc7ad0b.png",
-      "title": "Progress and Growth",
-      "description": "Visualization of learning progress and skill development",
-      "mime_type": "image/png",
-      "alt_text": "Visualization of learning progress and skill development"
-    },
-    {
-      "filename": "2a383a71-aa04-45b7-bd76-bb1f428ba317.png",
-      "path": "2a383a71-aa04-45b7-bd76-bb1f428ba317.png",
-      "title": "Future Possibilities",
-      "description": "Conceptual image representing future opportunities",
-      "mime_type": "image/png",
-      "alt_text": "Conceptual image representing future opportunities"
-    }
-  ],
+  "media_assets": [],
   "pages": [
     {
       "index": 0,
-      "title": "Welcome to Your Mindfulness Journey",
+      "title": "Get To Know You",
       "meta": {
         "page_type": "introduction"
       },
@@ -79,228 +30,297 @@
           "index": 0,
           "block_type": "text",
           "config": {
-            "style": "h1",
-            "content": "Welcome to Your Mindfulness Journey"
+            "text": "Life2Launch is collaborating with youth to create a better life and career launching system. Your data will remain confidential and never sold. Thank you!",
+            "align": "left",
+            "style": "body",
+            "content": "Life2Launch is collaborating with youth to create a better life and career launching system. Your data will remain confidential and never sold. Thank you!"
           }
         },
         {
           "index": 1,
-          "block_type": "media",
+          "block_type": "dropdown_input",
           "config": {
-            "size": "large",
-            "caption": "Take a moment to center yourself as we begin this journey together.",
-            "media_filename": "10b03e66-30b0-4074-88b8-2f1324eaaf39.jpg"
+            "title": "Gender",
+            "config": {
+              "options": [
+                {
+                  "id": "opt_1",
+                  "body": "",
+                  "title": "Male"
+                },
+                {
+                  "id": "opt_2",
+                  "body": "",
+                  "title": "Female"
+                },
+                {
+                  "id": "option_1760391204651",
+                  "body": "",
+                  "title": "Other"
+                },
+                {
+                  "id": "option_1760391205562",
+                  "body": "",
+                  "title": "Non-binary"
+                }
+              ],
+              "placeholder": "Select an option..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "question_1760391192671",
+            "question_type": "dropdown_input"
           }
         },
         {
           "index": 2,
-          "block_type": "text",
+          "block_type": "dropdown_input",
           "config": {
-            "style": "body",
-            "content": "This comprehensive assessment will guide you through various aspects of mindfulness and self-reflection. You'll encounter different types of questions, interactive elements, and visual content designed to help you explore your thoughts, feelings, and goals."
+            "title": "Grade Year",
+            "config": {
+              "options": [
+                {
+                  "id": "opt_1",
+                  "body": "",
+                  "title": "7th Grade"
+                },
+                {
+                  "id": "opt_2",
+                  "body": "",
+                  "title": "8th Grade"
+                },
+                {
+                  "id": "option_1760391288850",
+                  "body": "",
+                  "title": "9th Grade"
+                },
+                {
+                  "id": "option_1760391289664",
+                  "body": "",
+                  "title": "10th Grade"
+                },
+                {
+                  "id": "option_1760391290160",
+                  "body": "",
+                  "title": "11th Grade"
+                },
+                {
+                  "id": "option_1760391290711",
+                  "body": "",
+                  "title": "12th Grade"
+                },
+                {
+                  "id": "option_1760391291905",
+                  "body": "",
+                  "title": "Other"
+                }
+              ],
+              "placeholder": "Select an option..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "question_1760391270470",
+            "question_type": "dropdown_input"
           }
         },
         {
           "index": 3,
-          "block_type": "text",
+          "block_type": "text_input",
           "config": {
-            "style": "lead",
-            "content": "Take your time with each section. There are no right or wrong answers—this is about your personal journey and insights."
+            "title": "School",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "question_1760379644777",
+            "question_type": "text_input"
           }
         }
       ]
     },
     {
       "index": 1,
-      "title": "Personal Reflection",
+      "title": "What Activites Excite you most?",
       "meta": {
         "page_type": "reflection"
       },
       "blocks": [
         {
           "index": 0,
-          "block_type": "text",
+          "block_type": "a_or_b_input",
           "config": {
-            "style": "h2",
-            "content": "Personal Reflection & Self-Awareness"
-          }
-        },
-        {
-          "index": 1,
-          "block_type": "media",
-          "config": {
-            "size": "medium",
-            "caption": "Reflection is the foundation of mindful living.",
-            "media_filename": "40ab607a-30eb-49f5-a208-e4d86e16171f.png"
-          }
-        },
-        {
-          "index": 2,
-          "block_type": "question",
-          "config": {
-            "required": true,
-            "placeholder": "Take a moment to check in with yourself...",
-            "question_id": "current_mood",
-            "question_text": "How would you describe your current emotional state in a few words?",
-            "question_type": "text_input"
-          }
-        },
-        {
-          "index": 3,
-          "block_type": "question",
-          "config": {
-            "options": [
-              {
-                "label": "Daily",
-                "value": "daily"
-              },
-              {
-                "label": "Several times a week",
-                "value": "weekly"
-              },
-              {
-                "label": "A few times a month",
-                "value": "monthly"
-              },
-              {
-                "label": "Rarely or never",
-                "value": "rarely"
-              },
-              {
-                "label": "I'm just starting to explore it",
-                "value": "just_starting"
-              }
-            ],
-            "required": true,
-            "question_id": "mindfulness_frequency",
-            "question_text": "How often do you practice mindfulness or meditation?",
-            "question_type": "multiple_choice"
-          }
-        },
-        {
-          "index": 4,
-          "block_type": "question",
-          "config": {
+            "title": "What Activites excite you most?",
+            "config": {
+              "prompts": [
+                {
+                  "id": "prompt_1",
+                  "title": "Community Work",
+                  "description": "helping others"
+                },
+                {
+                  "id": "prompt_2",
+                  "title": "Impacting Others",
+                  "description": "Teaching, healthcare, counseling"
+                },
+                {
+                  "id": "prompt_1760391399232",
+                  "title": "Building",
+                  "description": "Constructing and physically making things"
+                },
+                {
+                  "id": "prompt_1760392013299",
+                  "title": "Working with Tools",
+                  "description": "tools, materials, machines"
+                },
+                {
+                  "id": "prompt_1760392028272",
+                  "title": "Design & Innovating",
+                  "description": "Expressing ideas through art, music, media"
+                },
+                {
+                  "id": "prompt_1760392049503",
+                  "title": "Product Design",
+                  "description": "Designing products, spaces, or digital experiences"
+                },
+                {
+                  "id": "prompt_1760392070469",
+                  "title": "Technology",
+                  "description": "Developing new technology, coding, robotics"
+                },
+                {
+                  "id": "prompt_1760392088745",
+                  "title": "Engineering",
+                  "description": "Solving problems using science, engineering, math"
+                },
+                {
+                  "id": "prompt_1760392106047",
+                  "title": "Naturalist",
+                  "description": "protecting nature, animals, or working in conservation"
+                },
+                {
+                  "id": "prompt_1760392123445",
+                  "title": "Sustainability",
+                  "description": "climate change, renewable energy, or regenerative agriculture"
+                },
+                {
+                  "id": "prompt_1760392146726",
+                  "title": "Communications",
+                  "description": "Writing, speaking, or making videos"
+                },
+                {
+                  "id": "prompt_1760392339933",
+                  "title": "Media",
+                  "description": "Sharing ideas through journalism, podcasts, or social media"
+                },
+                {
+                  "id": "prompt_1760392360893",
+                  "title": "Entrepreneurship",
+                  "description": "Starting Projects, running a business"
+                },
+                {
+                  "id": "prompt_1760392376631",
+                  "title": "Business",
+                  "description": "influencing others through marketing, sales, or management"
+                },
+                {
+                  "id": "prompt_1760392396230",
+                  "title": "Travel & Tourism",
+                  "description": "Discovering new places, outdoor activities"
+                },
+                {
+                  "id": "prompt_1760392413376",
+                  "title": "Exploration",
+                  "description": "Hands-on jobs that involve movement, action, or challenges"
+                },
+                {
+                  "id": "prompt_1760392439411",
+                  "title": "Craftsmanship",
+                  "description": "using physical skills like carpentry, automotive, or skilled trades"
+                },
+                {
+                  "id": "prompt_1760392463230",
+                  "title": "Hands-on Work",
+                  "description": "Enjoying work that is practical, hands-on, and structured"
+                },
+                {
+                  "id": "prompt_1760392486542",
+                  "title": "Critical Thinking",
+                  "description": "Solving puzzles, analyzing data, or conducting research"
+                },
+                {
+                  "id": "prompt_1760392514798",
+                  "title": "Investigating",
+                  "description": "Diving deep into science, law, detective work, or finance"
+                }
+              ],
+              "negative_label": "No",
+              "positive_label": "Yes"
+            },
             "required": false,
-            "multiline": true,
-            "placeholder": "1. ...\n2. ...\n3. ...",
-            "question_id": "gratitude_reflection",
-            "question_text": "What are three things you're grateful for today? Take a moment to really consider why each one matters to you.",
-            "question_type": "text_input"
+            "subtitle": "",
+            "question_id": "question_1760391354871",
+            "question_type": "a_or_b_input"
           }
         }
       ]
     },
     {
       "index": 2,
-      "title": "Mindful Decision Making",
+      "title": "What are you naturally good at?",
       "meta": {
         "page_type": "assessment"
       },
       "blocks": [
         {
           "index": 0,
-          "block_type": "text",
+          "block_type": "multiple_choice",
           "config": {
-            "style": "h2",
-            "content": "Mindful Decision Making"
-          }
-        },
-        {
-          "index": 1,
-          "block_type": "media",
-          "config": {
-            "size": "medium",
-            "caption": "Every choice is an opportunity for growth and discovery.",
-            "media_filename": "07bca47e-76b1-4079-b04a-bd3996ba46e6.png"
-          }
-        },
-        {
-          "index": 2,
-          "block_type": "text",
-          "config": {
-            "style": "body",
-            "content": "Consider the following scenarios and reflect on how mindfulness might guide your choices."
-          }
-        },
-        {
-          "index": 3,
-          "block_type": "question",
-          "config": {
+            "title": "Pick your natural abilities",
+            "config": {
+              "max_select": 4
+            },
             "options": [
               {
-                "label": "Rush through tasks, accepting stress as inevitable",
-                "value": "rush_panic"
+                "label": "Logical-Mathematical: data, numbers, puzzles",
+                "value": "logical_mathematical"
               },
               {
-                "label": "Pause, take three deep breaths, then prioritize mindfully",
-                "value": "pause_breathe"
+                "label": "Linguistic: reading, writing, communicating",
+                "value": "linguistic"
               },
               {
-                "label": "Avoid the stress by procrastinating or distraction",
-                "value": "avoid_procrastinate"
+                "label": "Musical: sounds, rhythms, music",
+                "value": "musical"
               },
               {
-                "label": "Push through with determination, ignoring physical/emotional signals",
-                "value": "push_through"
+                "label": "Bodily-Kinesthetic: doing, moving, using hands",
+                "value": "bodily_kinesthetic"
+              },
+              {
+                "label": "Spatial: visualize ideas and designs",
+                "value": "spatial"
+              },
+              {
+                "label": "Relationships: connect with others and teams",
+                "value": "interpersonal"
+              },
+              {
+                "label": "Intrapersonal: understanding my thoughts, feelings, motivations",
+                "value": "intrapersonal"
+              },
+              {
+                "label": "Naturalist: working outside and connecting to nature",
+                "value": "naturalist"
+              },
+              {
+                "label": "None of the Above: none of them describe me",
+                "value": "none"
               }
             ],
             "required": true,
-            "question_id": "stress_response",
-            "question_text": "You're facing a stressful deadline at work. Which approach feels most aligned with mindful living?",
-            "question_type": "single_choice"
-          }
-        },
-        {
-          "index": 4,
-          "block_type": "media",
-          "config": {
-            "size": "small",
-            "caption": "Mindful choices create ripple effects in our lives.",
-            "media_filename": "4c6179f3-d9e7-47c8-963b-9a81f01e9271.png"
-          }
-        },
-        {
-          "index": 5,
-          "block_type": "question",
-          "config": {
-            "options": [
-              {
-                "label": "Compassion and kindness",
-                "value": "compassion"
-              },
-              {
-                "label": "Authenticity and honesty",
-                "value": "authenticity"
-              },
-              {
-                "label": "Personal growth and learning",
-                "value": "growth"
-              },
-              {
-                "label": "Connection and relationships",
-                "value": "connection"
-              },
-              {
-                "label": "Inner peace and calm",
-                "value": "peace"
-              },
-              {
-                "label": "Sense of purpose and meaning",
-                "value": "purpose"
-              },
-              {
-                "label": "Work-life balance",
-                "value": "balance"
-              },
-              {
-                "label": "Creativity and expression",
-                "value": "creativity"
-              }
-            ],
-            "required": false,
-            "question_id": "core_values",
-            "question_text": "Which values are most important to you in daily life? (Select all that apply)",
+            "question_id": "intelligence_strengths",
             "question_type": "multiple_choice",
             "multiple_selection": true
           }
@@ -309,100 +329,159 @@
     },
     {
       "index": 3,
-      "title": "Mindful Goal Setting",
+      "title": "What global issues matter most to you?",
       "meta": {
-        "page_type": "planning"
+        "page_type": "assessment"
       },
       "blocks": [
         {
           "index": 0,
-          "block_type": "text",
+          "block_type": "multiple_choice",
           "config": {
-            "style": "h2",
-            "content": "Mindful Goal Setting & Intentions"
-          }
-        },
-        {
-          "index": 1,
-          "block_type": "media",
-          "config": {
-            "size": "large",
-            "caption": "Growth happens step by step, with mindful intention.",
-            "media_filename": "4f6dbe00-db0c-4ee5-99ae-6bf5afc7ad0b.png"
-          }
-        },
-        {
-          "index": 2,
-          "block_type": "text",
-          "config": {
-            "style": "body",
-            "content": "Mindful goal setting involves setting intentions that align with your values and current capacity for growth."
-          }
-        },
-        {
-          "index": 3,
-          "block_type": "question",
-          "config": {
-            "required": true,
-            "placeholder": "Be specific and realistic...",
-            "question_id": "mindfulness_intention",
-            "question_text": "What is one mindfulness practice or habit you'd like to cultivate over the next month?",
-            "question_type": "text_input"
-          }
-        },
-        {
-          "index": 4,
-          "block_type": "question",
-          "config": {
+            "title": "Pick up to 3 that matter most to you",
             "options": [
               {
-                "label": "Regular self-reflection and journaling",
-                "value": "self_reflection"
+                "label": "1: No Poverty - ending poverty and ensuring basic needs",
+                "value": "sdg_1"
               },
               {
-                "label": "An accountability partner or friend",
-                "value": "accountability_partner"
+                "label": "2: Zero Hunger - access to enough nutritious food",
+                "value": "sdg_2"
               },
               {
-                "label": "A structured program or course",
-                "value": "structured_program"
+                "label": "3: Good Health & Well-Being - improving healthcare and well-being of all people",
+                "value": "sdg_3"
               },
               {
-                "label": "A mindfulness community or group",
-                "value": "community_group"
+                "label": "4: Quality Education - access to quality education and learning",
+                "value": "sdg_4"
               },
               {
-                "label": "Apps, reminders, or digital tools",
-                "value": "apps_reminders"
+                "label": "5: Gender Equality - opportunities for all genders to thrive",
+                "value": "sdg_5"
               },
               {
-                "label": "I prefer a flexible, intuitive approach",
-                "value": "flexible_approach"
+                "label": "6: Clean Water & Sanitation - improve access to quality education and learning",
+                "value": "sdg_6"
+              },
+              {
+                "label": "7: Affordable & Clean Energy - create clean energy sources",
+                "value": "sdg_7"
+              },
+              {
+                "label": "8: Decent Work & Economic Growth - job opportunities and fair working conditions",
+                "value": "sdg_8"
+              },
+              {
+                "label": "9: Industry, Innovation, & Infrastructure - inclusive and sustainable industrialization",
+                "value": "sdg_9"
+              },
+              {
+                "label": "10: Reduced Inequalities - help all people have equal opportunities",
+                "value": "sdg_10"
+              },
+              {
+                "label": "11: Sustainable Cities & Communities - sustainable and inclusive cities and communities",
+                "value": "sdg_11"
+              },
+              {
+                "label": "12: Responsible Consumption & Production - reduce waste to protect resources",
+                "value": "sdg_12"
+              },
+              {
+                "label": "13: Climate Action - protect our environment",
+                "value": "sdg_13"
+              },
+              {
+                "label": "14: Life Below Water - preserve our oceans and marine life",
+                "value": "sdg_14"
+              },
+              {
+                "label": "15: Life on Land - protect and restore forests, wildlife, and biodiversity",
+                "value": "sdg_15"
+              },
+              {
+                "label": "16: Peace, Justice, & Strong Institutions - building accountable and inclusive institutions",
+                "value": "sdg_16"
               }
             ],
             "required": true,
-            "question_id": "support_preference",
-            "question_text": "How do you prefer to stay accountable to your mindfulness goals?",
-            "question_type": "single_choice"
-          }
-        },
-        {
-          "index": 5,
-          "block_type": "question",
-          "config": {
-            "required": false,
-            "multiline": true,
-            "placeholder": "Consider both external obstacles and internal resistance...",
-            "question_id": "anticipated_challenges",
-            "question_text": "What challenges do you anticipate in maintaining your mindfulness practice? How might you work with them compassionately?",
-            "question_type": "text_input"
+            "max_select": 3,
+            "question_id": "global_priorities",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
           }
         }
       ]
     },
     {
       "index": 4,
-      "title": "Your Path Forward",
+      "title": "What is stressful about planning your future?",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "Tap all that apply",
+            "options": [
+              {
+                "label": "No clear direction",
+                "value": "no_direction"
+              },
+              {
+                "label": "Not feeling prepared",
+                "value": "no_preparation"
+              },
+              {
+                "label": "Mental health stress",
+                "value": "stress"
+              },
+              {
+                "label": "Money and debt worries",
+                "value": "money"
+              },
+              {
+                "label": "Pressure to attend college",
+                "value": "college_pressure"
+              },
+              {
+                "label": "No real-world experience",
+                "value": "no_experience"
+              },
+              {
+                "label": "No mentors or connections",
+                "value": "no_connection"
+              }
+            ],
+            "required": true,
+            "max_select": 3,
+            "question_id": "life_launching_pain_points",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Other",
+            "config": {
+              "multiline": false,
+              "placeholder": "fill in..."
+            },
+            "required": false,
+            "question_id": "other_pain_point",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "title": "You've completed the Quickstart Pathway Assessment!",
       "meta": {
         "page_type": "conclusion"
       },
@@ -411,52 +490,8 @@
           "index": 0,
           "block_type": "text",
           "config": {
-            "style": "h2",
-            "content": "Your Mindful Path Forward"
-          }
-        },
-        {
-          "index": 1,
-          "block_type": "media",
-          "config": {
-            "size": "medium",
-            "caption": "Every moment offers a fresh opportunity for mindful awareness.",
-            "media_filename": "2a383a71-aa04-45b7-bd76-bb1f428ba317.png"
-          }
-        },
-        {
-          "index": 2,
-          "block_type": "text",
-          "config": {
             "style": "body",
-            "content": "Thank you for taking this journey of self-reflection and mindful exploration. The insights you've gained here are just the beginning."
-          }
-        },
-        {
-          "index": 3,
-          "block_type": "text",
-          "config": {
-            "style": "quote",
-            "content": "Remember: Mindfulness is not about perfection—it's about presence, compassion, and gentle awareness of each moment as it unfolds."
-          }
-        },
-        {
-          "index": 4,
-          "block_type": "question",
-          "config": {
-            "required": false,
-            "placeholder": "Trust your first instinct...",
-            "question_id": "closing_reflection",
-            "question_text": "As we conclude, what is one word or phrase that captures how you're feeling right now?",
-            "question_type": "text_input"
-          }
-        },
-        {
-          "index": 5,
-          "block_type": "text",
-          "config": {
-            "style": "lead",
-            "content": "May you carry the spirit of mindful awareness with you in all that you do. Your journey continues with each conscious breath and intentional choice."
+            "content": "Click submit to view your insights."
           }
         }
       ]
