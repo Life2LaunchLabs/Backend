@@ -18,9 +18,9 @@ class MediaAssetSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'storage_key', 'created_at']
 
     def get_url(self, obj):
-        """Get media URL - placeholder for now."""
-        # TODO: Implement media service for URL generation
-        return f"/media/{obj.storage_key}"
+        """Get media URL using MediaService."""
+        from ..services import MediaService
+        return MediaService.get_media_url(obj)
 
 
 class BlockSerializer(serializers.ModelSerializer):
@@ -72,6 +72,7 @@ class ActivityDetailSerializer(serializers.ModelSerializer):
     """Detailed serializer for single activity."""
     activity_version = serializers.SerializerMethodField()
     media = serializers.SerializerMethodField()
+    quest_templates = serializers.SerializerMethodField()
     title = serializers.CharField(read_only=True)
     description = serializers.CharField(read_only=True)
     organization_name = serializers.CharField(source='organization.name', read_only=True)
@@ -81,7 +82,7 @@ class ActivityDetailSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'slug', 'title', 'description', 'status',
             'organization', 'organization_name',
-            'activity_version', 'media', 'author_meta',
+            'activity_version', 'media', 'quest_templates', 'author_meta',
             'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
@@ -113,13 +114,19 @@ class ActivityDetailSerializer(serializers.ModelSerializer):
         for page in activity_version.pages.all():
             for block in page.blocks.all():
                 if block.block_type == 'media' and 'media_id' in block.config:
-                    media_ids.add(block.config['media_id'])
+                    media_id = block.config['media_id']
+                    # Only add valid non-empty media IDs
+                    if media_id and media_id.strip():
+                        media_ids.add(media_id)
                 elif block.block_type == 'question' and 'config' in block.config:
                     question_config = block.config.get('config', {})
                     if 'options' in question_config:
                         for option in question_config['options']:
                             if 'media_id' in option:
-                                media_ids.add(option['media_id'])
+                                media_id = option['media_id']
+                                # Only add valid non-empty media IDs
+                                if media_id and media_id.strip():
+                                    media_ids.add(media_id)
 
         # Resolve media
         if media_ids:
@@ -127,3 +134,33 @@ class ActivityDetailSerializer(serializers.ModelSerializer):
             return list(media_dict.values())
 
         return []
+
+    def get_quest_templates(self, obj):
+        """Get quest templates that use this activity."""
+        from ..models import QuestItemDefinition, QuestTemplateItem
+
+        # Find item definitions that reference this activity
+        item_defs = QuestItemDefinition.objects.filter(
+            activity=obj,
+            item_type='activity'
+        )
+
+        # Find quest template items that use these definitions
+        quest_items = QuestTemplateItem.objects.filter(
+            item_definition__in=item_defs
+        ).select_related('quest_template')
+
+        # Return unique quest templates
+        quests = []
+        seen_ids = set()
+        for item in quest_items:
+            quest = item.quest_template
+            if quest.id not in seen_ids:
+                seen_ids.add(quest.id)
+                quests.append({
+                    'id': str(quest.id),
+                    'title': quest.title,
+                    'description': quest.description,
+                })
+
+        return quests

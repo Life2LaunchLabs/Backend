@@ -21,8 +21,8 @@ class Command(BaseCommand):
                 last_name='Garcia'
             )
             # Add profile defaults
-            user.bio = "Software engineer and tech enthusiast passionate about building great user experiences. Love working with modern web technologies and solving complex problems."
-            user.tagline = "Building the future, one line of code at a time"
+            user.bio = "I'm redefining human centered design in a high tech era. Open to work helping your business with branding, marketing, and social media."
+            user.tagline = "Visionary designer and recent high school graduate"
             user.save()
             user_created = True
             self.stdout.write(f'Created user: {user.email}')

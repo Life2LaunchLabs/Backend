@@ -29,7 +29,7 @@ from .quest_item_models import (
     QuestTemplateItem,
 )
 
-# Quest template and enrollment models
+# Quest template and enrollment models (NEW unified system)
 from .quest_models import (
     QuestTemplate,
     QuestEnrollment,
@@ -39,6 +39,9 @@ from .quest_models import (
 from .progress_models import (
     QuestItemProgress,
 )
+
+# V2 legacy models removed - using unified system now
+
 
 __all__ = [
     # Activity models
@@ -60,7 +63,7 @@ __all__ = [
     # Quest item models
     'QuestItemDefinition',
     'QuestTemplateItem',
-    # Quest models
+    # Quest models (NEW unified system)
     'QuestTemplate',
     'QuestEnrollment',
     # Progress tracking

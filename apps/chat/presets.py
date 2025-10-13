@@ -88,13 +88,15 @@ class PresetManager:
         # Control Model for Chat Enhancement Features
         ConfigPreset(
             key="gpt_control",
-            name="GPT lite",
-            description="Smaller version of openai model: faster and cheaper. (GPT-5-nano)",
+            name="Claude Haiku 3.5",
+            description="Fast Claude Haiku for control requests (emotes, quick responses)",
             model_config={
-                "provider": "openai",
-                "model": "gpt-5-nano",  
+                "provider": "anthropic",
+                "model": "claude-3-5-haiku-20241022",
                 "parameters": {
-                    "max_completion_tokens": 1024,  # Newer OpenAI models use max_completion_tokens instead of max_tokens
+                    "max_tokens": 1024,
+                    "temperature": 0.7,
+                    "top_p": 1.0
                 }
             },
             context_config={

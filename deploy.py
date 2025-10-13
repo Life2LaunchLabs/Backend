@@ -33,18 +33,28 @@ def main():
     # Set Django settings module
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 
-    # Check if this is a database reset deployment (set via Railway environment variable)
-    reset_db = os.environ.get('RESET_DATABASE_ON_DEPLOY', 'false').lower() == 'true'
+    # Check if this is a database reset deployment
+    # In development (localhost), always reset. In production, check environment variable.
+    is_production = os.environ.get('RAILWAY_ENVIRONMENT') or os.environ.get('RENDER')
+    reset_db = os.environ.get('RESET_DATABASE_ON_DEPLOY', 'true' if not is_production else 'false').lower() == 'true'
 
     if reset_db:
         print("🗄️  Database reset requested...")
 
-        # Run database reset
+        # Run database reset (cleans DB and creates schema)
         if not run_command(
             "python manage.py reset_database --no-input --confirm",
             "Database reset and migration"
         ):
             print("❌ Database reset failed")
+            sys.exit(1)
+
+        # Create demo data (org, user, activities, quests)
+        if not run_command(
+            "python manage.py create_demo_from_json",
+            "Creating demo data"
+        ):
+            print("❌ Demo data creation failed")
             sys.exit(1)
     else:
         print("📦 Running standard migrations...")

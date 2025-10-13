@@ -98,6 +98,102 @@ class QuestTemplateViewSet(viewsets.ModelViewSet):
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(detail=True, methods=['post'])
+    def create_activity(self, request, pk=None):
+        """
+        Create a new blank activity tied to this quest.
+        Returns the activity ID for navigation.
+        """
+        from django.db import transaction
+        from ..models import Activity, ActivityVersion, QuestItemDefinition, Page, Block
+        import uuid
+
+        quest_template = self.get_object()
+        user = request.user
+
+        # Validate user has access to the organization
+        if not user.admin_organizations.filter(id=quest_template.organization_id).exists():
+            return Response(
+                {"error": "Not an admin of this organization"},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        try:
+            with transaction.atomic():
+                # Generate unique slug for the activity
+                activity_slug = f"activity-{uuid.uuid4().hex[:8]}"
+
+                # Create blank activity
+                activity = Activity.objects.create(
+                    slug=activity_slug,
+                    organization=quest_template.organization,
+                    status='draft',
+                    author_meta={'created_by': user.username, 'created_from_quest': str(quest_template.id)}
+                )
+
+                # Create initial blank version
+                activity_version = ActivityVersion.objects.create(
+                    activity=activity,
+                    version=1,
+                    title='New Activity',
+                    description='',
+                    is_published=True,
+                    meta={'created_from_quest': str(quest_template.id)}
+                )
+
+                # Create a single blank page
+                page = Page.objects.create(
+                    activity_version=activity_version,
+                    index=0,
+                    title='Page 1',
+                    meta={}
+                )
+
+                # Add a blank text block
+                Block.objects.create(
+                    page=page,
+                    index=0,
+                    block_type='text',
+                    config={
+                        'style': 'body',
+                        'text': 'Start editing your activity here...',
+                        'align': 'left'
+                    }
+                )
+
+                # Create item definition for this activity
+                item_definition = QuestItemDefinition.objects.create(
+                    item_type='activity',
+                    title=activity_version.title,
+                    description=activity_version.description,
+                    estimated_duration_days=1,
+                    activity=activity,
+                    organization=quest_template.organization
+                )
+
+                # Calculate next order position
+                last_item = quest_template.template_items.order_by('-order').first()
+                next_order = (last_item.order + 1) if last_item else 0
+
+                # Add to quest template
+                from ..models import QuestTemplateItem
+                QuestTemplateItem.objects.create(
+                    quest_template=quest_template,
+                    item_definition=item_definition,
+                    order=next_order
+                )
+
+                return Response({
+                    'activity_id': str(activity.id),
+                    'message': 'Activity created and added to quest'
+                }, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            return Response(
+                {"error": f"Failed to create activity: {str(e)}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
     @action(detail=True, methods=['delete'], url_path='remove_item/(?P<item_id>[^/.]+)')
     def remove_item(self, request, pk=None, item_id=None):
         """Remove an item from this quest."""

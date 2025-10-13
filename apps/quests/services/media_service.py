@@ -14,7 +14,7 @@ class MediaService:
     """Service for handling media assets with secure storage and URL generation."""
 
     @staticmethod
-    def create_media_asset(file_content: bytes, filename: str, meta: Optional[Dict] = None) -> MediaAsset:
+    def create_media_asset(file_content: bytes, filename: str, meta: Optional[Dict] = None, organization_id: Optional[str] = None) -> MediaAsset:
         """
         Create a MediaAsset from file content.
 
@@ -22,15 +22,11 @@ class MediaService:
             file_content: The binary content of the file
             filename: Original filename
             meta: Optional metadata dictionary
+            organization_id: Organization UUID for organizing media
 
         Returns:
             MediaAsset instance
         """
-        # Generate unique storage key
-        file_hash = hashlib.sha256(file_content).hexdigest()[:16]
-        file_ext = os.path.splitext(filename)[1].lower()
-        storage_key = f"media/{get_random_string(8)}/{file_hash}{file_ext}"
-
         # Detect MIME type
         mime_type, _ = mimetypes.guess_type(filename)
         if not mime_type:
@@ -39,17 +35,28 @@ class MediaService:
         # Calculate checksum
         checksum = hashlib.md5(file_content).hexdigest()
 
-        # Store file
-        file_obj = ContentFile(file_content, name=storage_key)
-        stored_path = default_storage.save(storage_key, file_obj)
-
-        # Create MediaAsset
+        # Create MediaAsset first to get its ID
         media_asset = MediaAsset.objects.create(
-            storage_key=stored_path,
+            storage_key='',  # Will be updated after we have the ID
             mime_type=mime_type,
             checksum=checksum,
             meta=meta or {}
         )
+
+        # Generate storage key using new pattern: activities/{org_id}/{media_id}.ext
+        file_ext = os.path.splitext(filename)[1].lower()
+        if organization_id:
+            storage_key = f"activities/{organization_id}/{media_asset.id}{file_ext}"
+        else:
+            # Fallback for media without organization
+            storage_key = f"activities/general/{media_asset.id}{file_ext}"
+
+        # Store file
+        file_obj = ContentFile(file_content, name=storage_key)
+        stored_path = default_storage.save(storage_key, file_obj)
+
+        # Update MediaAsset with storage key
+        media_asset.storage_key = stored_path
 
         # Extract metadata based on file type
         MediaService._extract_metadata(media_asset, file_content)

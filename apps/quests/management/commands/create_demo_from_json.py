@@ -9,7 +9,7 @@ from django.conf import settings
 from django.db import transaction
 
 from apps.quests.models import (
-    QuestTemplate, QuestItemDefinition, QuestTemplateItem, Activity, ActivityVersion, Page, Block, MediaAsset
+    QuestTemplate, QuestItemDefinition, QuestTemplateItem, QuestEnrollment, QuestItemProgress, Activity, ActivityVersion, Page, Block, MediaAsset
 )
 from apps.organizations.models import Organization
 from apps.users.models import User
@@ -22,7 +22,11 @@ DEFAULT_DEMO_DIR = os.path.join(
 
 # add near DEFAULT_DEMO_DIR
 DEFAULT_QUEST_DIR = os.path.join(
-    settings.BASE_DIR, "apps", "quests", "demo", "quest"
+    settings.BASE_DIR, "apps", "quests", "demo", "quests"
+)
+
+DEFAULT_MEDIA_DIR = os.path.join(
+    settings.BASE_DIR, "apps", "quests", "demo", "media"
 )
 
 class Command(BaseCommand):
@@ -69,20 +73,56 @@ class Command(BaseCommand):
         demo_dir = opts["demo_dir"]
         org_slug = opts["org_slug"]
         dry_run = opts["dry_run"]
+        creator_email = opts["creator_email"]
 
         self.stdout.write(f"Reading demo activities from: {demo_dir}")
 
         if not os.path.isdir(demo_dir):
             raise CommandError(f"Demo dir not found: {demo_dir}")
 
-        # Get org
-        try:
-            org = Organization.objects.get(slug=org_slug)
-        except Organization.DoesNotExist:
-            raise CommandError(
-                f"Organization with slug '{org_slug}' not found. "
-                "Please create it (e.g., run create_default_admin_user)."
-            )
+        # Create or get organization
+        org, org_created = Organization.objects.get_or_create(
+            slug=org_slug,
+            defaults={
+                'name': 'Life2Launch',
+                'description': 'Default organization for demo content'
+            }
+        )
+        if org_created:
+            self.stdout.write(self.style.SUCCESS(f"Created organization: {org_slug}"))
+        else:
+            self.stdout.write(f"Using existing organization: {org_slug}")
+
+        # Create or get demo user
+        user, user_created = User.objects.get_or_create(
+            email=creator_email,
+            defaults={
+                'first_name': 'Sam',
+                'last_name': 'Garcia',
+                'bio': "I'm redefining human centered design in a high tech era. Open to work helping your business with branding, marketing, and social media.",
+                'tagline': "Visionary designer and recent high school graduate"
+            }
+        )
+        if user_created:
+            user.set_password('samgarcia')
+            user.is_staff = True
+            user.is_superuser = True
+            user.save()
+            self.stdout.write(self.style.SUCCESS(f"Created demo user: {creator_email} / password: samgarcia"))
+        else:
+            self.stdout.write(f"Using existing user: {creator_email}")
+
+        # Add user as admin of organization
+        from apps.organizations.models import OrganizationAdmin
+        org_admin, admin_created = OrganizationAdmin.objects.get_or_create(
+            user=user,
+            organization=org,
+            defaults={'role': 'admin'}
+        )
+        if admin_created:
+            self.stdout.write(self.style.SUCCESS(f"Added {user.email} as admin of {org.name}"))
+        else:
+            self.stdout.write(f"User {user.email} is already admin of {org.name}")
 
         # Load JSON files
         paths = sorted(glob(os.path.join(demo_dir, "*.json")))
@@ -112,33 +152,48 @@ class Command(BaseCommand):
 
         if media_index:
             self.stdout.write(f"Processing {len(media_index)} media asset(s)...")
+
+        from apps.quests.services import MediaService
+
         media_objects: Dict[str, MediaAsset] = {}
         for filename, spec in media_index.items():
-            storage_key = spec["path"]  # relative path under MEDIA_ROOT
-            full_path = os.path.join(settings.MEDIA_ROOT, storage_key)
-            if not os.path.exists(full_path):
-                self.stdout.write(self.style.WARNING(f"Media file not found: {full_path}"))
-                # We still create the record if file absent? Keep prior behavior: only create if exists.
+            # Look for media in demo/media directory instead of MEDIA_ROOT
+            media_filename = spec.get("path", filename)
+            # Strip any leading path components to get just the filename
+            if "/" in media_filename:
+                media_filename = os.path.basename(media_filename)
+
+            demo_media_path = os.path.join(DEFAULT_MEDIA_DIR, media_filename)
+
+            if not os.path.exists(demo_media_path):
+                self.stdout.write(self.style.WARNING(f"Media file not found: {demo_media_path}"))
                 continue
 
             if dry_run:
-                self.stdout.write(f"[DRY RUN] Would ensure MediaAsset for: {storage_key}")
+                self.stdout.write(f"[DRY RUN] Would create MediaAsset for: {filename}")
                 continue
 
-            asset, created = MediaAsset.objects.get_or_create(
-                storage_key=storage_key,
-                defaults={
-                    "mime_type": spec.get("mime_type", "image/png"),
-                    "meta": {
-                        "title": spec.get("title", filename),
-                        "description": spec.get("description", ""),
-                        "alt_text": spec.get("alt_text", spec.get("description", "")),
-                    },
-                },
+            # Read the existing file from demo/media directory
+            with open(demo_media_path, 'rb') as f:
+                file_content = f.read()
+
+            # Create media asset using MediaService with new path structure
+            meta = {
+                "title": spec.get("title", filename),
+                "description": spec.get("description", ""),
+                "alt_text": spec.get("alt_text", spec.get("description", "")),
+            }
+
+            # Use MediaService to create with new path pattern
+            asset = MediaService.create_media_asset(
+                file_content=file_content,
+                filename=filename,
+                meta=meta,
+                organization_id=str(org.id)
             )
+
             media_objects[filename] = asset
-            msg = "Created" if created else "Found existing"
-            self.stdout.write(f"{msg} MediaAsset: {spec.get('title', filename)}")
+            self.stdout.write(f"Created MediaAsset: {spec.get('title', filename)} at {asset.storage_key}")
 
         created_activities: List[str] = []
 
@@ -343,7 +398,7 @@ class Command(BaseCommand):
                         quest_template=quest,
                         item_definition=item_def,
                         order=order,
-                        notes=qdata["items"][order].get("notes", "Complete this activity to progress in your journey"),
+                        notes=qdata["items"][order].get("notes", ""),
                     )
                     index_to_qti[order] = qti
                     self.stdout.write(f"    Added to quest at position {order}: {item_def.title}")
@@ -368,6 +423,24 @@ class Command(BaseCommand):
                         f"  Finished quest '{quest.title}' with {len(item_defs)} items; total days: {quest.estimated_total_days}"
                     )
                 )
+
+                # Enroll the creator user in this demo quest
+                if creator:
+                    enrollment, created = QuestEnrollment.objects.get_or_create(
+                        quest_template=quest,
+                        user=creator,
+                        defaults={
+                            'status': 'active'
+                        }
+                    )
+                    if created:
+                        # Create progress records for all quest items
+                        progress_records = QuestItemProgress.create_for_enrollment(enrollment)
+                        self.stdout.write(self.style.SUCCESS(
+                            f"  Enrolled user '{creator.email}' in quest '{quest.title}' with {len(progress_records)} items"
+                        ))
+                    else:
+                        self.stdout.write(self.style.WARNING(f"  User '{creator.email}' already enrolled in quest '{quest.title}'"))
 
     def _validate_quest_json(self, data, file_name: str):
         ctx = f"[{file_name}]"

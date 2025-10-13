@@ -159,12 +159,14 @@ class AnthropicClient(BaseLLMClient):
 class OpenAIClient(BaseLLMClient):
     """Client for OpenAI GPT API"""
     
-    BASE_URL = "https://api.openai.com/v1/chat/completions"
+    BASE_URL = "https://api.openai.com/v1/responses"
     
     def __init__(self, api_key: Optional[str] = None):
         api_key = api_key or os.getenv('OPENAI_API_KEY')
         if not api_key:
             raise ValueError("OpenAI API key not found. Set OPENAI_API_KEY environment variable.")
+        # Debug: Show which key is being used (first 20 and last 4 chars)
+        print(f"🔑 OpenAI API Key loaded: {api_key[:20]}...{api_key[-4:]}")
         super().__init__(api_key)
     
     async def send_message(

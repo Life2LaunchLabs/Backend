@@ -10,6 +10,9 @@ from .admin_activity_views import (
     ActivityViewSet,
     ActivityVersionViewSet,
 )
+from .admin_media_views import (
+    MediaAssetViewSet,
+)
 
 __all__ = [
     'QuestTemplateViewSet',
@@ -17,4 +20,5 @@ __all__ = [
     'QuestTemplateItemViewSet',
     'ActivityViewSet',
     'ActivityVersionViewSet',
+    'MediaAssetViewSet',
 ]

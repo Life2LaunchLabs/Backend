@@ -6,11 +6,7 @@
   "status": "published",
   "is_public": true,
   "is_template": true,
-  "meta": {
-    "tags": ["introduction", "beginner", "comprehensive"],
-    "difficulty": "beginner",
-    "featured": true
-  },
+  "meta": {},
   "items": [
     {
       "activity_slug": "pathways-assessment",
@@ -30,8 +26,8 @@
       "estimated_duration_days": 7
     },
     {
-      "activity_slug": "goal-setting-workshop",
-      "estimated_duration_days": 7
+      "activity_slug": "activity-1cac080b",
+      "estimated_duration_days": 1
     }
   ]
 }

@@ -44,27 +44,56 @@ class Command(BaseCommand):
         self.stdout.write('Removing migration files...')
         self.remove_migration_files()
 
-        # Step 2: Drop all tables (handles PostgreSQL/other DBs differently)
+        # Step 2: Clean up media files
+        self.stdout.write('Cleaning up media files...')
+        self.cleanup_media_files()
+
+        # Step 3: Drop all tables (handles PostgreSQL/other DBs differently)
         self.stdout.write('Dropping all database tables...')
         self.drop_all_tables()
 
-        # Step 3: Create fresh migrations
+        # Step 4: Create fresh migrations
         self.stdout.write('Creating fresh migrations...')
         call_command('makemigrations')
 
-        # Step 4: Apply migrations
+        # Step 5: Apply migrations
         self.stdout.write('Applying migrations...')
         call_command('migrate')
 
-        # Step 5: Create starter content
-        self.stdout.write('Creating starter content...')
-        self.create_starter_content()
-
         self.stdout.write(
             self.style.SUCCESS(
-                'Database reset complete! Fresh database with starter content created.'
+                'Database reset complete! Fresh database schema created.'
             )
         )
+
+    def cleanup_media_files(self):
+        """Clean up all media files"""
+        # Clean up activities media
+        activities_media_dir = os.path.join(settings.MEDIA_ROOT, 'activities')
+        if os.path.exists(activities_media_dir):
+            try:
+                shutil.rmtree(activities_media_dir)
+                self.stdout.write(f'  Removed {activities_media_dir}')
+            except Exception as e:
+                self.stdout.write(f'  Warning: Could not remove activities media: {e}')
+
+        # Clean up profile photos
+        profile_photos_dir = os.path.join(settings.MEDIA_ROOT, 'profile_photos')
+        if os.path.exists(profile_photos_dir):
+            try:
+                shutil.rmtree(profile_photos_dir)
+                self.stdout.write(f'  Removed {profile_photos_dir}')
+            except Exception as e:
+                self.stdout.write(f'  Warning: Could not remove profile photos: {e}')
+
+        # Also clean up old activity_media directory if it exists
+        old_media_dir = os.path.join(settings.MEDIA_ROOT, 'activity_media')
+        if os.path.exists(old_media_dir):
+            try:
+                shutil.rmtree(old_media_dir)
+                self.stdout.write(f'  Removed old {old_media_dir}')
+            except Exception as e:
+                self.stdout.write(f'  Warning: Could not remove old activity_media: {e}')
 
     def remove_migration_files(self):
         """Remove all migration files except __init__.py"""
@@ -116,138 +145,3 @@ class Command(BaseCommand):
                 for table in tables:
                     cursor.execute(f'DROP TABLE IF EXISTS {table[0]} CASCADE;')
 
-    def create_starter_content(self):
-        """Create initial content for the application"""
-        # Create default demo user
-        if not User.objects.filter(email='sam@fake.com').exists():
-            admin_user = User.objects.create_superuser(
-                email='sam@fake.com',
-                password='samgarcia',
-                first_name='Sam',
-                last_name='Garcia'
-            )
-            # Add profile defaults
-            admin_user.bio = "Software engineer and tech enthusiast passionate about building great user experiences. Love working with modern web technologies and solving complex problems."
-            admin_user.tagline = "Building the future, one line of code at a time"
-            admin_user.save()
-
-            # Initialize default quests for the demo user
-            try:
-                from apps.quests.default_quests_v2 import initialize_default_quests_for_user_v2
-                result = initialize_default_quests_for_user_v2(admin_user)
-                if result:
-                    enrollment_count = len([k for k in result.keys() if 'enrollment' in k])
-                    self.stdout.write(f'  Initialized {enrollment_count} default quest enrollments for demo user')
-            except Exception as e:
-                self.stdout.write(f'  Warning: Failed to initialize quests for demo user: {e}')
-
-            self.stdout.write(f'  Created demo user: sam@fake.com/samgarcia')
-
-        # Create sample courses if Course model exists
-        try:
-            from apps.courses.models import Course, UserCourseProgress
-
-            # Create root course
-            if not Course.objects.filter(id='intro').exists():
-                intro_course = Course.objects.create(
-                    id='intro',
-                    title='Introduction to Programming',
-                    description='Learn the basics of programming concepts.',
-                    x_position=100,
-                    y_position=100,
-                    order=1,
-                    agenda="""# Introduction to Programming
-
-Welcome to your programming journey! In this course, you'll learn:
-
-- Basic programming concepts
-- Variables and data types
-- Control structures
-- Functions and procedures
-
-Let's get started!"""
-                )
-                self.stdout.write('  Created intro course')
-
-                # Create child courses
-                Course.objects.create(
-                    id='variables',
-                    title='Variables and Data Types',
-                    description='Understanding variables and different data types.',
-                    parent=intro_course,
-                    x_position=200,
-                    y_position=150,
-                    order=2
-                )
-
-                Course.objects.create(
-                    id='functions',
-                    title='Functions',
-                    description='Learn to create and use functions.',
-                    parent=intro_course,
-                    x_position=300,
-                    y_position=200,
-                    order=3
-                )
-
-                self.stdout.write('  Created sample courses')
-
-        except ImportError:
-            self.stdout.write('  Skipped course creation (app not found)')
-
-        # Create sample quests if Quest model exists
-        try:
-            from apps.quests.models import Quest, Milestone
-            from datetime import date, timedelta
-
-            admin_user = User.objects.first()
-            if admin_user and not Quest.objects.filter(title='First Steps').exists():
-                quest = Quest.objects.create(
-                    title='First Steps',
-                    description='Complete your first programming tasks',
-                    color='#FF6B6B',
-                    user=admin_user,
-                    created_by=admin_user  # This makes it personal since user == created_by
-                )
-
-                Milestone.objects.create(
-                    quest=quest,
-                    title='Set up development environment',
-                    description='Install and configure your coding tools',
-                    order=1,
-                    finish_date=date.today() + timedelta(days=7)
-                )
-
-                Milestone.objects.create(
-                    quest=quest,
-                    title='Write your first program',
-                    description='Create a simple "Hello World" program',
-                    order=2,
-                    finish_date=date.today() + timedelta(days=14)
-                )
-
-                self.stdout.write('  Created sample quest')
-
-        except ImportError:
-            self.stdout.write('  Skipped quest creation (app not found)')
-
-        # Create sample activities if Activity model exists
-        try:
-            from apps.activities.services import ActivityService
-
-            if not ActivityService.activity_exists('demo-mindful-morning'):
-                result = ActivityService.create_demo_activity()
-                if result['success']:
-                    self.stdout.write(f'  Created demo activity: {result["activity"].title}')
-                else:
-                    self.stdout.write(f'  Warning: Failed to create demo activity: {result["error"]}')
-
-            # Create comprehensive demo
-            from django.core.management import call_command
-            if not ActivityService.activity_exists('comprehensive-mindfulness-journey'):
-                call_command('create_demo_from_json')
-                self.stdout.write('  Created comprehensive demo activity')
-        except ImportError:
-            self.stdout.write('  Skipped activity creation (app not found)')
-
-        self.stdout.write('  Starter content creation complete')
