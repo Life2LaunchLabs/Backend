@@ -12,4 +12,4 @@ class CourseAdmin(admin.ModelAdmin):
 class UserCourseProgressAdmin(admin.ModelAdmin):
     list_display = ['user', 'course', 'status', 'completed_at']
     list_filter = ['status', 'completed_at']
-    search_fields = ['user__username', 'course__title']
+    search_fields = ['user__email', 'course__title']

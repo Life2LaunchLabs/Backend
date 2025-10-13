@@ -1,0 +1,33 @@
+{
+  "title": "Getting Started with Life2Launch",
+  "description": "A comprehensive introduction to Life2Launch featuring mindfulness, career exploration, personal values, and goal setting activities.",
+  "color": "#4CAF50",
+  "category": "Introduction",
+  "status": "published",
+  "is_public": true,
+  "is_template": true,
+  "meta": {},
+  "items": [
+    {
+      "activity_slug": "pathways-assessment",
+      "estimated_duration_days": 7,
+      "notes": "Kick off with a full tour of the platform"
+    },
+    {
+      "activity_slug": "demo-mindful-morning",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "career-exploration-assessment",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "personal-values-discovery",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "activity-1cac080b",
+      "estimated_duration_days": 1
+    }
+  ]
+}

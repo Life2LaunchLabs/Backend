@@ -1,0 +1,16 @@
+{
+  "activity": {
+    "slug": "career-exploration-assessment",
+    "status": "published"
+  },
+  "version": {
+    "title": "Personal Operating System",
+    "description": "Not yet implemented!",
+    "meta": {
+      "demo": true,
+      "category": "career"
+    }
+  },
+  "media_assets": [],
+  "pages": []
+}

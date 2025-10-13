@@ -1,0 +1,50 @@
+{
+  "activity": {
+    "slug": "activity-1cac080b",
+    "status": "draft"
+  },
+  "version": {
+    "title": "New Activity",
+    "description": "THis is a test of creating new activities!",
+    "meta": {
+      "created_from_quest": "bd7b8e59-b85e-4294-a58e-9f5ffd4a08b8"
+    }
+  },
+  "media_assets": [
+    {
+      "filename": "7e6a0a17-b56a-4826-a1b3-90f36ceffac0.png",
+      "path": "7e6a0a17-b56a-4826-a1b3-90f36ceffac0.png",
+      "title": "rewilding temp logo black.png",
+      "description": "Uploaded from activity editor",
+      "mime_type": "image/png",
+      "alt_text": "Uploaded from activity editor"
+    }
+  ],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Intro",
+      "meta": {},
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "text": "Rewilding!",
+            "align": "left",
+            "style": "body",
+            "content": "Rewilding!"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "media",
+          "config": {
+            "fit": "contain",
+            "media_filename": "7e6a0a17-b56a-4826-a1b3-90f36ceffac0.png"
+          }
+        }
+      ]
+    }
+  ]
+}

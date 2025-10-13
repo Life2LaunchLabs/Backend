@@ -1,0 +1,16 @@
+{
+  "activity": {
+    "slug": "goal-setting-workshop",
+    "status": "published"
+  },
+  "version": {
+    "title": "Taking Action",
+    "description": "Not yet implemented",
+    "meta": {
+      "demo": true,
+      "category": "goals"
+    }
+  },
+  "media_assets": [],
+  "pages": []
+}

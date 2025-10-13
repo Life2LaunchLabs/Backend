@@ -1,0 +1,97 @@
+{
+  "activity": {
+    "slug": "demo-mindful-morning",
+    "status": "published"
+  },
+  "version": {
+    "title": "Personal Drivers",
+    "description": "what is your north star?",
+    "meta": {
+      "demo": true
+    }
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Introduction",
+      "meta": {
+        "progress_label": "Introduction"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "text": "What are Personal Drivers?",
+            "style": "h2",
+            "content": "What are Personal Drivers?"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text",
+          "config": {
+            "text": "Your personal drivers are your dreams, interests, culture, and values. They are what make you unique, and guide you as you launch your life! Dive in and cultivate your inner world.",
+            "style": "body",
+            "content": "Your personal drivers are your dreams, interests, culture, and values. They are what make you unique, and guide you as you launch your life! Dive in and cultivate your inner world."
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Vision Journey",
+      "meta": {
+        "progress_label": "Reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Visualizing your career",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
+            "required": false,
+            "subtitle": "Imagine yourself in your ideal job setting. What are you doing?",
+            "question_id": "question_1759361149477",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Reflecting on Education",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
+            "required": false,
+            "subtitle": "Shift your focus to educational goals. What would you like to learn?",
+            "question_id": "question_1759361070010",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "Exploring Personal Growth",
+            "config": {
+              "multiline": false,
+              "placeholder": "Enter your answer..."
+            },
+            "required": false,
+            "subtitle": "What are some personal qualities you would like to develop?",
+            "question_id": "question_1759360965683",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    }
+  ]
+}

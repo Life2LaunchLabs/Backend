@@ -1,38 +1,72 @@
+"""
+Quest and activity URL configuration - Admin + User-facing APIs.
+"""
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from rest_framework_nested import routers
-from .views import QuestViewSet, MilestoneViewSet
-from .views_v2 import QuestTemplateViewSet, QuestEnrollmentViewSet, MilestoneProgressViewSet
-from .dashboard_views import upcoming_milestones
-from .v2_bridge import v2_quests_as_v1, v2_upcoming_milestones_as_v1
 
-# V1 API (Legacy - for backward compatibility)
-router_v1 = DefaultRouter()
-router_v1.register(r'quests', QuestViewSet, basename='quest')
+from .views import (
+    QuestTemplateViewSet,
+    QuestItemDefinitionViewSet,
+    QuestTemplateItemViewSet,
+    ActivityViewSet,
+    ActivityVersionViewSet,
+    MediaAssetViewSet,
+)
 
-# Nested router for milestones under quests (V1)
-quests_router_v1 = routers.NestedDefaultRouter(router_v1, r'quests', lookup='quest')
-quests_router_v1.register(r'milestones', MilestoneViewSet, basename='quest-milestones')
+from .views.user_quest_views import (
+    UserQuestEnrollmentViewSet,
+    upcoming_quest_items,
+    available_quest_templates,
+    enroll_in_quest,
+    update_item_progress,
+)
 
-# Standalone milestones router (V1)
-router_v1.register(r'milestones', MilestoneViewSet, basename='milestone')
+from .views.user_activity_views import (
+    UserActivityViewSet,
+    create_attempt,
+    get_attempt,
+    complete_attempt,
+    submit_response,
+    update_page_progress,
+    has_completed_activity,
+    get_activity_submissions,
+    get_submission_details,
+)
 
-# V2 API (New enrollment-based system)
-router_v2 = DefaultRouter()
-router_v2.register(r'quest-templates', QuestTemplateViewSet, basename='quest-template')
-router_v2.register(r'enrollments', QuestEnrollmentViewSet, basename='quest-enrollment')
-router_v2.register(r'milestone-progress', MilestoneProgressViewSet, basename='milestone-progress')
+# Admin router for quest/activity management
+admin_router = DefaultRouter()
+admin_router.register(r'admin/templates', QuestTemplateViewSet, basename='quest-template')
+admin_router.register(r'admin/item-definitions', QuestItemDefinitionViewSet, basename='item-definition')
+admin_router.register(r'admin/template-items', QuestTemplateItemViewSet, basename='template-item')
+admin_router.register(r'admin/activities', ActivityViewSet, basename='activity')
+admin_router.register(r'admin/activity-versions', ActivityVersionViewSet, basename='activity-version')
+admin_router.register(r'admin/media', MediaAssetViewSet, basename='media-asset')
+
+# User-facing router for quest enrollments and activities
+user_router = DefaultRouter()
+user_router.register(r'quests', UserQuestEnrollmentViewSet, basename='user-quest')
+user_router.register(r'activities', UserActivityViewSet, basename='user-activity')
 
 urlpatterns = [
-    # V1 API (legacy)
-    path('', include(router_v1.urls)),
-    path('', include(quests_router_v1.urls)),
-    path('dashboard/upcoming-milestones/', upcoming_milestones, name='upcoming_milestones'),
+    # Admin endpoints
+    path('', include(admin_router.urls)),
 
-    # V2 API (new enrollment system)
-    path('quests/v2/', include(router_v2.urls)),
+    # User-facing quest endpoints
+    path('', include(user_router.urls)),
+    path('quest-items/upcoming/', upcoming_quest_items, name='upcoming-quest-items'),
+    path('quest-templates/available/', available_quest_templates, name='available-quest-templates'),
+    path('quest-templates/<uuid:template_id>/enroll/', enroll_in_quest, name='enroll-quest'),
+    path('quest-items/<uuid:item_progress_id>/progress/', update_item_progress, name='update-item-progress'),
 
-    # V2 Bridge APIs (V2 data in V1 format for dashboard compatibility)
-    path('v2/quests/', v2_quests_as_v1, name='v2_quests_as_v1'),
-    path('v2/milestones/upcoming/', v2_upcoming_milestones_as_v1, name='v2_upcoming_milestones_as_v1'),
+    # User-facing activity session endpoints
+    path('attempts/', create_attempt, name='create-attempt'),
+    path('attempts/<uuid:attempt_id>/', get_attempt, name='get-attempt'),
+    path('attempts/<uuid:attempt_id>/complete/', complete_attempt, name='complete-attempt'),
+    path('attempts/<uuid:attempt_id>/submit_response/', submit_response, name='submit-response'),
+    path('attempts/<uuid:attempt_id>/update_progress/', update_page_progress, name='update-page-progress'),
+
+    # User-facing activity results endpoints
+    path('activities/results/has-completed/<uuid:activity_id>/', has_completed_activity, name='has-completed-activity'),
+    path('activities/results/activity/<uuid:activity_id>/', get_activity_submissions, name='get-activity-submissions'),
+    path('activities/submissions/<uuid:submission_id>/', get_submission_details, name='get-submission-details'),
 ]

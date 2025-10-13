@@ -1,0 +1,16 @@
+{
+  "activity": {
+    "slug": "personal-values-discovery",
+    "status": "published"
+  },
+  "version": {
+    "title": "My Outer World",
+    "description": "not yet implemented!",
+    "meta": {
+      "demo": true,
+      "category": "values"
+    }
+  },
+  "media_assets": [],
+  "pages": []
+}
