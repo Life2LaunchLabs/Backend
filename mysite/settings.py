@@ -47,8 +47,11 @@ if os.getenv('RAILWAY_PUBLIC_DOMAIN'):
     ALLOWED_HOSTS.append(os.getenv('RAILWAY_PUBLIC_DOMAIN'))
 
 # Add frontend Railway domain if available
-if os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'):
-    ALLOWED_HOSTS.append(os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'))
+frontend_domain = os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN')
+print(f"DEBUG: FRONTEND_RAILWAY_PUBLIC_DOMAIN = {frontend_domain}")
+if frontend_domain:
+    ALLOWED_HOSTS.append(frontend_domain)
+    print(f"DEBUG: Added {frontend_domain} to ALLOWED_HOSTS")
 
 # Railway WebSocket configuration
 RAILWAY_WEBSOCKET_ENABLED = True
@@ -64,8 +67,9 @@ CSRF_TRUSTED_ORIGINS = [
 if os.getenv('RAILWAY_PUBLIC_DOMAIN'):
     CSRF_TRUSTED_ORIGINS.append(f"https://{os.getenv('RAILWAY_PUBLIC_DOMAIN')}")
 
-if os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'):
-    CSRF_TRUSTED_ORIGINS.append(f"https://{os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN')}")
+if frontend_domain:
+    CSRF_TRUSTED_ORIGINS.append(f"https://{frontend_domain}")
+    print(f"DEBUG: Added https://{frontend_domain} to CSRF_TRUSTED_ORIGINS")
 
 # Application definition
 
@@ -201,8 +205,9 @@ CORS_ALLOWED_ORIGINS = [
 ] + ['https://life2launch-launchpad.up.railway.app']
 
 # Add Railway frontend domain if available
-if os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN'):
-    CORS_ALLOWED_ORIGINS.append(f"https://{os.getenv('FRONTEND_RAILWAY_PUBLIC_DOMAIN')}")
+if frontend_domain:
+    CORS_ALLOWED_ORIGINS.append(f"https://{frontend_domain}")
+    print(f"DEBUG: Added https://{frontend_domain} to CORS_ALLOWED_ORIGINS")
 
 CORS_ALLOW_CREDENTIALS = True
 

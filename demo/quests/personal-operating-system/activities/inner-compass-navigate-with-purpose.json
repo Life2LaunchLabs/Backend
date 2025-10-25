@@ -1,0 +1,294 @@
+{
+  "activity": {
+    "slug": "inner-compass-navigate-with-purpose",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Inner Compass – Navigate with Purpose",
+    "description": "Connect with your inner strengths, beliefs, and intuition to guide decision-making and life direction aligned with your authentic values.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "values",
+        "purpose"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "15 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Inner Strengths",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "How do you define inner strength and why is it important?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on your definition of inner strength..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p0__b0__define_inner_strength",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "How do your inner strengths contribute to a fulfilling life aligned with your values?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on meaning and purpose..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p0__b1__inner_strengths_purpose",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "Describe a recent challenge and the inner strengths you relied on.",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe your experience..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p0__b2__strengths_challenge",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Decision Making",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Reflect on a recent decision and how it aligned with your values and goals.",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe your decision process..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p1__b0__decision_alignment",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "What values are most important when making decisions?",
+            "config": {
+              "multiline": true,
+              "placeholder": "List your key decision values..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p1__b1__decision_values",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "How do you evaluate alternatives and ensure alignment with your values?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe your evaluation process..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p1__b2__decision_criteria",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Intuition",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Reflect on a time you followed your intuition and the outcome.",
+            "config": {
+              "multiline": true,
+              "placeholder": "Write about your intuition experience..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p2__b0__intuition_experience",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "How do you distinguish between intuition and emotions or thoughts?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe your process..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p2__b1__intuition_distinction",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "What is your intuition telling you about a current decision?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on your gut feeling..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p2__b2__intuition_current",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Life Direction",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "What activities or pursuits excite and fulfill you?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe what excites you..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p3__b0__life_pursuits",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Envision your ideal future. What does it include?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Visualize your ideal life..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p3__b1__ideal_future",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "Is there a cause or issue you feel deeply passionate about?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe your passion or cause..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p3__b2__life_cause",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Beliefs",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "What beliefs do you hold about yourself?",
+            "config": {
+              "multiline": true,
+              "placeholder": "List positive and negative beliefs..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p4__b0__self_beliefs",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Describe a belief that has shaped your life and how it impacts your actions.",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on this belief’s influence..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p4__b1__belief_impact",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "What beliefs guide your dreams and aspirations for the future?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Write about your guiding beliefs..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-compass__p4__b2__beliefs_future",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    }
+  ]
+}

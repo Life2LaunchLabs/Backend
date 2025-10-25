@@ -1,0 +1,10 @@
+{
+  "slug": "life2launch",
+  "name": "Life2Launch",
+  "description": "Default organization for demo content - empowering young adults to discover their path and launch their careers.",
+  "is_active": true,
+  "meta": {
+    "website": "https://life2launch.com",
+    "logo_url": ""
+  }
+}

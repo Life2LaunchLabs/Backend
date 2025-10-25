@@ -1,0 +1,321 @@
+{
+  "activity": {
+    "slug": "inner-world-mind",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Inner World – Mind",
+    "description": "Explore and assess your cognitive processing, learning preferences, creativity, focus, and emotional regulation to better understand how your mind functions and thrives.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "cognitive-awareness"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "15 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Cognitive Processing",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "How well do these areas function for you?",
+            "options": [
+              {
+                "label": "Memory: Remembering and recalling information",
+                "value": "memory"
+              },
+              {
+                "label": "Attention: Focusing on specific stimuli while ignoring others",
+                "value": "attention"
+              },
+              {
+                "label": "Perception: Interpreting sensory information from the environment",
+                "value": "perception"
+              },
+              {
+                "label": "Language: Understanding and using spoken and written language",
+                "value": "language"
+              },
+              {
+                "label": "Problem-Solving: Finding solutions to complex or novel problems",
+                "value": "problem_solving"
+              },
+              {
+                "label": "Reasoning: Drawing conclusions based on evidence and logic",
+                "value": "reasoning"
+              },
+              {
+                "label": "Decision-Making: Evaluating options and making choices",
+                "value": "decision_making"
+              },
+              {
+                "label": "Executive Function: Managing time, attention, and goal-directed behavior",
+                "value": "executive_function"
+              },
+              {
+                "label": "Metacognition: Understanding and regulating your own thinking",
+                "value": "metacognition"
+              },
+              {
+                "label": "Mental Flexibility: Adapting to changing situations and perspectives",
+                "value": "mental_flexibility"
+              }
+            ],
+            "required": false,
+            "question_id": "inner-world-mind__p0__b0__cognitive_processing",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Learning Styles",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "Reflect on how you learn best. Which learning styles fit you most?",
+            "options": [
+              {
+                "label": "Visual Learning – Learn best by watching or observing",
+                "value": "visual_learning"
+              },
+              {
+                "label": "Kinesthetic Learning – Prefer to learn by doing or making",
+                "value": "kinesthetic_learning"
+              },
+              {
+                "label": "Auditory Learning – Remember information better when hearing it",
+                "value": "auditory_learning"
+              },
+              {
+                "label": "Reading/Writing Learning – Enjoy reading and writing activities",
+                "value": "reading_writing_learning"
+              }
+            ],
+            "required": false,
+            "question_id": "inner-world-mind__p1__b0__learning_styles",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Creativity",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "What types of creativity does your mind love?",
+            "options": [
+              {
+                "label": "Coming Up with Cool Ideas",
+                "value": "coming_up_with_cool_ideas"
+              },
+              {
+                "label": "Imagine New Worlds (Imagination)",
+                "value": "imagine_new_worlds"
+              },
+              {
+                "label": "Think Outside the Box (Originality)",
+                "value": "think_outside_box"
+              },
+              {
+                "label": "Have Lots of Ideas (Fluency)",
+                "value": "have_lots_of_ideas"
+              },
+              {
+                "label": "Be Flexible (Adaptable)",
+                "value": "be_flexible"
+              },
+              {
+                "label": "Make Ideas Even Cooler (Elaboration)",
+                "value": "make_ideas_even_cooler"
+              },
+              {
+                "label": "Try New Things (Experimentation)",
+                "value": "try_new_things"
+              },
+              {
+                "label": "Fix Things (Problem-Solving)",
+                "value": "fix_things"
+              },
+              {
+                "label": "Take Smart Risks (Risk-Taking)",
+                "value": "take_smart_risks"
+              },
+              {
+                "label": "Show Your Feelings (Emotional Expression)",
+                "value": "show_your_feelings"
+              },
+              {
+                "label": "Have Fun (Playfulness)",
+                "value": "have_fun"
+              }
+            ],
+            "required": false,
+            "question_id": "inner-world-mind__p2__b0__creativity_styles",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Focus & Concentration",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "How well do these focus and concentration areas function for you?",
+            "options": [
+              {
+                "label": "Get Stuff Done: Organizing and prioritizing tasks effectively",
+                "value": "get_stuff_done"
+              },
+              {
+                "label": "Stay Focused: Maintaining focus for an extended period",
+                "value": "stay_focused"
+              },
+              {
+                "label": "Tune In: Ignoring distractions",
+                "value": "tune_in"
+              },
+              {
+                "label": "Juggle Tasks: Managing multiple tasks simultaneously",
+                "value": "juggle_tasks"
+              },
+              {
+                "label": "Stay in Control: Directing and shifting focus as needed",
+                "value": "stay_in_control"
+              },
+              {
+                "label": "Stay Chill: Regulating emotions to maintain focus",
+                "value": "stay_chill"
+              },
+              {
+                "label": "Stay Present: Cultivating present-moment awareness",
+                "value": "stay_present"
+              },
+              {
+                "label": "Keep Going: Sustaining mental effort",
+                "value": "keep_going"
+              },
+              {
+                "label": "Get in the Zone: Achieving optimal performance",
+                "value": "get_in_the_zone"
+              }
+            ],
+            "required": false,
+            "question_id": "inner-world-mind__p3__b0__focus_concentration",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Emotional Regulation",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "Which emotional regulation baselines describe you currently?",
+            "options": [
+              {
+                "label": "Stay in Control",
+                "value": "stay_in_control"
+              },
+              {
+                "label": "Keep Your Cool",
+                "value": "keep_your_cool"
+              },
+              {
+                "label": "Choose Wisely",
+                "value": "choose_wisely"
+              },
+              {
+                "label": "Adapt and Adjust",
+                "value": "adapt_and_adjust"
+              },
+              {
+                "label": "Handle Emotions",
+                "value": "handle_emotions"
+              },
+              {
+                "label": "Acknowledge Emotions",
+                "value": "acknowledge_emotions"
+              },
+              {
+                "label": "Manage Intensity",
+                "value": "manage_intensity"
+              },
+              {
+                "label": "Recover Quickly",
+                "value": "recover_quickly"
+              },
+              {
+                "label": "Be Mindful",
+                "value": "be_mindful"
+              },
+              {
+                "label": "Achieve Balance",
+                "value": "achieve_balance"
+              },
+              {
+                "label": "React Hastily",
+                "value": "react_hastily"
+              },
+              {
+                "label": "Ignore Inner Signals",
+                "value": "ignore_inner_signals"
+              },
+              {
+                "label": "Crumble Under Stress",
+                "value": "crumble_under_stress"
+              }
+            ],
+            "required": false,
+            "question_id": "inner-world-mind__p4__b0__emotional_regulation",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        }
+      ]
+    }
+  ]
+}

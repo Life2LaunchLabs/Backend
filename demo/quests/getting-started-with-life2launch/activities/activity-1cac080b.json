@@ -4,19 +4,20 @@
     "status": "draft"
   },
   "version": {
+    "number": 1,
     "title": "New Activity",
     "description": "THis is a test of creating new activities!",
     "meta": {
       "created_from_quest": "bd7b8e59-b85e-4294-a58e-9f5ffd4a08b8"
-    }
+    },
+    "is_published": true
   },
   "media_assets": [
     {
-      "filename": "cddcf8b3-b4eb-46cf-9382-48f0f90f705d.png",
-      "path": "cddcf8b3-b4eb-46cf-9382-48f0f90f705d.png",
+      "filename": "6cb690ce-ac59-47d6-a56d-fb4c23cc3eeb.png",
+      "path": "6cb690ce-ac59-47d6-a56d-fb4c23cc3eeb.png",
       "title": "rewilding temp logo black.png",
       "description": "Uploaded from activity editor",
-      "mime_type": "image/png",
       "alt_text": "Uploaded from activity editor"
     }
   ],
@@ -41,7 +42,7 @@
           "block_type": "media",
           "config": {
             "fit": "contain",
-            "media_filename": "cddcf8b3-b4eb-46cf-9382-48f0f90f705d.png"
+            "media_filename": "6cb690ce-ac59-47d6-a56d-fb4c23cc3eeb.png"
           }
         }
       ]

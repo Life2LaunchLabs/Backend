@@ -4,11 +4,13 @@
     "status": "published"
   },
   "version": {
+    "number": 1,
     "title": "Personal Drivers",
     "description": "what is your north star?",
     "meta": {
       "demo": true
-    }
+    },
+    "is_published": true
   },
   "media_assets": [],
   "pages": [

@@ -1,0 +1,34 @@
+{
+  "title": "Outer World Skills",
+  "description": "Develop essential skills for navigating the external world, including academic excellence, relationship building, passion-driven pursuits, professional hustle, and life essentials management.",
+  "organization_slug": "life2launch",
+  "created_by_email": "henry@fake.com",
+  "color": "#2196F3",
+  "category": "Skills Development",
+  "status": "published",
+  "is_public": true,
+  "is_template": true,
+  "meta": {},
+  "items": [
+    {
+      "activity_slug": "academic-edge",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "building-connections",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "leverage-your-passions",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "mastering-the-hustle",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "navigating-essentials",
+      "estimated_duration_days": 7
+    }
+  ]
+}

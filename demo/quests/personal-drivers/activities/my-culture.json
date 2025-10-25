@@ -1,0 +1,179 @@
+{
+  "activity": {
+    "slug": "my-culture",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "My Culture",
+    "description": "Explore the ways you express and connect with your culture, community, and traditions in everyday life.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "cultural-identity"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "10 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Creative Expression",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Music and Art",
+            "config": {
+              "multiline": true,
+              "placeholder": "I express myself through music and art by..."
+            },
+            "required": false,
+            "subtitle": "How do you use music and art to show who you are or connect with your culture?",
+            "question_id": "my-culture__p0__b0__music_art",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Fashion and Language",
+            "config": {
+              "multiline": true,
+              "placeholder": "My style and language show my identity by..."
+            },
+            "required": false,
+            "subtitle": "How do your style choices and the words you use express your identity?",
+            "question_id": "my-culture__p0__b1__fashion_language",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Everyday Life and Beliefs",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Food and Faith",
+            "config": {
+              "multiline": true,
+              "placeholder": "Foods and beliefs that reflect my culture..."
+            },
+            "required": false,
+            "subtitle": "What foods or beliefs reflect your cultural or family traditions?",
+            "question_id": "my-culture__p1__b0__food_faith",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Caring for the Planet",
+            "config": {
+              "multiline": true,
+              "placeholder": "Ways we care for the environment..."
+            },
+            "required": false,
+            "subtitle": "How do you and your family or community care for the environment?",
+            "question_id": "my-culture__p1__b1__planet_care",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Connecting Digitally and in Your Community",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Social Media and Tech",
+            "config": {
+              "multiline": true,
+              "placeholder": "I use technology to..."
+            },
+            "required": false,
+            "subtitle": "How do you use social media or technology to stay connected or learn?",
+            "question_id": "my-culture__p2__b0__social_media",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Community and Views",
+            "config": {
+              "multiline": true,
+              "placeholder": "I express my opinions or participate by..."
+            },
+            "required": false,
+            "subtitle": "How do you participate in your community or express your opinions?",
+            "question_id": "my-culture__p2__b1__community_views",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Your Personal Roots and Traditions",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Places and Learning",
+            "config": {
+              "multiline": true,
+              "placeholder": "My environment influences me by..."
+            },
+            "required": false,
+            "subtitle": "How does where you live or go to school influence who you are?",
+            "question_id": "my-culture__p3__b0__places_learning",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Holidays and Family Traditions",
+            "config": {
+              "multiline": true,
+              "placeholder": "Special traditions that matter to me..."
+            },
+            "required": false,
+            "subtitle": "What are special celebrations or rituals that mean a lot to your family?",
+            "question_id": "my-culture__p3__b1__holidays_traditions",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    }
+  ]
+}

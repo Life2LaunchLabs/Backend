@@ -1,6 +1,8 @@
 {
   "title": "Getting Started with Life2Launch",
   "description": "A comprehensive introduction to Life2Launch featuring mindfulness, career exploration, personal values, and goal setting activities.",
+  "organization_slug": "life2launch",
+  "created_by_email": "henry@fake.com",
   "color": "#4CAF50",
   "category": "Introduction",
   "status": "published",

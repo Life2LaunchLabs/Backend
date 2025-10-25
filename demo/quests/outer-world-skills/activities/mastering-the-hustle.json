@@ -1,0 +1,212 @@
+{
+  "activity": {
+    "slug": "mastering-the-hustle",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Mastering The Hustle: Executive Functioning Skills",
+    "description": "Assess your executive functioning skills to identify strengths and areas for growth in daily life, decision-making, and self-control.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "executive-functioning"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "8 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Navigating Daily Life",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Working Memory",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p0__b0__working_memory",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Organization",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p0__b1__organization",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Planning",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p0__b2__planning",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "rating",
+          "config": {
+            "title": "Task Initiation",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p0__b3__task_initiation",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Making Smart Choices",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Prioritizing",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p1__b0__prioritizing",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Critical Decision-Making",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p1__b1__critical_decision_making",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Problem Solving",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p1__b2__problem_solving",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Mastering Self-Control",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Emotional Self-Regulation",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p2__b0__emotional_self_regulation",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Impulse Control",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "mastering-the-hustle__p2__b1__impulse_control",
+            "question_type": "rating"
+          }
+        }
+      ]
+    }
+  ]
+}

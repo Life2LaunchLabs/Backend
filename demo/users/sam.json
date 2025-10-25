@@ -1,0 +1,29 @@
+{
+  "email": "sam@fake.com",
+  "password": "demo123",
+  "first_name": "Sam",
+  "last_name": "Garcia",
+  "bio": "I'm redefining human centered design in a high tech era. Open to work helping your business with branding, marketing, and social media.",
+  "tagline": "Visionary designer and recent high school graduate",
+  "is_staff": false,
+  "is_superuser": false,
+  "organization_roles": [],
+  "quest_enrollments": [
+    {
+      "quest_title": "Getting Started with Life2Launch",
+      "status": "active"
+    },
+    {
+      "quest_title": "Outer World Skills",
+      "status": "active"
+    },
+    {
+      "quest_title": "Personal Drivers",
+      "status": "active"
+    },
+    {
+      "quest_title": "Personal Operating System",
+      "status": "active"
+    }
+  ]
+}

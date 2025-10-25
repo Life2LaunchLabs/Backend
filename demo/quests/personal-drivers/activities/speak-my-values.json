@@ -1,0 +1,363 @@
+{
+  "activity": {
+    "slug": "speak-my-values",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Speak My Values",
+    "description": "Identify and prioritize your core values to better align your life and goals with your authentic self.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "values-identification"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "10 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Value Selection",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "Select Your Core Values",
+            "options": [
+              {
+                "label": "Well-Being",
+                "value": "well_being"
+              },
+              {
+                "label": "Adventure",
+                "value": "adventure"
+              },
+              {
+                "label": "Fun",
+                "value": "fun"
+              },
+              {
+                "label": "Freedom",
+                "value": "freedom"
+              },
+              {
+                "label": "Growth",
+                "value": "growth"
+              },
+              {
+                "label": "Happiness",
+                "value": "happiness"
+              },
+              {
+                "label": "Humor",
+                "value": "humor"
+              },
+              {
+                "label": "Optimism",
+                "value": "optimism"
+              },
+              {
+                "label": "Passion",
+                "value": "passion"
+              },
+              {
+                "label": "Peace",
+                "value": "peace"
+              },
+              {
+                "label": "Pleasure",
+                "value": "pleasure"
+              },
+              {
+                "label": "Authenticity",
+                "value": "authenticity"
+              },
+              {
+                "label": "Creativity",
+                "value": "creativity"
+              },
+              {
+                "label": "Curiosity",
+                "value": "curiosity"
+              },
+              {
+                "label": "Honesty",
+                "value": "honesty"
+              },
+              {
+                "label": "Hopeful",
+                "value": "hopeful"
+              },
+              {
+                "label": "Integrity",
+                "value": "integrity"
+              },
+              {
+                "label": "Mindfulness",
+                "value": "mindfulness"
+              },
+              {
+                "label": "Openness",
+                "value": "openness"
+              },
+              {
+                "label": "Patience",
+                "value": "patience"
+              },
+              {
+                "label": "Perseverance",
+                "value": "perseverance"
+              },
+              {
+                "label": "Responsibility",
+                "value": "responsibility"
+              },
+              {
+                "label": "Self-Discipline",
+                "value": "self_discipline"
+              },
+              {
+                "label": "Wisdom",
+                "value": "wisdom"
+              },
+              {
+                "label": "Diversity",
+                "value": "diversity"
+              },
+              {
+                "label": "Justice",
+                "value": "justice"
+              },
+              {
+                "label": "Respect",
+                "value": "respect"
+              },
+              {
+                "label": "Stability",
+                "value": "stability"
+              },
+              {
+                "label": "Security",
+                "value": "security"
+              },
+              {
+                "label": "Simplicity",
+                "value": "simplicity"
+              },
+              {
+                "label": "Wealth",
+                "value": "wealth"
+              },
+              {
+                "label": "Work-Life Balance",
+                "value": "work_life_balance"
+              },
+              {
+                "label": "Sustainability",
+                "value": "sustainability"
+              },
+              {
+                "label": "Community",
+                "value": "community"
+              },
+              {
+                "label": "Flexibility",
+                "value": "flexibility"
+              },
+              {
+                "label": "Achievement",
+                "value": "achievement"
+              },
+              {
+                "label": "Challenge",
+                "value": "challenge"
+              },
+              {
+                "label": "Empowerment",
+                "value": "empowerment"
+              },
+              {
+                "label": "Excellence",
+                "value": "excellence"
+              },
+              {
+                "label": "Influence",
+                "value": "influence"
+              },
+              {
+                "label": "Innovation",
+                "value": "innovation"
+              },
+              {
+                "label": "Leadership",
+                "value": "leadership"
+              },
+              {
+                "label": "Learning",
+                "value": "learning"
+              },
+              {
+                "label": "Success",
+                "value": "success"
+              },
+              {
+                "label": "Compassion",
+                "value": "compassion"
+              },
+              {
+                "label": "Dependability",
+                "value": "dependability"
+              },
+              {
+                "label": "Friendship",
+                "value": "friendship"
+              },
+              {
+                "label": "Generosity",
+                "value": "generosity"
+              },
+              {
+                "label": "Kindness",
+                "value": "kindness"
+              },
+              {
+                "label": "Love",
+                "value": "love"
+              },
+              {
+                "label": "Loyalty",
+                "value": "loyalty"
+              },
+              {
+                "label": "Service",
+                "value": "service"
+              },
+              {
+                "label": "Teamwork",
+                "value": "teamwork"
+              },
+              {
+                "label": "Trust",
+                "value": "trust"
+              }
+            ],
+            "required": false,
+            "max_select": 20,
+            "question_id": "speak-my-values__p0__b0__value_selection",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Visualizing Values",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "Visualize yourself as the radiant sun at the center, with your top 5–10 values like rays shining outward. Each ray represents a facet of your brilliance and guiding light."
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "My Values Reflection",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Value #1",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe why this value matters and how you live it..."
+            },
+            "required": false,
+            "subtitle": "Why is this value important to you, and how do you live it?",
+            "question_id": "speak-my-values__p2__b0__value_1",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Value #2",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe why this value matters and how you live it..."
+            },
+            "required": false,
+            "subtitle": "Why is this value important to you, and how do you live it?",
+            "question_id": "speak-my-values__p2__b1__value_2",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "Value #3",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe why this value matters and how you live it..."
+            },
+            "required": false,
+            "subtitle": "Why is this value important to you, and how do you live it?",
+            "question_id": "speak-my-values__p2__b2__value_3",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "text_input",
+          "config": {
+            "title": "Value #4",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe why this value matters and how you live it..."
+            },
+            "required": false,
+            "subtitle": "Why is this value important to you, and how do you live it?",
+            "question_id": "speak-my-values__p2__b3__value_4",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 4,
+          "block_type": "text_input",
+          "config": {
+            "title": "Value #5",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe why this value matters and how you live it..."
+            },
+            "required": false,
+            "subtitle": "Why is this value important to you, and how do you live it?",
+            "question_id": "speak-my-values__p2__b4__value_5",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    }
+  ]
+}

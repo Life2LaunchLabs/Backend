@@ -1,0 +1,212 @@
+{
+  "activity": {
+    "slug": "academic-edge",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Academic Edge: Shaping Your Future",
+    "description": "Evaluate academic and communication skills to enhance your learning, digital literacy, and future readiness.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "academic-skills"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "8 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Critical Thinking and Problem Solving",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Numeracy",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p0__b0__numeracy",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Reading",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p0__b1__reading",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Study Skills",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p0__b2__study_skills",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Communication Skills",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Writing",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p1__b0__writing",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Public Speaking",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p1__b1__public_speaking",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Note-Taking",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p1__b2__note_taking",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "ICT Literacy",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Computer Use",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p2__b0__computer_use",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Technology Adaptation",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p2__b1__technology_adaptation",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Cybersecurity Awareness",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "academic-edge__p2__b2__cybersecurity_awareness",
+            "question_type": "rating"
+          }
+        }
+      ]
+    }
+  ]
+}

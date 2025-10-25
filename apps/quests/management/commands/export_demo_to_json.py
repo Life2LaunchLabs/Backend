@@ -1,156 +1,305 @@
 # apps/quests/management/commands/export_demo_to_json.py
 import os
 import json
-from typing import Dict, Any, List
+import shutil
+import re
+from typing import Dict, Any, Set
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 
 from apps.quests.models import (
-    QuestTemplate, QuestTemplateItem, Activity, ActivityVersion, Page, Block, MediaAsset
+    QuestTemplate, QuestTemplateItem, QuestEnrollment, Activity, ActivityVersion, Page, Block, MediaAsset
 )
-from apps.organizations.models import Organization
+from apps.organizations.models import Organization, OrganizationAdmin
+from apps.users.models import User
 
 
-DEFAULT_ACTIVITIES_DIR = os.path.join(
-    settings.BASE_DIR, "apps", "quests", "demo", "activities"
-)
-
-DEFAULT_QUESTS_DIR = os.path.join(
-    settings.BASE_DIR, "apps", "quests", "demo", "quests"
+DEFAULT_QUEST_DIR = os.path.join(
+    settings.BASE_DIR, "demo", "quests"
 )
 
 DEFAULT_MEDIA_DIR = os.path.join(
-    settings.BASE_DIR, "apps", "quests", "demo", "media"
+    settings.BASE_DIR, "demo", "media"
+)
+
+DEFAULT_USERS_DIR = os.path.join(
+    settings.BASE_DIR, "demo", "users"
+)
+
+DEFAULT_ORGS_DIR = os.path.join(
+    settings.BASE_DIR, "demo", "organizations"
 )
 
 
 class Command(BaseCommand):
-    help = "Export activities and quests from database back to JSON files (for demo updates)."
+    help = "Export organizations, users, quests, and activities from database back to JSON files (for demo updates)."
 
     def add_arguments(self, parser):
         parser.add_argument(
             "--org-slug",
             dest="org_slug",
-            default="life2launch",
-            help="Organization slug to export activities from (default: life2launch)",
+            help="Specific organization slug to export (optional - exports all if not specified)",
         )
         parser.add_argument(
             "--quest-id",
             dest="quest_id",
             help="Specific quest ID to export (optional - exports all if not specified)",
         )
+        parser.add_argument(
+            "--quest-dir",
+            dest="quest_dir",
+            default=DEFAULT_QUEST_DIR,
+            help=f"Directory to export quests to (default: {DEFAULT_QUEST_DIR})",
+        )
+        parser.add_argument(
+            "--users-dir",
+            dest="users_dir",
+            default=DEFAULT_USERS_DIR,
+            help=f"Directory to export users to (default: {DEFAULT_USERS_DIR})",
+        )
+        parser.add_argument(
+            "--orgs-dir",
+            dest="orgs_dir",
+            default=DEFAULT_ORGS_DIR,
+            help=f"Directory to export organizations to (default: {DEFAULT_ORGS_DIR})",
+        )
 
     def handle(self, *args, **opts):
-        org_slug = opts["org_slug"]
+        org_slug = opts.get("org_slug")
         quest_id = opts.get("quest_id")
+        quest_dir = opts["quest_dir"]
+        users_dir = opts["users_dir"]
+        orgs_dir = opts["orgs_dir"]
 
-        activities_dir = DEFAULT_ACTIVITIES_DIR
-        quests_dir = DEFAULT_QUESTS_DIR
-
-        # Clear existing JSON files in demo directories
+        # Clear existing demo directories
         self.stdout.write(self.style.WARNING("Clearing existing demo files..."))
+        self._clear_demo_directories(quest_dir, users_dir, orgs_dir)
 
-        # Remove all JSON files from activities directory
-        if os.path.exists(activities_dir):
-            for filename in os.listdir(activities_dir):
-                if filename.endswith('.json'):
-                    os.remove(os.path.join(activities_dir, filename))
-                    self.stdout.write(f"  Removed {filename}")
+        # Create directories
+        os.makedirs(quest_dir, exist_ok=True)
+        os.makedirs(users_dir, exist_ok=True)
+        os.makedirs(orgs_dir, exist_ok=True)
+        os.makedirs(DEFAULT_MEDIA_DIR, exist_ok=True)
 
-        # Remove all JSON files from quests directory
-        if os.path.exists(quests_dir):
-            for filename in os.listdir(quests_dir):
-                if filename.endswith('.json'):
-                    os.remove(os.path.join(quests_dir, filename))
-                    self.stdout.write(f"  Removed {filename}")
+        self.stdout.write(f"\nExporting demo data...")
 
-        # Clear media directory
-        media_dir = DEFAULT_MEDIA_DIR
-        if os.path.exists(media_dir):
-            for filename in os.listdir(media_dir):
-                if filename.endswith('.png') or filename.endswith('.jpg') or filename.endswith('.jpeg'):
-                    os.remove(os.path.join(media_dir, filename))
-                    self.stdout.write(f"  Removed media: {filename}")
-
-        # Create directories if they don't exist
-        os.makedirs(activities_dir, exist_ok=True)
-        os.makedirs(quests_dir, exist_ok=True)
-        os.makedirs(media_dir, exist_ok=True)
-
-        self.stdout.write(f"\nExporting to demo directories...")
-
-        # Get organization
-        try:
-            org = Organization.objects.get(slug=org_slug)
-        except Organization.DoesNotExist:
-            raise CommandError(f"Organization with slug '{org_slug}' not found.")
-
-        # Export quests
-        if quest_id:
-            quests = QuestTemplate.objects.filter(id=quest_id, organization=org)
-            if not quests.exists():
-                raise CommandError(f"Quest with ID '{quest_id}' not found in organization '{org_slug}'")
+        # Determine which organizations to export
+        if org_slug:
+            try:
+                organizations = [Organization.objects.get(slug=org_slug)]
+            except Organization.DoesNotExist:
+                raise CommandError(f"Organization with slug '{org_slug}' not found.")
         else:
-            quests = QuestTemplate.objects.filter(organization=org)
+            organizations = list(Organization.objects.all())
 
-        self.stdout.write(f"Found {quests.count()} quest(s) to export")
+        self.stdout.write(f"Found {len(organizations)} organization(s) to export")
 
-        # Track which activities to export
-        activities_to_export = set()
+        # Track users and quests across all organizations
+        all_users: Set[User] = set()
+        all_quests = []
 
-        for quest in quests:
-            quest_data = self._export_quest(quest)
+        # Export organizations
+        self._export_organizations(organizations, orgs_dir)
 
-            # Save quest JSON with simplified filename
-            # "Getting Started with Life2Launch" -> "getting-started.json"
-            title_parts = quest.title.lower().split()
-            # Take first 2-3 meaningful words
-            simple_name = '-'.join(title_parts[:2]) if len(title_parts) >= 2 else title_parts[0]
-            quest_filename = f"{simple_name}.json"
-            quest_path = os.path.join(quests_dir, quest_filename)
-            with open(quest_path, 'w', encoding='utf-8') as f:
-                json.dump(quest_data, f, indent=2, ensure_ascii=False)
-            self.stdout.write(f"  Exported quest: {quest_path}")
+        # Process each organization
+        for org in organizations:
+            # Get quests for this organization
+            if quest_id:
+                quests = QuestTemplate.objects.filter(id=quest_id, organization=org)
+                if not quests.exists():
+                    raise CommandError(f"Quest with ID '{quest_id}' not found in organization '{org.slug}'")
+            else:
+                quests = QuestTemplate.objects.filter(organization=org)
 
-            # Track activities used in this quest
-            for item in quest.template_items.all():
-                if item.item_definition.item_type == 'activity' and item.item_definition.activity:
-                    activities_to_export.add(item.item_definition.activity)
+            all_quests.extend(quests)
 
-        # Export activities
-        self.stdout.write(f"\nExporting {len(activities_to_export)} activities...")
+            # Collect users associated with this org (admins and enrolled users)
+            org_admins = OrganizationAdmin.objects.filter(organization=org).select_related('user')
+            for admin in org_admins:
+                all_users.add(admin.user)
 
-        # Also include any activities from the org not in quests
-        all_org_activities = Activity.objects.filter(organization=org, status='published')
-        for activity in all_org_activities:
-            activities_to_export.add(activity)
+            # Collect users enrolled in quests
+            for quest in quests:
+                enrollments = QuestEnrollment.objects.filter(quest_template=quest).select_related('user')
+                for enrollment in enrollments:
+                    all_users.add(enrollment.user)
 
-        for activity in activities_to_export:
-            activity_data = self._export_activity(activity)
+        # Export quests with their activities
+        self._export_quests(all_quests, quest_dir)
 
-            # Save activity JSON
-            activity_filename = f"{activity.slug}.json"
-            activity_path = os.path.join(activities_dir, activity_filename)
-            with open(activity_path, 'w', encoding='utf-8') as f:
-                json.dump(activity_data, f, indent=2, ensure_ascii=False)
-            self.stdout.write(f"  Exported activity: {activity_path}")
+        # Export users with their roles and enrollments
+        self._export_users(all_users, users_dir)
 
         self.stdout.write(self.style.SUCCESS(f"\n✓ Export complete!"))
-        self.stdout.write(f"  Activities: {activities_dir}")
-        self.stdout.write(f"  Quests: {quests_dir}")
+        self.stdout.write(f"  Organizations: {orgs_dir}")
+        self.stdout.write(f"  Users: {users_dir}")
+        self.stdout.write(f"  Quests: {quest_dir}")
+        self.stdout.write(f"  Media: {DEFAULT_MEDIA_DIR}")
 
-    def _export_quest(self, quest: QuestTemplate) -> Dict[str, Any]:
-        """Export a quest template to JSON format matching the import format."""
+    # --- Helper methods ---
+
+    def _clear_demo_directories(self, quest_dir: str, users_dir: str, orgs_dir: str):
+        """Clear existing demo directories."""
+        # Clear quest directories (remove entire quest subdirectories)
+        if os.path.exists(quest_dir):
+            for item in os.listdir(quest_dir):
+                item_path = os.path.join(quest_dir, item)
+                if os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+                    self.stdout.write(f"  Removed quest directory: {item}")
+
+        # Clear user JSON files
+        if os.path.exists(users_dir):
+            for filename in os.listdir(users_dir):
+                if filename.endswith('.json'):
+                    os.remove(os.path.join(users_dir, filename))
+                    self.stdout.write(f"  Removed user: {filename}")
+
+        # Clear organization JSON files
+        if os.path.exists(orgs_dir):
+            for filename in os.listdir(orgs_dir):
+                if filename.endswith('.json'):
+                    os.remove(os.path.join(orgs_dir, filename))
+                    self.stdout.write(f"  Removed organization: {filename}")
+
+        # Clear media directory
+        if os.path.exists(DEFAULT_MEDIA_DIR):
+            for filename in os.listdir(DEFAULT_MEDIA_DIR):
+                if filename.endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp')):
+                    os.remove(os.path.join(DEFAULT_MEDIA_DIR, filename))
+                    self.stdout.write(f"  Removed media: {filename}")
+
+    def _slugify_filename(self, text: str) -> str:
+        """Convert text to a slug suitable for filenames."""
+        # Convert to lowercase and replace spaces with hyphens
+        text = text.lower().strip()
+        # Remove special characters except hyphens and underscores
+        text = re.sub(r'[^\w\s-]', '', text)
+        text = re.sub(r'[-\s]+', '-', text)
+        return text
+
+    def _export_organizations(self, organizations: list, orgs_dir: str):
+        """Export organizations to JSON files."""
+        self.stdout.write(f"\nExporting {len(organizations)} organization(s)...")
+
+        for org in organizations:
+            org_data = {
+                "slug": org.slug,
+                "name": org.name,
+                "description": org.description or "",
+                "is_active": org.is_active,
+                "meta": org.meta or {},
+            }
+
+            org_filename = f"{org.slug}.json"
+            org_path = os.path.join(orgs_dir, org_filename)
+
+            with open(org_path, 'w', encoding='utf-8') as f:
+                json.dump(org_data, f, indent=2, ensure_ascii=False)
+
+            self.stdout.write(f"  Exported organization: {org.slug}")
+
+    def _export_users(self, users: Set[User], users_dir: str):
+        """Export users with their organization roles and quest enrollments."""
+        self.stdout.write(f"\nExporting {len(users)} user(s)...")
+
+        for user in users:
+            # Generate filename from email
+            email_parts = user.email.split('@')[0]
+            user_filename = f"{self._slugify_filename(email_parts)}.json"
+
+            # Note: Passwords can't be exported from hashed values in DB
+            # You may need to manually set the correct demo password after export
+            user_data = {
+                "email": user.email,
+                "password": "demo123",  # NOTE: Update with actual demo password if needed
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "bio": user.bio or "",
+                "tagline": user.tagline or "",
+                "is_staff": user.is_staff,
+                "is_superuser": user.is_superuser,
+                "organization_roles": [],
+                "quest_enrollments": [],
+            }
+
+            # Get organization roles
+            org_admins = OrganizationAdmin.objects.filter(user=user).select_related('organization')
+            for admin in org_admins:
+                user_data["organization_roles"].append({
+                    "organization_slug": admin.organization.slug,
+                    "role": admin.role,
+                })
+
+            # Get quest enrollments
+            enrollments = QuestEnrollment.objects.filter(user=user).select_related('quest_template')
+            for enrollment in enrollments:
+                user_data["quest_enrollments"].append({
+                    "quest_title": enrollment.quest_template.title,
+                    "status": enrollment.status,
+                })
+
+            user_path = os.path.join(users_dir, user_filename)
+            with open(user_path, 'w', encoding='utf-8') as f:
+                json.dump(user_data, f, indent=2, ensure_ascii=False)
+
+            self.stdout.write(f"  Exported user: {user.email}")
+
+    def _export_quests(self, quests: list, quest_dir: str):
+        """Export quests with their activities to quest-specific subdirectories."""
+        self.stdout.write(f"\nExporting {len(quests)} quest(s)...")
+
+        for quest in quests:
+            # Create quest directory (slugified quest title)
+            quest_slug = self._slugify_filename(quest.title)
+            quest_path = os.path.join(quest_dir, quest_slug)
+            activities_path = os.path.join(quest_path, "activities")
+
+            os.makedirs(quest_path, exist_ok=True)
+            os.makedirs(activities_path, exist_ok=True)
+
+            # Export quest config
+            quest_data = self._export_quest_config(quest)
+            config_path = os.path.join(quest_path, "config.json")
+
+            with open(config_path, 'w', encoding='utf-8') as f:
+                json.dump(quest_data, f, indent=2, ensure_ascii=False)
+
+            self.stdout.write(f"  Exported quest config: {quest_slug}/config.json")
+
+            # Export activities for this quest
+            activities_to_export = []
+            for item in quest.template_items.all():
+                if item.item_definition.item_type == 'activity' and item.item_definition.activity:
+                    activities_to_export.append(item.item_definition.activity)
+
+            self.stdout.write(f"    Exporting {len(activities_to_export)} activities for quest '{quest.title}'...")
+
+            for activity in activities_to_export:
+                activity_data = self._export_activity(activity, quest.organization)
+
+                activity_filename = f"{activity.slug}.json"
+                activity_path = os.path.join(activities_path, activity_filename)
+
+                with open(activity_path, 'w', encoding='utf-8') as f:
+                    json.dump(activity_data, f, indent=2, ensure_ascii=False)
+
+                self.stdout.write(f"      Exported activity: {activity.slug}")
+
+    def _export_quest_config(self, quest: QuestTemplate) -> Dict[str, Any]:
+        """Export a quest template config to JSON format matching the import format."""
         quest_data = {
             "title": quest.title,
             "description": quest.description,
+            "organization_slug": quest.organization.slug,
+            "created_by_email": quest.created_by.email if quest.created_by else None,
             "color": quest.color or "#4CAF50",
-            "category": quest.category or "General",
-            "status": "published",
-            "is_public": True,
-            "is_template": True,
-            "meta": {},
+            "category": quest.category or "Introduction",
+            "status": quest.status,
+            "is_public": quest.is_public,
+            "is_template": quest.is_template,
+            "meta": quest.meta or {},
             "items": []
         }
 
@@ -175,7 +324,7 @@ class Command(BaseCommand):
 
         return quest_data
 
-    def _export_activity(self, activity: Activity) -> Dict[str, Any]:
+    def _export_activity(self, activity: Activity, organization: Organization) -> Dict[str, Any]:
         """Export an activity to JSON format matching the import format."""
         # Get latest published version
         version = activity.versions.filter(is_published=True).order_by('-version').first()
@@ -192,9 +341,11 @@ class Command(BaseCommand):
                 "status": activity.status,
             },
             "version": {
+                "number": version.version,
                 "title": version.title,
                 "description": version.description,
-                "meta": version.meta,
+                "meta": version.meta or {},
+                "is_published": version.is_published,
             },
             "media_assets": [],
             "pages": []
@@ -204,8 +355,8 @@ class Command(BaseCommand):
         for page in version.pages.all().order_by('index'):
             page_data = {
                 "index": page.index,
-                "title": page.title,
-                "meta": page.meta,
+                "title": page.title or "",
+                "meta": page.meta or {},
                 "blocks": []
             }
 
@@ -214,7 +365,7 @@ class Command(BaseCommand):
                 block_data = {
                     "index": block.index,
                     "block_type": block.block_type,
-                    "config": dict(block.config)
+                    "config": dict(block.config) if block.config else {}
                 }
 
                 # If block has media_id, convert it to media_filename and track the asset
@@ -230,7 +381,7 @@ class Command(BaseCommand):
                         # Export the media file to demo/media directory
                         self._export_media_file(media, filename)
                     except MediaAsset.DoesNotExist:
-                        self.stdout.write(self.style.WARNING(f"Media asset {media_id} not found"))
+                        self.stdout.write(self.style.WARNING(f"        Media asset {media_id} not found"))
 
                 page_data["blocks"].append(block_data)
 
@@ -241,10 +392,9 @@ class Command(BaseCommand):
             activity_data["media_assets"].append({
                 "filename": filename,
                 "path": filename,  # Simplified path
-                "title": media.meta.get('title', filename),
-                "description": media.meta.get('description', ''),
-                "mime_type": media.mime_type,
-                "alt_text": media.meta.get('alt_text', media.meta.get('description', ''))
+                "title": media.meta.get('title', filename) if media.meta else filename,
+                "description": media.meta.get('description', '') if media.meta else '',
+                "alt_text": media.meta.get('alt_text', media.meta.get('description', '')) if media.meta else ''
             })
 
         return activity_data
@@ -252,7 +402,17 @@ class Command(BaseCommand):
     def _get_media_filename(self, media: MediaAsset) -> str:
         """Generate a simple filename for a media asset using its ID."""
         # Use extension from storage_key or mime_type
-        ext = os.path.splitext(media.storage_key)[1] or '.png'
+        ext = os.path.splitext(media.storage_key)[1] if media.storage_key else '.png'
+        if not ext:
+            # Fallback to extension from mime_type
+            ext = '.png'
+            if media.mime_type:
+                if 'jpeg' in media.mime_type or 'jpg' in media.mime_type:
+                    ext = '.jpg'
+                elif 'gif' in media.mime_type:
+                    ext = '.gif'
+                elif 'webp' in media.mime_type:
+                    ext = '.webp'
         return f"{media.id}{ext}"
 
     def _export_media_file(self, media: MediaAsset, filename: str) -> None:
@@ -261,6 +421,10 @@ class Command(BaseCommand):
 
         media_dir = DEFAULT_MEDIA_DIR
         dest_path = os.path.join(media_dir, filename)
+
+        # Skip if already exported
+        if os.path.exists(dest_path):
+            return
 
         try:
             # Read from storage
@@ -272,8 +436,8 @@ class Command(BaseCommand):
                 with open(dest_path, 'wb') as dest_file:
                     dest_file.write(file_content)
 
-                self.stdout.write(f"  Exported media: {filename}")
+                self.stdout.write(f"        Exported media: {filename}")
             else:
-                self.stdout.write(self.style.WARNING(f"  Media file not found in storage: {media.storage_key}"))
+                self.stdout.write(self.style.WARNING(f"        Media file not found in storage: {media.storage_key}"))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f"  Failed to export media {filename}: {e}"))
+            self.stdout.write(self.style.ERROR(f"        Failed to export media {filename}: {e}"))

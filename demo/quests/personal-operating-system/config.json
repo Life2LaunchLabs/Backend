@@ -1,0 +1,26 @@
+{
+  "title": "Personal Operating System",
+  "description": "Build your inner foundation by exploring your mental, physical, and spiritual well-being. Develop self-awareness and navigate life with purpose aligned to your authentic values.",
+  "organization_slug": "life2launch",
+  "created_by_email": "henry@fake.com",
+  "color": "#FF9800",
+  "category": "Personal Development",
+  "status": "published",
+  "is_public": true,
+  "is_template": true,
+  "meta": {},
+  "items": [
+    {
+      "activity_slug": "inner-world-mind",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "inner-world-body",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "inner-compass-navigate-with-purpose",
+      "estimated_duration_days": 7
+    }
+  ]
+}

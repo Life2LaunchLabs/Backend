@@ -1,0 +1,149 @@
+{
+  "activity": {
+    "slug": "inner-world-body",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Inner World – Body",
+    "description": "Reflect on how to optimize your physical health and holistic well-being through movement, nutrition, rest, and mindful self-care.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "physical-wellness"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "12 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Physical Health Maintenance",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Body Movement",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on your body movement..."
+            },
+            "required": false,
+            "subtitle": "How can you support this area to reach your optimal zone?",
+            "question_id": "inner-world-body__p0__b0__body_movement",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Nutrition Management",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on your nutrition management..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-world-body__p0__b1__nutrition_management",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "Sleep Hygiene & Rest",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on your sleep hygiene and rest..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-world-body__p0__b2__sleep_hygiene_rest",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "text_input",
+          "config": {
+            "title": "Hydration Maintenance",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on your hydration habits..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-world-body__p0__b3__hydration_maintenance",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 4,
+          "block_type": "text_input",
+          "config": {
+            "title": "Medical Check-Ups",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on your medical check-up routine..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "inner-world-body__p0__b4__medical_checkups",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Holistic Well-Being Support",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "Assess your holistic well-being areas",
+            "options": [
+              {
+                "label": "Stress Mastery",
+                "value": "stress_mastery"
+              },
+              {
+                "label": "Zen Zone Practices (Yoga, Meditation, Mindful Walks)",
+                "value": "zen_zone_practices"
+              },
+              {
+                "label": "Physical Environment (Organized, Comfortable Spaces)",
+                "value": "physical_environment"
+              },
+              {
+                "label": "Sensory Awareness (Recognizing fatigue, calm music, quiet)",
+                "value": "sensory_awareness"
+              },
+              {
+                "label": "Self-Care Practices (Sleep, Exercise, Positive Self-Talk)",
+                "value": "self_care_practices"
+              }
+            ],
+            "required": false,
+            "question_id": "inner-world-body__p1__b0__holistic_support",
+            "question_type": "multiple_choice",
+            "multiple_selection": true
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -4,12 +4,14 @@
     "status": "published"
   },
   "version": {
+    "number": 1,
     "title": "My Outer World",
     "description": "not yet implemented!",
     "meta": {
       "demo": true,
       "category": "values"
-    }
+    },
+    "is_published": true
   },
   "media_assets": [],
   "pages": []

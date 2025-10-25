@@ -1,0 +1,212 @@
+{
+  "activity": {
+    "slug": "building-connections",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Building Connections: Relational Skills",
+    "description": "Assess your communication, collaboration, and cross-cultural skills to strengthen relationships and social awareness.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "relationship-skills"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "8 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Communication Skills",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Listening Skills",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p0__b0__listening_skills",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Verbal Communication",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p0__b1__verbal_communication",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Non-Verbal Communication",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p0__b2__non_verbal_communication",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Collaboration and Teamwork",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Empathy",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p1__b0__empathy",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Honesty",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p1__b1__honesty",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Integrity",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p1__b2__integrity",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Social and Cross-Cultural Skills",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Cultural Awareness",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p2__b0__cultural_awareness",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Inclusivity",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p2__b1__inclusivity",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Adaptability",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "building-connections__p2__b2__adaptability",
+            "question_type": "rating"
+          }
+        }
+      ]
+    }
+  ]
+}

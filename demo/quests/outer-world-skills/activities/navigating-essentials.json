@@ -1,0 +1,266 @@
+{
+  "activity": {
+    "slug": "navigating-essentials",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Navigating Essentials: Daily Living Skills",
+    "description": "Evaluate your daily living and self-management abilities across personal care, financial responsibility, and community engagement.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "life-skills"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "8 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Personal Management",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Time Management",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p0__b0__time_management",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Stress Management",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p0__b1__stress_management",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Physical Self Care",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p0__b2__physical_self_care",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "rating",
+          "config": {
+            "title": "Emotional Resilience",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p0__b3__emotional_resilience",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Home and Financial Responsibility",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Taking Care of Home",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p1__b0__taking_care_of_home",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Managing Finance",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p1__b1__managing_finance",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Food/Meal Planning",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p1__b2__food_meal_planning",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "rating",
+          "config": {
+            "title": "Resource Management",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p1__b3__resource_management",
+            "question_type": "rating"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Navigating Modern Life",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "rating",
+          "config": {
+            "title": "Transportation",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p2__b0__transportation",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "rating",
+          "config": {
+            "title": "Medical Management",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p2__b1__medical_management",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "rating",
+          "config": {
+            "title": "Technology/Social Media",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p2__b2__technology_social_media",
+            "question_type": "rating"
+          }
+        },
+        {
+          "index": 3,
+          "block_type": "rating",
+          "config": {
+            "title": "Community Engagement",
+            "config": {
+              "max": 5,
+              "min": 1,
+              "labels": {
+                "max": "High",
+                "min": "Low"
+              }
+            },
+            "required": false,
+            "question_id": "navigating-essentials__p2__b3__community_engagement",
+            "question_type": "rating"
+          }
+        }
+      ]
+    }
+  ]
+}

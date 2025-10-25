@@ -1,0 +1,26 @@
+{
+  "title": "Personal Drivers",
+  "description": "Explore the core elements that drive your life journey: your cultural identity, personal values, and vision for the future. Discover what truly motivates and guides you.",
+  "organization_slug": "life2launch",
+  "created_by_email": "henry@fake.com",
+  "color": "#9C27B0",
+  "category": "Self-Discovery",
+  "status": "published",
+  "is_public": true,
+  "is_template": true,
+  "meta": {},
+  "items": [
+    {
+      "activity_slug": "my-culture",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "speak-my-values",
+      "estimated_duration_days": 7
+    },
+    {
+      "activity_slug": "my-vision-journey",
+      "estimated_duration_days": 7
+    }
+  ]
+}

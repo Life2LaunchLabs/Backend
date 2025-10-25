@@ -1,0 +1,17 @@
+{
+  "email": "henry@fake.com",
+  "password": "demo123",
+  "first_name": "Henry",
+  "last_name": "Ker",
+  "bio": "Platform administrator and educational technology specialist.",
+  "tagline": "Building the future of career development",
+  "is_staff": true,
+  "is_superuser": true,
+  "organization_roles": [
+    {
+      "organization_slug": "life2launch",
+      "role": "admin"
+    }
+  ],
+  "quest_enrollments": []
+}

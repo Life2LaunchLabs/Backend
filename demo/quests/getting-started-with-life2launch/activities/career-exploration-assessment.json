@@ -4,12 +4,14 @@
     "status": "published"
   },
   "version": {
+    "number": 1,
     "title": "Personal Operating System",
     "description": "Not yet implemented!",
     "meta": {
       "demo": true,
       "category": "career"
-    }
+    },
+    "is_published": true
   },
   "media_assets": [],
   "pages": []

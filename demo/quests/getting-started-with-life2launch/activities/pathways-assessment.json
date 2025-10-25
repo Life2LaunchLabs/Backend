@@ -4,6 +4,7 @@
     "status": "published"
   },
   "version": {
+    "number": 1,
     "title": "Pathways Assessment",
     "description": "Experience the complete range of Activities features including media blocks, diverse question types, and interactive content.",
     "meta": {
@@ -15,7 +16,8 @@
       ],
       "difficulty": "beginner_to_intermediate",
       "estimated_duration": "5 minutes"
-    }
+    },
+    "is_published": true
   },
   "media_assets": [],
   "pages": [

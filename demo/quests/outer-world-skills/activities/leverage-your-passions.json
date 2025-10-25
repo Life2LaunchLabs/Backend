@@ -1,0 +1,77 @@
+{
+  "activity": {
+    "slug": "leverage-your-passions",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Leverage Your Passions: Interest-Based Skills",
+    "description": "Reflect on how your hobbies and interests cultivate valuable personal skills that enrich your well-being and growth.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "interest-based-learning"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "8 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Exploring Your Interests",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "How have your hobbies or personal interests helped you develop unique skills or talents?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe how your hobbies have helped you grow..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "leverage-your-passions__p0__b0__unique_skills",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text_input",
+          "config": {
+            "title": "Why is pursuing joy and fulfillment important to you? How do your interests contribute to your well-being and personal development?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Reflect on how your interests enhance your life..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "leverage-your-passions__p0__b1__joy_and_wellbeing",
+            "question_type": "text_input"
+          }
+        },
+        {
+          "index": 2,
+          "block_type": "text_input",
+          "config": {
+            "title": "How do your interest-based skills support other Outer World skill areas?",
+            "config": {
+              "multiline": true,
+              "placeholder": "Explain how your passions connect to other skills..."
+            },
+            "required": false,
+            "subtitle": "",
+            "question_id": "leverage-your-passions__p0__b2__support_outer_world",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    }
+  ]
+}

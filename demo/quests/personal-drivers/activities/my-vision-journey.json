@@ -1,0 +1,143 @@
+{
+  "activity": {
+    "slug": "my-vision-journey",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "My Vision Journey",
+    "description": "Reflect on your career, education, growth, relationships, health, and next steps to create a unified life vision.",
+    "meta": {
+      "topics": [
+        "self-reflection",
+        "goal-setting"
+      ],
+      "difficulty": "beginner_to_intermediate",
+      "estimated_duration": "12 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Visualizing Your Career",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Visualizing Your Career",
+            "config": {
+              "multiline": true,
+              "placeholder": "Describe your ideal job setting..."
+            },
+            "required": false,
+            "subtitle": "Imagine yourself in your ideal job setting. What are you doing? Who are you working with? What accomplishments are you most proud of in this vision?",
+            "question_id": "my-vision-journey__p0__b0__career_visualization",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "Reflecting on Education",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Reflecting on Education",
+            "config": {
+              "multiline": true,
+              "placeholder": "My next educational milestone..."
+            },
+            "required": false,
+            "subtitle": "Picture yourself achieving your next educational milestone. What knowledge are you acquiring? How does it feel to learn and grow in this area?",
+            "question_id": "my-vision-journey__p1__b0__education_reflection",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Exploring Personal Growth",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Exploring Personal Growth",
+            "config": {
+              "multiline": true,
+              "placeholder": "Qualities I want to develop..."
+            },
+            "required": false,
+            "subtitle": "Think about the personal qualities you wish to develop. What activities help you embody these qualities?",
+            "question_id": "my-vision-journey__p2__b0__personal_growth",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Integration and Gratitude",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Integration and Gratitude",
+            "config": {
+              "multiline": true,
+              "placeholder": "I feel grateful and excited for..."
+            },
+            "required": false,
+            "subtitle": "Imagine bringing your goals together into a harmonious whole. What are you grateful and excited for?",
+            "question_id": "my-vision-journey__p3__b0__integration_gratitude",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Post-Reflection Exercise",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text_input",
+          "config": {
+            "title": "Post-Reflection Exercise",
+            "config": {
+              "multiline": true,
+              "placeholder": "My insights and first steps..."
+            },
+            "required": false,
+            "subtitle": "Write down any insights, ideas, or feelings that arose during this session. Note specific goals that felt important and possible first steps.",
+            "question_id": "my-vision-journey__p4__b0__post_reflection",
+            "question_type": "text_input"
+          }
+        }
+      ]
+    }
+  ]
+}
