@@ -33,6 +33,14 @@ from .views.user_activity_views import (
     get_submission_details,
 )
 
+from .views.public_activity_views import (
+    get_public_activity,
+    create_guest_attempt,
+    submit_guest_response,
+    update_guest_page_progress,
+    complete_guest_attempt,
+)
+
 # Admin router for quest/activity management
 admin_router = DefaultRouter()
 admin_router.register(r'admin/templates', QuestTemplateViewSet, basename='quest-template')
@@ -69,4 +77,11 @@ urlpatterns = [
     path('activities/results/has-completed/<uuid:activity_id>/', has_completed_activity, name='has-completed-activity'),
     path('activities/results/activity/<uuid:activity_id>/', get_activity_submissions, name='get-activity-submissions'),
     path('activities/submissions/<uuid:submission_id>/', get_submission_details, name='get-submission-details'),
+
+    # Public activity endpoints (no authentication required)
+    path('public/activities/<slug:activity_slug>/', get_public_activity, name='get-public-activity'),
+    path('public/attempts/', create_guest_attempt, name='create-guest-attempt'),
+    path('public/attempts/<str:attempt_id>/submit_response/', submit_guest_response, name='submit-guest-response'),
+    path('public/attempts/<str:attempt_id>/update_progress/', update_guest_page_progress, name='update-guest-page-progress'),
+    path('public/attempts/<str:attempt_id>/complete/', complete_guest_attempt, name='complete-guest-attempt'),
 ]

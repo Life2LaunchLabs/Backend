@@ -1,0 +1,19 @@
+{
+  "title": "Onboarding",
+  "description": "Welcome to Life2Launch! Get started by telling us about yourself and your goals.",
+  "organization_slug": "life2launch",
+  "created_by_email": "henry@fake.com",
+  "color": "#2196F3",
+  "category": "Getting Started",
+  "status": "published",
+  "is_public": true,
+  "is_template": true,
+  "meta": {},
+  "items": [
+    {
+      "activity_slug": "welcome",
+      "estimated_duration_days": 1,
+      "notes": "Initial onboarding experience"
+    }
+  ]
+}

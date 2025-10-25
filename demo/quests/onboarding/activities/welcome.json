@@ -1,0 +1,346 @@
+{
+  "activity": {
+    "slug": "welcome",
+    "status": "published"
+  },
+  "version": {
+    "number": 1,
+    "title": "Welcome to Life2Launch",
+    "description": "Get started by telling us about yourself and how you'd like to use Life2Launch.",
+    "meta": {
+      "topics": [
+        "onboarding",
+        "goal-setting",
+        "personalization"
+      ],
+      "difficulty": "beginner",
+      "estimated_duration": "3 minutes"
+    },
+    "is_published": true
+  },
+  "media_assets": [],
+  "pages": [
+    {
+      "index": 0,
+      "title": "Welcome to Life2Launch!",
+      "meta": {
+        "page_type": "introduction"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "text": "Life2Launch helps you explore your interests, build skills, and create a path toward a meaningful future.",
+            "align": "left",
+            "style": "body",
+            "content": "Life2Launch helps you explore your interests, build skills, and create a path toward a meaningful future."
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text",
+          "config": {
+            "text": "This quick onboarding will help us personalize your experience. Let's get started!",
+            "align": "left",
+            "style": "body",
+            "content": "This quick onboarding will help us personalize your experience. Let's get started!"
+          }
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "title": "How did you find us?",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "How did you find the Launchpad?",
+            "options": [
+              {
+                "label": "Teacher or school",
+                "value": "teacher_school"
+              },
+              {
+                "label": "Friend or family",
+                "value": "friend_family"
+              },
+              {
+                "label": "Social media",
+                "value": "social_media"
+              },
+              {
+                "label": "Search engine",
+                "value": "search_engine"
+              },
+              {
+                "label": "Community organization",
+                "value": "community_org"
+              },
+              {
+                "label": "Other",
+                "value": "other"
+              }
+            ],
+            "required": true,
+            "question_id": "how_found_launchpad",
+            "question_type": "multiple_choice",
+            "multiple_selection": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "title": "What's your biggest obstacle?",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "What is your biggest obstacle in launching your life?",
+            "options": [
+              {
+                "label": "I don't know what I'm passionate about",
+                "value": "no_passion"
+              },
+              {
+                "label": "I lack direction or goals",
+                "value": "no_direction"
+              },
+              {
+                "label": "I need to build more skills",
+                "value": "need_skills"
+              },
+              {
+                "label": "I don't have enough support or mentorship",
+                "value": "no_support"
+              },
+              {
+                "label": "Financial concerns",
+                "value": "financial"
+              },
+              {
+                "label": "I'm not sure what career paths exist",
+                "value": "no_awareness"
+              },
+              {
+                "label": "Managing stress and mental health",
+                "value": "mental_health"
+              }
+            ],
+            "required": true,
+            "question_id": "biggest_obstacle",
+            "question_type": "multiple_choice",
+            "multiple_selection": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "title": "What stage are you in?",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "What stage of life-launching are you in?",
+            "options": [
+              {
+                "label": "Pre-high school",
+                "value": "pre_high_school"
+              },
+              {
+                "label": "High school",
+                "value": "high_school"
+              },
+              {
+                "label": "College",
+                "value": "college"
+              },
+              {
+                "label": "Learning a trade",
+                "value": "trade"
+              },
+              {
+                "label": "Working",
+                "value": "working"
+              },
+              {
+                "label": "Exploring my options",
+                "value": "exploring"
+              }
+            ],
+            "required": true,
+            "question_id": "life_stage",
+            "question_type": "multiple_choice",
+            "multiple_selection": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "title": "What would you like to focus on?",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "What would you like to focus on?",
+            "options": [
+              {
+                "label": "Career exploration and planning",
+                "value": "career"
+              },
+              {
+                "label": "Building life skills",
+                "value": "life_skills"
+              },
+              {
+                "label": "Personal growth and self-discovery",
+                "value": "personal_growth"
+              },
+              {
+                "label": "Financial literacy and independence",
+                "value": "financial_literacy"
+              },
+              {
+                "label": "Health and wellness",
+                "value": "health_wellness"
+              },
+              {
+                "label": "Relationships and community",
+                "value": "relationships"
+              },
+              {
+                "label": "Academic success",
+                "value": "academic"
+              }
+            ],
+            "required": true,
+            "question_id": "focus_area",
+            "question_type": "multiple_choice",
+            "multiple_selection": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "title": "How much time will you commit?",
+      "meta": {
+        "page_type": "assessment"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "How much time will you spend life launching?",
+            "options": [
+              {
+                "label": "10 minutes a week",
+                "value": "10_min_week"
+              },
+              {
+                "label": "5 minutes a day",
+                "value": "5_min_day"
+              },
+              {
+                "label": "10 minutes a day",
+                "value": "10_min_day"
+              },
+              {
+                "label": "More than 10 minutes a day",
+                "value": "more_than_10"
+              }
+            ],
+            "required": true,
+            "question_id": "time_commitment",
+            "question_type": "multiple_choice",
+            "multiple_selection": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "title": "When will you engage?",
+      "meta": {
+        "page_type": "reflection"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "multiple_choice",
+          "config": {
+            "title": "How will learning fit into your life?",
+            "options": [
+              {
+                "label": "Morning routine",
+                "value": "morning"
+              },
+              {
+                "label": "During breaks",
+                "value": "breaks"
+              },
+              {
+                "label": "Evening ritual",
+                "value": "evening"
+              },
+              {
+                "label": "Whenever I have time",
+                "value": "flexible"
+              }
+            ],
+            "required": true,
+            "question_id": "learning_time",
+            "question_type": "multiple_choice",
+            "multiple_selection": false
+          }
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "title": "You're all set!",
+      "meta": {
+        "page_type": "conclusion"
+      },
+      "blocks": [
+        {
+          "index": 0,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "Thank you for sharing! We'll use this information to personalize your Life2Launch experience."
+          }
+        },
+        {
+          "index": 1,
+          "block_type": "text",
+          "config": {
+            "style": "body",
+            "content": "Ready to get started? Click submit to begin your journey!"
+          }
+        }
+      ]
+    }
+  ]
+}
