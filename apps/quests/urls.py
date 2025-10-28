@@ -41,6 +41,14 @@ from .views.public_activity_views import (
     complete_guest_attempt,
 )
 
+from .views.onboarding_flow_views import (
+    initialize_flow,
+    get_flow_state,
+    update_flow_progress,
+    complete_flow,
+    get_flow_config,
+)
+
 # Admin router for quest/activity management
 admin_router = DefaultRouter()
 admin_router.register(r'admin/templates', QuestTemplateViewSet, basename='quest-template')
@@ -84,4 +92,11 @@ urlpatterns = [
     path('public/attempts/<str:attempt_id>/submit_response/', submit_guest_response, name='submit-guest-response'),
     path('public/attempts/<str:attempt_id>/update_progress/', update_guest_page_progress, name='update-guest-page-progress'),
     path('public/attempts/<str:attempt_id>/complete/', complete_guest_attempt, name='complete-guest-attempt'),
+
+    # Public onboarding flow endpoints (no authentication required)
+    path('public/onboarding/flow/initialize/', initialize_flow, name='initialize-onboarding-flow'),
+    path('public/onboarding/flow/state/', get_flow_state, name='get-onboarding-flow-state'),
+    path('public/onboarding/flow/progress/', update_flow_progress, name='update-onboarding-flow-progress'),
+    path('public/onboarding/flow/complete/', complete_flow, name='complete-onboarding-flow'),
+    path('public/onboarding/flow/config/', get_flow_config, name='get-onboarding-flow-config'),
 ]
