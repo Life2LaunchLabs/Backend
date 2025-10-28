@@ -23,6 +23,7 @@
     {
       "index": 0,
       "title": "Welcome to Life2Launch!",
+      "message": "Welcome! We're excited to have you here. Let's begin your journey of self-discovery and growth.",
       "meta": {
         "page_type": "introduction"
       },
@@ -52,6 +53,7 @@
     {
       "index": 1,
       "title": "How did you find us?",
+      "message": "We'd love to know how you discovered us. Select the option that best describes how you found the Launchpad.",
       "meta": {
         "page_type": "assessment"
       },
@@ -98,6 +100,7 @@
     {
       "index": 2,
       "title": "What's your biggest obstacle?",
+      "message": "Let's identify what's holding you back. Choose the obstacle that feels most challenging for you right now.",
       "meta": {
         "page_type": "reflection"
       },
@@ -148,6 +151,7 @@
     {
       "index": 3,
       "title": "What stage are you in?",
+      "message": "Now tell us where you are in your journey. Select the stage that best describes your current situation.",
       "meta": {
         "page_type": "assessment"
       },
@@ -194,6 +198,7 @@
     {
       "index": 4,
       "title": "What would you like to focus on?",
+      "message": "Let's define your focus area. What aspect of your life would you like to develop most?",
       "meta": {
         "page_type": "reflection"
       },
@@ -244,6 +249,7 @@
     {
       "index": 5,
       "title": "How much time will you commit?",
+      "message": "Let's set realistic expectations. How much time can you dedicate to your life-launching journey?",
       "meta": {
         "page_type": "assessment"
       },
@@ -282,6 +288,7 @@
     {
       "index": 6,
       "title": "When will you engage?",
+      "message": "Finally, let's plan when you'll engage. Choose the time that works best for your learning routine.",
       "meta": {
         "page_type": "reflection"
       },
@@ -320,6 +327,7 @@
     {
       "index": 7,
       "title": "You're all set!",
+      "message": "Congratulations! You're ready to start your Life2Launch journey. Let's make it happen!",
       "meta": {
         "page_type": "conclusion"
       },

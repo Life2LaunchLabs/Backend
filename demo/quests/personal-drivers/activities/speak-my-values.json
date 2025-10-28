@@ -22,6 +22,7 @@
     {
       "index": 0,
       "title": "Value Selection",
+      "message": "Welcome! Let's discover your core values. Choose up to 20 values that resonate most deeply with who you are.",
       "meta": {
         "page_type": "assessment"
       },
@@ -261,6 +262,7 @@
     {
       "index": 1,
       "title": "Visualizing Values",
+      "message": "Great choices! Now take a moment to visualize yourself at the center of your values, shining bright like the sun.",
       "meta": {
         "page_type": "reflection"
       },
@@ -278,6 +280,7 @@
     {
       "index": 2,
       "title": "My Values Reflection",
+      "message": "Now let's reflect deeply on your top values. Take your time describing why each one matters and how you live it.",
       "meta": {
         "page_type": "reflection"
       },

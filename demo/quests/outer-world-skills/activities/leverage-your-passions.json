@@ -22,6 +22,7 @@
     {
       "index": 0,
       "title": "Exploring Your Interests",
+      "message": "Let's explore how your passions shape your skills! Reflect on the questions below about your interests and hobbies.",
       "meta": {
         "page_type": "reflection"
       },

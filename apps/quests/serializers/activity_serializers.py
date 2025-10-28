@@ -34,7 +34,7 @@ class PageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
-        fields = ['id', 'index', 'title', 'meta', 'blocks']
+        fields = ['id', 'index', 'title', 'message', 'meta', 'blocks']
 
 
 class ActivityVersionSerializer(serializers.ModelSerializer):

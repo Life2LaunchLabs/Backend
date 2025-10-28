@@ -24,6 +24,7 @@
     {
       "index": 0,
       "title": "Get To Know You",
+      "message": "Welcome! Let's get to know you better. Please answer these questions to help us personalize your experience.",
       "meta": {
         "page_type": "introduction"
       },
@@ -145,6 +146,7 @@
     {
       "index": 1,
       "title": "What Activites Excite you most?",
+      "message": "Now let's explore what excites you! Tap yes or no for each activity to help us understand your interests.",
       "meta": {
         "page_type": "reflection"
       },
@@ -271,6 +273,7 @@
     {
       "index": 2,
       "title": "What are you naturally good at?",
+      "message": "Great! Now tell us about your natural strengths. Select up to 4 abilities that come most naturally to you.",
       "meta": {
         "page_type": "assessment"
       },
@@ -332,6 +335,7 @@
     {
       "index": 3,
       "title": "What global issues matter most to you?",
+      "message": "Now let's talk about what matters to you globally. Choose up to 3 issues that you care about most.",
       "meta": {
         "page_type": "assessment"
       },
@@ -419,6 +423,7 @@
     {
       "index": 4,
       "title": "What is stressful about planning your future?",
+      "message": "Let's acknowledge your challenges. Select up to 3 things that stress you out about planning your future.",
       "meta": {
         "page_type": "reflection"
       },
@@ -484,6 +489,7 @@
     {
       "index": 5,
       "title": "You've completed the Quickstart Pathway Assessment!",
+      "message": "Congratulations! You've completed the assessment. Your insights are ready to view!",
       "meta": {
         "page_type": "conclusion"
       },

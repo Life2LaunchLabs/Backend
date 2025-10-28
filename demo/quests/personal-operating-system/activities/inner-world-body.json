@@ -22,6 +22,7 @@
     {
       "index": 0,
       "title": "Physical Health Maintenance",
+      "message": "Let's reflect on your physical health practices. Take your time thinking about how you can support each area to reach your optimal zone.",
       "meta": {
         "page_type": "reflection"
       },
@@ -106,6 +107,7 @@
     {
       "index": 1,
       "title": "Holistic Well-Being Support",
+      "message": "Now let's assess your holistic well-being. Select the areas where you're actively engaging in supportive practices.",
       "meta": {
         "page_type": "assessment"
       },

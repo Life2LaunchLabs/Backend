@@ -22,6 +22,7 @@
     {
       "index": 0,
       "title": "Creative Expression",
+      "message": "Let's explore how you express yourself creatively. Think about the ways you show who you are through art, music, and personal style.",
       "meta": {
         "page_type": "reflection"
       },
@@ -61,6 +62,7 @@
     {
       "index": 1,
       "title": "Everyday Life and Beliefs",
+      "message": "Now let's reflect on your everyday traditions and beliefs. Consider what foods, faiths, and environmental practices are meaningful to you.",
       "meta": {
         "page_type": "reflection"
       },
@@ -100,6 +102,7 @@
     {
       "index": 2,
       "title": "Connecting Digitally and in Your Community",
+      "message": "Let's think about how you connect with others. Reflect on your digital presence and community participation.",
       "meta": {
         "page_type": "reflection"
       },
@@ -139,6 +142,7 @@
     {
       "index": 3,
       "title": "Your Personal Roots and Traditions",
+      "message": "Finally, let's explore your personal roots. Think about the places and traditions that have shaped who you are.",
       "meta": {
         "page_type": "reflection"
       },

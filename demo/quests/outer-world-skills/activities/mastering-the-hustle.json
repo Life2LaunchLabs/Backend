@@ -22,6 +22,7 @@
     {
       "index": 0,
       "title": "Navigating Daily Life",
+      "message": "Let's assess your executive functioning skills! Rate how well you navigate these daily life challenges.",
       "meta": {
         "page_type": "assessment"
       },
@@ -103,6 +104,7 @@
     {
       "index": 1,
       "title": "Making Smart Choices",
+      "message": "Now let's evaluate your decision-making abilities. How strong are you at making smart choices?",
       "meta": {
         "page_type": "assessment"
       },
@@ -166,6 +168,7 @@
     {
       "index": 2,
       "title": "Mastering Self-Control",
+      "message": "Finally, let's assess your self-control abilities. Rate how well you manage your emotions and impulses.",
       "meta": {
         "page_type": "assessment"
       },

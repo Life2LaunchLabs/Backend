@@ -556,6 +556,7 @@ class Command(BaseCommand):
                             activity_version=version,
                             index=page_spec["index"],
                             title=page_spec.get("title", ""),
+                            message=page_spec.get("message", ""),
                             meta=page_spec.get("meta", {}),
                         )
 

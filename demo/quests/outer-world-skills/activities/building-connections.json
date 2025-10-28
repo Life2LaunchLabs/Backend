@@ -22,6 +22,7 @@
     {
       "index": 0,
       "title": "Communication Skills",
+      "message": "Let's assess your communication abilities! Rate yourself honestly on these essential connection skills.",
       "meta": {
         "page_type": "assessment"
       },
@@ -85,6 +86,7 @@
     {
       "index": 1,
       "title": "Collaboration and Teamwork",
+      "message": "Now let's evaluate your collaboration skills. How well do you work with others?",
       "meta": {
         "page_type": "assessment"
       },
@@ -148,6 +150,7 @@
     {
       "index": 2,
       "title": "Social and Cross-Cultural Skills",
+      "message": "Finally, let's look at your cross-cultural awareness. Rate your abilities in these important social skills.",
       "meta": {
         "page_type": "assessment"
       },

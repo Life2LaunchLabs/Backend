@@ -101,6 +101,7 @@ class Page(Timestamped):
     activity_version = models.ForeignKey(ActivityVersion, on_delete=models.CASCADE, related_name="pages")
     index = models.PositiveIntegerField()  # ordering
     title = models.CharField(max_length=200, blank=True)
+    message = models.TextField(blank=True, default='')  # conversational message from chat buddy
     meta = models.JSONField(default=dict, blank=True)  # e.g., progress label, layout hints
 
     class Meta:

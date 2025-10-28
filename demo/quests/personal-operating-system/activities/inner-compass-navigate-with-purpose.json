@@ -23,6 +23,7 @@
     {
       "index": 0,
       "title": "Inner Strengths",
+      "message": "Let's begin by exploring your inner strengths. Reflect deeply on these questions and write from the heart.",
       "meta": {
         "page_type": "reflection"
       },
@@ -77,6 +78,7 @@
     {
       "index": 1,
       "title": "Decision Making",
+      "message": "Now let's reflect on how you make decisions. Think about what guides your choices and how you evaluate options.",
       "meta": {
         "page_type": "reflection"
       },
@@ -131,6 +133,7 @@
     {
       "index": 2,
       "title": "Intuition",
+      "message": "Let's explore your intuition and inner knowing. Take a moment to tune into that quiet voice within.",
       "meta": {
         "page_type": "reflection"
       },
@@ -185,6 +188,7 @@
     {
       "index": 3,
       "title": "Life Direction",
+      "message": "Time to envision your life direction. Dream big and be honest about what truly excites and fulfills you.",
       "meta": {
         "page_type": "reflection"
       },
@@ -239,6 +243,7 @@
     {
       "index": 4,
       "title": "Beliefs",
+      "message": "Finally, let's examine your beliefs. Understanding what you believe about yourself shapes your journey forward.",
       "meta": {
         "page_type": "reflection"
       },

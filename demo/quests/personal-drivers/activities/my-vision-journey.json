@@ -22,6 +22,7 @@
     {
       "index": 0,
       "title": "Visualizing Your Career",
+      "message": "Welcome to your vision journey! Let's start by imagining your ideal career. Close your eyes and picture yourself thriving.",
       "meta": {
         "page_type": "reflection"
       },
@@ -46,6 +47,7 @@
     {
       "index": 1,
       "title": "Reflecting on Education",
+      "message": "Now let's envision your educational path. What knowledge are you eager to gain?",
       "meta": {
         "page_type": "reflection"
       },
@@ -70,6 +72,7 @@
     {
       "index": 2,
       "title": "Exploring Personal Growth",
+      "message": "Let's focus on personal growth. What qualities and strengths do you want to develop?",
       "meta": {
         "page_type": "reflection"
       },
@@ -94,6 +97,7 @@
     {
       "index": 3,
       "title": "Integration and Gratitude",
+      "message": "Now let's bring it all together. Imagine your career, education, and growth forming a harmonious vision.",
       "meta": {
         "page_type": "reflection"
       },
@@ -118,6 +122,7 @@
     {
       "index": 4,
       "title": "Post-Reflection Exercise",
+      "message": "Finally, let's capture your insights. Write down what emerged during this reflection and your next steps.",
       "meta": {
         "page_type": "reflection"
       },

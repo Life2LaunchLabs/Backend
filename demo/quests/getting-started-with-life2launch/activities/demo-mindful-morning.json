@@ -17,6 +17,7 @@
     {
       "index": 0,
       "title": "Introduction",
+      "message": "Welcome! Let's explore what drives you and makes you unique. Take a moment to read through this introduction.",
       "meta": {
         "progress_label": "Introduction"
       },
@@ -44,6 +45,7 @@
     {
       "index": 1,
       "title": "Vision Journey",
+      "message": "Great! Now let's dive into some reflection questions. Take your time and be honest with yourself as you answer each one.",
       "meta": {
         "progress_label": "Reflection"
       },
