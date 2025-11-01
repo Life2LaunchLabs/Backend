@@ -36,6 +36,8 @@ from .views.user_activity_views import (
 from .views.public_activity_views import (
     get_public_activity,
     create_guest_attempt,
+    get_guest_attempt,
+    get_guest_attempt_results,
     submit_guest_response,
     update_guest_page_progress,
     complete_guest_attempt,
@@ -89,6 +91,8 @@ urlpatterns = [
     # Public activity endpoints (no authentication required)
     path('public/activities/<slug:activity_slug>/', get_public_activity, name='get-public-activity'),
     path('public/attempts/', create_guest_attempt, name='create-guest-attempt'),
+    path('public/attempts/<str:attempt_id>/', get_guest_attempt, name='get-guest-attempt'),
+    path('public/attempts/<str:attempt_id>/results/', get_guest_attempt_results, name='get-guest-attempt-results'),
     path('public/attempts/<str:attempt_id>/submit_response/', submit_guest_response, name='submit-guest-response'),
     path('public/attempts/<str:attempt_id>/update_progress/', update_guest_page_progress, name='update-guest-page-progress'),
     path('public/attempts/<str:attempt_id>/complete/', complete_guest_attempt, name='complete-guest-attempt'),

@@ -89,25 +89,29 @@ def get_flow_state(request):
 
     flow_state = request.session['onboarding_flow']
     current_step_index = flow_state['current_step_index']
+    is_complete = current_step_index >= len(DEFAULT_FLOW_CONFIG['steps'])
 
-    # Ensure step index is valid
-    if current_step_index >= len(DEFAULT_FLOW_CONFIG['steps']):
-        return Response(
-            {'error': 'Flow completed or invalid step index'},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-
-    return Response({
+    response_data = {
         'flow_id': flow_state['flow_id'],
         'current_step_index': current_step_index,
-        'current_step': DEFAULT_FLOW_CONFIG['steps'][current_step_index],
         'completed_steps': flow_state['completed_steps'],
         'attempt_ids': flow_state['attempt_ids'],
         'total_steps': len(DEFAULT_FLOW_CONFIG['steps']),
         'started_at': flow_state['started_at'],
         'metadata': flow_state.get('metadata', {}),
-        'flow_config': DEFAULT_FLOW_CONFIG
-    })
+        'flow_config': DEFAULT_FLOW_CONFIG,
+        'is_complete': is_complete
+    }
+
+    # Add current step info only if flow is not complete
+    if not is_complete:
+        response_data['current_step'] = DEFAULT_FLOW_CONFIG['steps'][current_step_index]
+
+    # Add completion timestamp if available
+    if 'completed_at' in flow_state:
+        response_data['completed_at'] = flow_state['completed_at']
+
+    return Response(response_data)
 
 
 @api_view(['POST'])
@@ -184,7 +188,11 @@ def update_flow_progress(request):
         'current_step_index': flow_state['current_step_index'],
         'completed_steps': flow_state['completed_steps'],
         'attempt_ids': flow_state['attempt_ids'],
-        'is_complete': is_complete
+        'is_complete': is_complete,
+        'total_steps': len(DEFAULT_FLOW_CONFIG['steps']),
+        'flow_config': DEFAULT_FLOW_CONFIG,
+        'started_at': flow_state['started_at'],
+        'metadata': flow_state.get('metadata', {})
     }
 
     # Add next step info if not complete
@@ -223,7 +231,11 @@ def complete_flow(request):
         'completed_steps': flow_state['completed_steps'],
         'attempt_ids': flow_state['attempt_ids'],
         'started_at': flow_state['started_at'],
-        'completed_at': flow_state['completed_at']
+        'completed_at': flow_state['completed_at'],
+        'is_complete': True,
+        'total_steps': len(DEFAULT_FLOW_CONFIG['steps']),
+        'flow_config': DEFAULT_FLOW_CONFIG,
+        'metadata': flow_state.get('metadata', {})
     })
 
 
