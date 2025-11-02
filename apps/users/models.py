@@ -156,3 +156,74 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+
+class GuestLead(models.Model):
+    """
+    Stores email signups from unauthenticated users during onboarding.
+    Links to User account if they later register with the same email.
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.EmailField(unique=True, db_index=True)
+
+    # Session tracking
+    session_key = models.CharField(
+        max_length=40,
+        null=True,
+        blank=True,
+        help_text="Django session key to retrieve guest attempts"
+    )
+
+    # Onboarding data
+    guest_attempt_ids = models.JSONField(
+        default=dict,
+        help_text="Maps step_id to attempt_id from onboarding flow"
+    )
+    flow_id = models.CharField(
+        max_length=100,
+        default='user-onboarding-v1',
+        help_text="Which onboarding flow they completed"
+    )
+
+    # Preferences
+    subscribed_to_updates = models.BooleanField(
+        default=True,
+        help_text="Opted in to receive product updates"
+    )
+
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    # Conversion tracking
+    converted_to_user = models.ForeignKey(
+        'User',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='converted_guest_leads',
+        help_text="User account created with this email"
+    )
+    converted_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="When the guest lead registered as a full user"
+    )
+
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['email']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['converted_to_user']),
+        ]
+
+    def __str__(self):
+        status = "Converted" if self.converted_to_user else "Lead"
+        return f"{self.email} ({status})"
+
+    def mark_as_converted(self, user):
+        """Mark this lead as converted to a full user account"""
+        self.converted_to_user = user
+        self.converted_at = timezone.now()
+        self.save(update_fields=['converted_to_user', 'converted_at'])

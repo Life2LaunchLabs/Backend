@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
-from .models import User
+from .models import User, GuestLead
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -26,7 +26,22 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data.pop('password_confirm')
+        email = validated_data.get('email')
         user = User.objects.create_user(**validated_data)
+
+        # Check for existing GuestLead with this email and link it
+        try:
+            guest_lead = GuestLead.objects.filter(email=email, converted_to_user__isnull=True).first()
+            if guest_lead:
+                guest_lead.mark_as_converted(user)
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.info(f"Linked GuestLead {guest_lead.id} to new user {user.email}")
+        except Exception as e:
+            # Don't fail user creation if lead linking fails
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.warning(f"Failed to link guest lead for {email}: {e}")
 
         # Initialize default quests for new user using V2 system
         from apps.quests.default_quests_v2 import initialize_default_quests_for_user_v2
@@ -156,5 +171,43 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
             if User.objects.exclude(pk=user.pk).filter(email=value).exists():
                 raise serializers.ValidationError("Email already in use")
         return value
+
+
+class GuestLeadSerializer(serializers.ModelSerializer):
+    """Serializer for creating guest leads from onboarding flow"""
+
+    class Meta:
+        model = GuestLead
+        fields = ('id', 'email', 'subscribed_to_updates', 'flow_id', 'created_at')
+        read_only_fields = ('id', 'created_at')
+
+    def validate_email(self, value):
+        """Validate email format and check for duplicates"""
+        if not value:
+            raise serializers.ValidationError("Email is required")
+
+        # Check if email already exists as a GuestLead
+        if GuestLead.objects.filter(email=value).exists():
+            # Allow update, not a strict error
+            pass
+
+        return value
+
+    def create(self, validated_data):
+        """Create or update guest lead with session data"""
+        email = validated_data['email']
+
+        # Get or create to handle duplicate email submissions
+        guest_lead, created = GuestLead.objects.update_or_create(
+            email=email,
+            defaults={
+                'subscribed_to_updates': validated_data.get('subscribed_to_updates', True),
+                'flow_id': validated_data.get('flow_id', 'user-onboarding-v1'),
+                'session_key': validated_data.get('session_key'),
+                'guest_attempt_ids': validated_data.get('guest_attempt_ids', {}),
+            }
+        )
+
+        return guest_lead
 
 

@@ -5,8 +5,15 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 import logging
-from .models import User
-from .serializers import UserRegistrationSerializer, UserLoginSerializer, UserSerializer, PrivateProfileSerializer, UserProfileUpdateSerializer
+from .models import User, GuestLead
+from .serializers import (
+    UserRegistrationSerializer,
+    UserLoginSerializer,
+    UserSerializer,
+    PrivateProfileSerializer,
+    UserProfileUpdateSerializer,
+    GuestLeadSerializer
+)
 
 logger = logging.getLogger(__name__)
 
@@ -105,3 +112,43 @@ def logout(request):
         return Response({
             'error': 'Invalid token'
         }, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def create_guest_lead(request):
+    """
+    Create a guest lead from onboarding flow.
+    Captures email signup and associates with session data.
+    """
+    # Ensure session exists
+    if not request.session.session_key:
+        request.session.create()
+
+    # Prepare data with session information
+    data = request.data.copy()
+    data['session_key'] = request.session.session_key
+
+    # Try to get onboarding flow state from session
+    onboarding_flow = request.session.get('onboarding_flow', {})
+    if onboarding_flow:
+        data['flow_id'] = onboarding_flow.get('flow_id', 'user-onboarding-v1')
+        data['guest_attempt_ids'] = onboarding_flow.get('attempt_ids', {})
+    else:
+        # Fallback to defaults if no flow state
+        data.setdefault('flow_id', 'user-onboarding-v1')
+        data.setdefault('guest_attempt_ids', {})
+
+    serializer = GuestLeadSerializer(data=data)
+    if serializer.is_valid():
+        guest_lead = serializer.save()
+
+        logger.info(f"Created guest lead: {guest_lead.email} (session: {request.session.session_key})")
+
+        return Response({
+            'message': 'Successfully signed up for updates!',
+            'email': guest_lead.email,
+            'subscribed_to_updates': guest_lead.subscribed_to_updates
+        }, status=status.HTTP_201_CREATED)
+
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

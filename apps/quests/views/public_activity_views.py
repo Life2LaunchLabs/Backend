@@ -293,6 +293,133 @@ def get_guest_attempt(request, attempt_id):
     })
 
 
+def calculate_pathway_scores(responses):
+    """
+    Calculate pathway scores based on a_or_b_input responses.
+    Returns normalized scores (0-1) for build, create, care, and explore categories.
+    """
+    # Mapping of prompt IDs to pathway categories
+    PROMPT_CATEGORY_MAP = {
+        "prompt_1": "care",
+        "prompt_2": "care",
+        "prompt_1760391399232": "build",
+        "prompt_1760392013299": "build",
+        "prompt_1760392028272": "create",
+        "prompt_1760392049503": "create",
+        "prompt_1760392070469": "create",
+        "prompt_1760392088745": "create",
+        "prompt_1760392106047": "explore",
+        "prompt_1760392123445": "explore",
+        "prompt_1760392146726": "care",
+        "prompt_1760392339933": "care",
+        "prompt_1760392360893": "explore",
+        "prompt_1760392376631": "care",
+        "prompt_1760392396230": "explore",
+        "prompt_1760392413376": "explore",
+        "prompt_1760392439411": "build",
+        "prompt_1760392463230": "build",
+        "prompt_1760392486542": "create",
+        "prompt_1760392514798": "create",
+    }
+
+    # Initialize scores
+    scores = {
+        "build": 0,
+        "create": 0,
+        "care": 0,
+        "explore": 0
+    }
+
+    # Count selections for each category
+    for response_data in responses.values():
+        if response_data.get('question_type') == 'a_or_b_input':
+            value = response_data.get('value', {})
+            if isinstance(value, dict):
+                # Each True value in the dict represents a selected prompt
+                for prompt_id, is_selected in value.items():
+                    if is_selected and prompt_id in PROMPT_CATEGORY_MAP:
+                        category = PROMPT_CATEGORY_MAP[prompt_id]
+                        scores[category] += 1
+
+    # Normalize by the highest score (divide all by max)
+    max_score = max(scores.values()) if max(scores.values()) > 0 else 1
+    normalized_scores = {k: v / max_score for k, v in scores.items()}
+
+    return {
+        "raw_scores": scores,
+        "normalized_scores": normalized_scores
+    }
+
+
+def generate_pathway_chart_data(normalized_scores):
+    """
+    Generate bar chart data for pathway visualization.
+    Returns sorted categories with colors and percentages.
+    """
+    COLORS = {
+        'build': "#BA66FF",
+        'create': "#00E5FF",
+        'care': "#FF5F57",
+        'explore': "#00D26A"
+    }
+
+    COLORS_SECONDARY = {
+        'build': "#875EDB",
+        'create': "#1BA6C4",
+        'care': "#D1497F",
+        'explore': "#1FAF73"
+    }
+
+    PATHWAY_TITLES = {
+        'care': "Care – Care, Serve, and Support",
+        'create': "Create – Create, Innovate, and Solve Problems",
+        'build': "Build – Build, Develop, and Grow",
+        'explore': "Explore – Explore, Adventure, and Experience"
+    }
+
+    PATHWAY_DESCRIPTIONS = {
+        'care': "You excel in roles that involve helping and supporting others, such as healthcare, education, or community work.",
+        'create': "You thrive in fields that focus on innovation and creativity, such as technology, media, or design.",
+        'build': "You enjoy tangible, hands-on work that produces real-world results, such as construction, manufacturing, or conservation.",
+        'explore': "You prefer dynamic, travel-based, or outdoor roles like tourism, transportation, or logistics."
+    }
+
+    # Sort by score (highest first)
+    sorted_pathways = sorted(
+        normalized_scores.items(),
+        key=lambda x: x[1],
+        reverse=True
+    )
+
+    # Build chart data
+    chart_bars = []
+    pathway_details = []
+
+    for pathway, score in sorted_pathways:
+        percentage = round(score * 100, 2)
+        chart_bars.append({
+            'label': pathway,
+            'value': percentage,
+            'color': COLORS[pathway],
+            'color_secondary': COLORS_SECONDARY[pathway]
+        })
+
+        pathway_details.append({
+            'pathway': pathway,
+            'title': PATHWAY_TITLES[pathway],
+            'description': PATHWAY_DESCRIPTIONS[pathway],
+            'score': score,
+            'percentage': percentage,
+            'color': COLORS[pathway]
+        })
+
+    return {
+        'bars': chart_bars,
+        'pathways': pathway_details,
+        'primary_pathway': sorted_pathways[0][0] if sorted_pathways else None
+    }
+
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_guest_attempt_results(request, attempt_id):
@@ -491,6 +618,15 @@ def get_guest_attempt_results(request, attempt_id):
                     'items': section_items
                 })
 
+        # Calculate pathway scores if this is the pathways assessment
+        pathway_scoring = None
+        pathway_chart = None
+
+        if 'pathways' in activity_version.activity.slug.lower():
+            scoring_result = calculate_pathway_scores(responses)
+            pathway_scoring = scoring_result
+            pathway_chart = generate_pathway_chart_data(scoring_result['normalized_scores'])
+
         return Response({
             'attempt_id': attempt_id,
             'activity_title': activity_version.activity.title,
@@ -498,7 +634,9 @@ def get_guest_attempt_results(request, attempt_id):
             'completed_at': attempt.get('completed_at'),
             'started_at': attempt.get('started_at'),
             'sections': sections,
-            'scores': {},  # Future: computed scores
+            'scores': pathway_scoring['raw_scores'] if pathway_scoring else {},
+            'normalized_scores': pathway_scoring['normalized_scores'] if pathway_scoring else {},
+            'pathway_chart': pathway_chart,  # Bar chart data and pathway details
             'insights': [],  # Future: AI-generated insights
             'recommendations': []  # Future: pathway recommendations
         })
