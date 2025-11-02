@@ -469,20 +469,6 @@
             "question_type": "multiple_choice",
             "multiple_selection": true
           }
-        },
-        {
-          "index": 1,
-          "block_type": "text_input",
-          "config": {
-            "title": "Other",
-            "config": {
-              "multiline": false,
-              "placeholder": "fill in..."
-            },
-            "required": false,
-            "question_id": "other_pain_point",
-            "question_type": "text_input"
-          }
         }
       ]
     },
